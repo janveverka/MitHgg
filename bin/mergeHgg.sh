@@ -10,14 +10,14 @@
 # Basic definitions
 #---------------------------------------------------------------------------------------------------
 MACROS=/home/$USER/cms/root
-CATALOG=/home/cmsprod/catalog
+CATALOG=~cmsprod/catalog
 BOOK=t2mit/filefi
 HIST=/home/$USER/cms/hist
 
 NAME=hgg-v0
 
-./mergeHist.py \
+mergeHist.py \
      --InputPath=$HIST/$NAME/$BOOK \
     --OutputPath=$HIST/$NAME/$BOOK/merged \
     --FilenameHeader=$NAME \
-    --DatasetListFile=/home/$USER/cms/root/${NAME}.txt
+    --DatasetListFile=$MIT_HGG_DIR/config/${NAME}.txt

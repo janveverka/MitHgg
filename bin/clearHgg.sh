@@ -9,7 +9,7 @@
 # Basic definitions
 #---------------------------------------------------------------------------------------------------
 MACROS=/home/$USER/cms/root
-CATALOG=/home/cmsprod/catalog
+CATALOG=~cmsprod/catalog
 BOOK=t2mit/filefi
 HIST=/home/$USER/cms/hist
 

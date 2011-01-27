@@ -9,7 +9,7 @@
 # Basic definitions
 #---------------------------------------------------------------------------------------------------
 MACROS=/home/$USER/cms/root
-CATALOG=/home/cmsprod/catalog
+CATALOG=~cmsprod/catalog
 BOOK=t2mit/filefi
 HIST=/home/$USER/cms/hist
 
@@ -35,7 +35,7 @@ do
   export MIT_PROD_OVERLAP=`echo $line | tr -s ' ' | cut -d ' ' -f 6`
   echo " JSON: $MIT_PROD_JSON  Overlap: $MIT_PROD_OVERLAP"
   # now submit the sucker
-  ./submit.sh $ANA $CATALOG $BOOK/$VERSION $dataset noskim $NAME $HIST 1
+  submit.sh $ANA $CATALOG $BOOK/$VERSION $dataset noskim $NAME $HIST 1
 done
 
 exit 0
