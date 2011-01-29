@@ -6,18 +6,8 @@
 #                                                                             Ch.Paus (Aug 15, 2010)
 #===================================================================================================
 
-#---------------------------------------------------------------------------------------------------
-# Basic definitions
-#---------------------------------------------------------------------------------------------------
-MACROS=/home/$USER/cms/root
-CATALOG=~cmsprod/catalog
-BOOK=t2mit/filefi
-HIST=/home/$USER/cms/hist
-
-NAME=hgg-v0
-
 mergeHist.py \
-     --InputPath=$HIST/$NAME/$BOOK \
-    --OutputPath=$HIST/$NAME/$BOOK/merged \
-    --FilenameHeader=$NAME \
-    --DatasetListFile=$MIT_HGG_DIR/config/${NAME}.txt
+     --InputPath=$MIT_PROD_HIST/$MIT_PROD_CFG/$MIT_PROD_BOOK \
+    --OutputPath=$MIT_PROD_HIST/$MIT_PROD_CFG/$MIT_PROD_BOOK/merged \
+    --FilenameHeader=$MIT_PROD_CFG \
+    --DatasetListFile=$MIT_HGG_DIR/config/${MIT_PROD_CFG}.txt
