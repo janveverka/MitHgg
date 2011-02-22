@@ -1,4 +1,4 @@
-// $Id: $
+// $Id: HggAnalysis.cc,v 1.1 2011/01/24 14:57:09 paus Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -341,11 +341,11 @@ void HggAnalysis::MatchPhotonsToTrigger()
     // print warning if desired
     if (matched > 1) {
       MDB(kGeneral,1) {
-        printf(" Ambiguos match found: %d\n",matched);
-        printf(" Photon:  %8.3f %8.3f %8.3f\n",p->Eta(), p->Phi(), p->Pt());
+        //printf(" Ambiguos match found: %d\n",matched);
+        //printf(" Photon:  %8.3f %8.3f %8.3f\n",p->Eta(), p->Phi(), p->Pt());
         for (UInt_t j=0; j<nEnts; ++j) {
           const TriggerObject *to = tos->At(j);
-          printf(" TrigObj: %8.3f %8.3f %8.3f\n",to->Eta(),to->Phi(),to->Pt());
+          //printf(" TrigObj: %8.3f %8.3f %8.3f\n",to->Eta(),to->Phi(),to->Pt());
         }
       }
     }
