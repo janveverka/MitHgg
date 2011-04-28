@@ -1,4 +1,4 @@
-// $Id: PhSCEffMod.cc,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
+// $Id: PhSCEffMod.C,v 1.1 2011/04/28 16:08:56 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -248,6 +248,13 @@ void PhSCEffMod::Process()
   ThreeVectorC tProbe_P  = tProbe->Point() - vtx->Position();
   tProbe_P = tProbe_P/tProbe_P.R();
   tProbe_M.SetXYZT(tProbe->Energy()*tProbe_P.X(), tProbe->Energy()*tProbe_P.Y(), tProbe->Energy()*tProbe_P.Z(), tProbe->Energy());
+
+  // compute the same for the electron
+  FourVectorM tTag_M;  
+  ThreeVectorC tTag_P  = tTag->Point() - vtx->Position();
+  tTag_P = tTag_P/tTag_P.R();
+  tTag_M.SetXYZT(tTag->Energy()*tTag_P.X(), tTag->Energy()*tTag_P.Y(), tTag->Energy()*tTag_P.Z(), tTag->Energy());
+
   
   const SuperCluster*   _tPh = tProbe;
   
@@ -269,6 +276,7 @@ void PhSCEffMod::Process()
   Float_t _tElm    = ( _tEl ? _tEl->Mass() : -100.);
   
   Float_t _mass    = ( _tEl ? (_tEl->Mom()+tProbe_M).M() : -100.);
+  Float_t _mass2   = (tTag_M+tProbe_M).M();
   
   Float_t fillEvent[] = { Float_t(fIsData),
 			  _tPhEt  ,
@@ -290,7 +298,8 @@ void PhSCEffMod::Process()
 			  (Float_t) numPU,
 			  (Float_t) numPV,
 			  _tRho,
-			  _mass
+			  _mass,
+			  _mass2
   };
   
   hPhTrigEffTuple->Fill(fillEvent);
@@ -330,7 +339,7 @@ void PhSCEffMod::SlaveBegin()
   
   ReqBranch(fPileUpDenName,fPileUpDen);
   
-  hPhTrigEffTuple = new TNtuple("hPhEffTuple","hPhEffTuple","isData:phEt:phEta:phPhi:phE:phPz:phPtt:phM:phSEE:phTrig:elEt:elEta:elPhi:elE:elPz:elPt:elM:numPU:numPV:Rho:invMass");
+  hPhTrigEffTuple = new TNtuple("hPhEffTuple","hPhEffTuple","isData:phEt:phEta:phPhi:phE:phPz:phPtt:phM:phSEE:phTrig:elEt:elEta:elPhi:elE:elPz:elPt:elM:numPU:numPV:Rho:invMass:invMass2");
   
   AddOutput(hPhTrigEffTuple);
 
