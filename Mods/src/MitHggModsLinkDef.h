@@ -1,4 +1,4 @@
-// $Id: MitHggModsLinkDef.h,v 1.4 2011/04/06 16:06:51 fabstoec Exp $
+// $Id: MitHggModsLinkDef.h,v 1.5 2011/04/13 12:14:27 bendavid Exp $
 
 #ifndef MITHGG_MODS_LINKDEF_H
 #define MITHGG_MODS_LINKDEF_H
@@ -9,6 +9,7 @@
 #include "MitHgg/Mods/interface/HGGModSimple.h"
 #include "MitHgg/Mods/interface/HGGSimMod.h"
 #include "MitHgg/Mods/interface/PhotonEffMod.h"
+#include "MitHgg/Mods/interface/PhSCEffMod.h"
 #include "MitHgg/Mods/interface/PhotonIsoAreaMod.h"
 #endif
 
@@ -27,6 +28,7 @@
 #pragma link C++ class mithep::HGGModSimple+;
 #pragma link C++ class mithep::HGGSimMod+;
 #pragma link C++ class mithep::PhotonEffMod+;
+#pragma link C++ class mithep::PhSCEffMod+;
 #pragma link C++ class mithep::PhotonIsoAreaMod+;
 
 #endif
