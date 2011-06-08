@@ -1,8 +1,9 @@
-// $Id: MitHggModsLinkDef.h,v 1.5 2011/04/13 12:14:27 bendavid Exp $
+// $Id: MitHggModsLinkDef.h,v 1.6 2011/06/01 12:38:04 fabstoec Exp $
 
 #ifndef MITHGG_MODS_LINKDEF_H
 #define MITHGG_MODS_LINKDEF_H
 #include "MitHgg/Mods/interface/HggAnalysis.h"
+#include "MitHgg/Mods/interface/HggAnalysisMod.h"
 #include "MitHgg/Mods/interface/ZeeAnalysis.h"
 #include "MitHgg/Mods/interface/ZmmAnalysis.h"
 #include "MitHgg/Mods/interface/HGGMod.h"
@@ -22,6 +23,7 @@
 #pragma link C++ namespace mithep;
 
 #pragma link C++ class mithep::HggAnalysis+;
+#pragma link C++ class mithep::HggAnalysisMod+;
 #pragma link C++ class mithep::ZeeAnalysis+;
 #pragma link C++ class mithep::ZmmAnalysis+;
 #pragma link C++ class mithep::HGGMod+;
