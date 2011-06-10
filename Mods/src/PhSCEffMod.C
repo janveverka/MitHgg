@@ -1,4 +1,4 @@
-// $Id: PhSCEffMod.C,v 1.1 2011/04/28 16:08:56 fabstoec Exp $
+// $Id: PhSCEffMod.C,v 1.2 2011/04/28 19:40:54 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -32,6 +32,9 @@ PhSCEffMod::PhSCEffMod(const char *name, const char *title) :
 
   fTrackName (Names::gkTrackBrn),
   fTracks(0),
+
+  fMCParticleName(Names::gkMCPartBrn),
+  fMCParticles(0),
 
   fBarrelSCName       (Names::gkBarrelSuperClusterBrn),
   fBarrelSC(0),
@@ -101,6 +104,7 @@ void PhSCEffMod::Process()
 	printf(" Reject event with scale %f  above cut: %f\n",fMcEventInfo->Scale(),fOverlapCut);
       return;
     }
+    LoadBranch(fMCParticleName);
     LoadBranch(fPileUpName);
   }
   LoadEventObject(fPhotonName,fPhotons);
@@ -255,6 +259,9 @@ void PhSCEffMod::Process()
   tTag_P = tTag_P/tTag_P.R();
   tTag_M.SetXYZT(tTag->Energy()*tTag_P.X(), tTag->Energy()*tTag_P.Y(), tTag->Energy()*tTag_P.Z(), tTag->Energy());
 
+  Float_t _pth = -1;
+  if( !fIsData )
+    _pth = findHiggsPt();
   
   const SuperCluster*   _tPh = tProbe;
   
@@ -299,7 +306,8 @@ void PhSCEffMod::Process()
 			  (Float_t) numPV,
 			  _tRho,
 			  _mass,
-			  _mass2
+			  _mass2,
+			  _pth
   };
   
   hPhTrigEffTuple->Fill(fillEvent);
@@ -332,6 +340,7 @@ void PhSCEffMod::SlaveBegin()
     ReqBranch(Names::gkMCEvtInfoBrn,fMcEventInfo);
     printf(" Monte Carlo Information block %p\n",(void*) fMcEventInfo);
     printf(" --> this is no data. Access the McEventInfo.\n\n");
+    ReqBranch(Names::gkMCPartBrn,fMCParticles);
     ReqBranch(fPileUpName, fPileUp);
   }
   else
@@ -339,7 +348,7 @@ void PhSCEffMod::SlaveBegin()
   
   ReqBranch(fPileUpDenName,fPileUpDen);
   
-  hPhTrigEffTuple = new TNtuple("hPhEffTuple","hPhEffTuple","isData:phEt:phEta:phPhi:phE:phPz:phPtt:phM:phSEE:phTrig:elEt:elEta:elPhi:elE:elPz:elPt:elM:numPU:numPV:Rho:invMass:invMass2");
+  hPhTrigEffTuple = new TNtuple("hPhEffTuple","hPhEffTuple","isData:phEt:phEta:phPhi:phE:phPz:phPtt:phM:phSEE:phTrig:elEt:elEta:elPhi:elE:elPz:elPt:elM:numPU:numPV:Rho:invMass:invMass2:pth");
   
   AddOutput(hPhTrigEffTuple);
 
@@ -447,3 +456,16 @@ void PhSCEffMod::MatchSCToTrigger()
 
   return;
 }
+
+
+double PhSCEffMod::findHiggsPt() {
+
+  // loop over all GEN particles and look for status 1 photons
+  for(UInt_t i=0; i<fMCParticles->GetEntries(); ++i) {
+    const MCParticle* p = fMCParticles->At(i);
+    if( !(p->Is(MCParticle::kH)) ) continue;
+    return p->Pt();
+  }
+
+  return -1.0;
+ }

@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhSCEffMod.h,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
+// $Id: PhSCEffMod.h,v 1.1 2011/04/28 16:08:56 fabstoec Exp $
 //
 // PhSCEffMod
 //
@@ -65,11 +65,15 @@ namespace mithep
 
     void MatchElectronsToTightTrigger();
     void MatchSCToTrigger();
-    
+    double findHiggsPt();
+
     // Muon Collection & Cuts
 
     TString fTrackName;
     const TrackCol* fTracks;
+
+    TString fMCParticleName;
+    const MCParticleCol* fMCParticles;
 
     TString                  fBarrelSCName;
     const SuperClusterCol   *fBarrelSC;
