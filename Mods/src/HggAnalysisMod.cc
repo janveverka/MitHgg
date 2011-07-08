@@ -1,4 +1,4 @@
-// $Id: HggAnalysisMod.cc,v 1.1 2011/01/24 14:57:09 paus Exp $
+// $Id: HggAnalysisMod.cc,v 1.1 2011/06/08 14:27:54 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -438,7 +438,7 @@ Int_t HggAnalysisMod::findClosestToTruth(const VertexCol* vtxs, const Photon* p)
     }
   }
 
-  std::cout<<" closes Vtx is dZ = "<<closeDZ<<std::endl;
+  //std::cout<<" closes Vtx is dZ = "<<closeDZ<<std::endl;
   return closeInd;
   
 }
