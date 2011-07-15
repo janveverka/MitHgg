@@ -1,15 +1,15 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhotonIsoAreaMod.h,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
+// $Id: PhotonMCDataSFMod.h,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
 //
-// PhotonIsoAreaMod
+// PhotonMCDataSFMod
 //
 // This module compues photon eff from Z->mumugamma
 //
 // Authors: F,.Stoeckli
 //--------------------------------------------------------------------------------------------------
 
-#ifndef MITHGG_MODS_PHOTONISOAREAMOD_H
-#define MITHGG_MODS_PHOTONISOAREAMOD_H
+#ifndef MITHGG_MODS_PHOTONMCDATASFMOD_H
+#define MITHGG_MODS_PHOTONMCDATASFMOD_H
 
 #include "MitAna/TreeMod/interface/BaseMod.h" 
 #include "MitAna/DataTree/interface/CollectionsFwd.h"
@@ -28,12 +28,14 @@ class Vertex;
 class BaseVertex;
 class BeamSpotCol;
 
+class TRandom3;
+
 namespace mithep 
 {
-  class PhotonIsoAreaMod : public BaseMod
+  class PhotonMCDataSFMod : public BaseMod
   {
   public:
-    PhotonIsoAreaMod(const char *name  = "PhotonIsoAreaMod", 
+    PhotonMCDataSFMod(const char *name  = "PhotonMCDataSFMod", 
 		const char *title = "Photon Efficiency Analysis");
 
 
@@ -52,12 +54,19 @@ namespace mithep
     void                SetIsData(bool b) { fIsData = b; }
 
     // set Trigger Leg Strings
-    void                SetTriggerLegs(const char* tight, const char* loose) {
-      fTightTriggerLeg = tight;
-      fLooseTriggerLeg = loose;
+    void                AddTriggerLegs(const char* tight, const char* loose) {
+      fTightTriggerLeg.push_back(tight);
+      fLooseTriggerLeg.push_back(loose);
     }
 
-    void SetTrigObjsName(const char* n) { fTrigObjsName = n; }
+    void                SetTrigObjsName(const char* n) { fTrigObjsName = n; }
+
+    void                SetSCEtMin(double a)           { fSCEtMin = a; }
+    void                SetSCBarrelEtaMax(double a)    { fSCBarrelEtaMax = a; }
+    void                SetSCEndcapEtaMax(double a)    { fSCEndcapEtaMax = a; }
+    void                SetSCEndcapEtaMin(double a)    { fSCEndcapEtaMin = a; }
+
+    void                SetTupleName(const char* c)    { fTupleName = c; }
 
   protected:
 
@@ -69,7 +78,7 @@ namespace mithep
 
     void                     MatchObjectsToTrigger(bool isData);   // create trig photon indices from sel.
 
-    void                     ResetSelectedElectronsAndPhotons();
+    void                     ResetSelectedStuff();
 
     // Names for the input Collections
     TString             fPhotonBranchName;
@@ -84,9 +93,17 @@ namespace mithep
     TString             fPileUpName;
     TString             fTrigObjsName;
 
+    TString             fBarrelSCName;
+    TString             fEndcapSCName;
+
     // photon selection
     double                   fPhotonEtMin;              // minimal transverse energy for photon
     double                   fElectronEtMin;              // minimal transverse energy for photon
+    // SC selection
+    double                   fSCEtMin;
+    double                   fSCBarrelEtaMax;
+    double                   fSCEndcapEtaMax;
+    double                   fSCEndcapEtaMin;
 
     const PhotonCol              *fPhotons;
     const ElectronCol            *fElectrons;
@@ -95,6 +112,9 @@ namespace mithep
     const VertexCol              *fPV;
     const BeamSpotCol            *fBeamspot;
     const PileupInfoCol          *fPileUp;    
+
+    const SuperClusterCol        *fBarrelSC;
+    const SuperClusterCol        *fEndcapSC;
 
     // is it Data or MC?
     Bool_t              fIsData;
@@ -105,17 +125,24 @@ namespace mithep
     Bool_t              fPVFromBranch;
  
     // Trigger strings, need to be provided by USER
-    TString             fTightTriggerLeg;
-    TString             fLooseTriggerLeg;
+    std::vector<TString>             fTightTriggerLeg;
+    std::vector<TString>             fLooseTriggerLeg;
 
     std::vector<UInt_t>      fSelectedElectrons;
+    std::vector<UInt_t>      fSelectedSC_EB;
+    std::vector<UInt_t>      fSelectedSC_EE;
     std::vector<UInt_t>      fSelectedPhotons;
     std::vector<UInt_t>      fTrigElectrons;
-    std::vector<UInt_t>      fTrigPhotons;
+    std::vector<UInt_t>      fTrigSC_EB;
+    std::vector<UInt_t>      fTrigSC_EE;
+
+    TRandom3* rng;
+
+    TString fTupleName;
 
     // The output Ntuple
-    TNtuple* hPhIsoAreaTuple;
-    ClassDef(PhotonIsoAreaMod, 1)
+    TNtuple* hPhTrigEffTuple;
+    ClassDef(PhotonMCDataSFMod, 1)
   };
 }
 #endif
