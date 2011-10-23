@@ -1,12 +1,11 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: HGGModSimple.h,v 1.7 2010/03/12 13:51:26 bendavid Exp $
+// $Id: HGGModSimple.h,v 1.1 2011/04/13 12:14:26 bendavid Exp $
 //
 // HGGModSimple
 //
-// Higgs->gamma gamma analysis module which writes an ntuple
-// containing the final kinematic variables needed for categorization and fits.
-// Some extra information related to primary vertex and
-// conversion reconstruction is also stored.
+// Higgs->gamma gamma analysis module which writes an ntuple containing the final kinematic
+// variables needed for categorization and fits.  Some extra information related to primary vertex
+// and conversion reconstruction is also stored.
 //
 // Authors: J.Bendavid
 //--------------------------------------------------------------------------------------------------
@@ -51,20 +50,19 @@ namespace mithep
       void                     FillDiphotonTree(const Photon *g1, const Photon *g2) const;
       const MCParticle        *MatchMC(const Photon *ph) const;      
 
-
       TString                  fMCPartName;         //name of particle collection
       TString                  fTrackName;          //name of track collection
       TString                  fElectronName;       //name of electron collection
       TString                  fPFMetName;          //name of PFMet branch
       TString                  fCaloMetName;
-      TString                  fPFCandidatesName;    //name of PFCandidate branch
+      TString                  fPFCandidatesName;   //name of PFCandidate branch
       TString                  fPrimaryVertexName;  //name of PV collection
       TString                  fConversionName;
       TString                  fPhotonName;      
       TString                  fBeamSpotName;
       TString                  fPileupInfoName;
-      TString                  fTrigObjectsName;        //name of trigger object collection      
-      TString                  fPileUpDenName;        //name of the PU density collection            
+      TString                  fTrigObjectsName;    //name of trigger object collection      
+      TString                  fPileUpDenName;      //name of the PU density collection            
       Bool_t                   fPrimaryVertexFromBranch;      
       Bool_t                   fPhotonsFromBranch;
       Bool_t                   fMatchMC;
@@ -79,8 +77,8 @@ namespace mithep
       const PhotonCol         *fPhotons;            //!
       const BeamSpotCol       *fBeamSpot;           //!
       const PileupInfoCol     *fPileupInfo;         //!
-      const PileupEnergyDensityCol *fPileUpDen;  //!rho branch      
-      TNtuple                 *hHggNtuple;//!
+      const PileupEnergyDensityCol *fPileUpDen;     //!rho branch      
+      TNtuple                 *hHggNtuple;          //!
 
 
       ClassDef(HGGModSimple, 1) // Full example analysis module

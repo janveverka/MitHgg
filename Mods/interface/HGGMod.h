@@ -1,16 +1,14 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: HGGMod.h,v 1.7 2010/03/12 13:51:26 bendavid Exp $
+// $Id: HGGMod.h,v 1.2 2011/04/13 12:14:26 bendavid Exp $
 //
 // HGGMod
 //
-// Higgs->gamma gamma analysis module which writes an ntuple
-// containing the final kinematic variables needed for categorization and fits.
-// Some extra information related to primary vertex and
-// conversion reconstruction is also stored.
+// Higgs->gamma gamma analysis module which writes an ntuple containing the final kinematic
+// variables needed for categorization and fits.  Some extra information related to primary vertex
+// and conversion reconstruction is also stored.
 //
 // Authors: J.Bendavid
 //--------------------------------------------------------------------------------------------------
-
 #ifndef MITANA_PHYSICSMOD_HGGMod_H
 #define MITANA_PHYSICSMOD_HGGMod_H
 
@@ -28,8 +26,8 @@ namespace mithep
   class HGGMod : public BaseMod
   {
     public:
-      HGGMod(const char *name="HGGMod", 
-                     const char *title="Example analysis module with all branches");
+      HGGMod(const char *name  = "HGGMod", 
+	     const char *title = "Example analysis module with all branches");
 
     protected:
       void                     Begin();
@@ -65,21 +63,15 @@ namespace mithep
       const PFJet             *MatchJet(const Photon *p, const PFJetCol *jets) const;
       const Electron          *MatchElectron(const Photon *p) const;
       const DecayParticle     *MatchElectronConversion(const Photon *p, const Electron *e) const;
-      
-
-
-
-
-
 
       TString                  fMCPartName;         //name of particle collection
       TString                  fTrackName;          //name of track collection
       TString                  fMuonName;           //name of muon collection
       TString                  fElectronName;       //name of electron collection
-      TString                  fElectronLooseName;       //name of loose electron collection (for Z veto)     
+      TString                  fElectronLooseName;  //name of loose electron collection (for Z veto)     
       TString                  fPFMetName;          //name of PFMet branch
       TString                  fCaloMetName;
-      TString                  fPFCandidatesName;    //name of PFCandidate branch
+      TString                  fPFCandidatesName;   //name of PFCandidate branch
       TString                  fPrimaryVertexName;  //name of PV collection
       TString                  fConversionName;
       TString                  fPhotonName;      
@@ -88,32 +80,32 @@ namespace mithep
       TString                  fJetName;
       TString                  fCorJetName;
       TString                  fPileupInfoName;
-      Bool_t                   fMuonsFromBranch;    //muons are loaded from a branch
+      Bool_t                   fMuonsFromBranch;     //muons are loaded from a branch
       Bool_t                   fElectronsFromBranch; //electrons are loaded from a branch
       Bool_t                   fPhotonsFromBranch;
       Bool_t                   fMatchMC;
       Bool_t                   fMatchSim;
       Bool_t                   fUsePileupInfo;
       Bool_t                   fSinglePhotonMode;
-      const MCParticleCol     *fParticles;          //!MCParticle branch
-      const TrackCol          *fTracks;	            //!Track branch
-      const MuonCol	      *fMuons;              //!Muon branch
-      const ElectronCol	      *fElectrons;          //!Electron branch
-      const ElectronCol       *fElectronsLoose;     //!loose electron branch
-      const ElectronCol       *fRecoElectrons;      //!reconstructed electrons (for acceptance)
-      const PFMetCol          *fPFMet;              //!PFMet branch
-      const CaloMetCol        *fCaloMet;            //!
-      const PFCandidateCol    *fPFCandidates;       //!PFCandidate branch
-      const VertexCol         *fPrimaryVertex;      //!Primary vertex branch
-      const DecayParticleCol  *fConversions;        //!
-      const PhotonCol         *fPhotons;            //!
-      const BeamSpotCol       *fBeamSpot;           //!
-      const TrackCol          *fEcalTracks;         //!
-      const PFJetCol          *fJets;               //!
-      const PFJetCol          *fCorJets;            //!
-      const PileupInfoCol     *fPileupInfo;         //!
-      TNtuple                 *hHggNtuple;//!
-      TNtuple                 *hVtxNtuple;//!
+      const MCParticleCol     *fParticles;           //!MCParticle branch
+      const TrackCol          *fTracks;	             //!Track branch
+      const MuonCol	      *fMuons;               //!Muon branch
+      const ElectronCol	      *fElectrons;           //!Electron branch
+      const ElectronCol       *fElectronsLoose;      //!loose electron branch
+      const ElectronCol       *fRecoElectrons;       //!reconstructed electrons (for acceptance)
+      const PFMetCol          *fPFMet;               //!PFMet branch
+      const CaloMetCol        *fCaloMet;             //!
+      const PFCandidateCol    *fPFCandidates;        //!PFCandidate branch
+      const VertexCol         *fPrimaryVertex;       //!Primary vertex branch
+      const DecayParticleCol  *fConversions;         //!
+      const PhotonCol         *fPhotons;             //!
+      const BeamSpotCol       *fBeamSpot;            //!
+      const TrackCol          *fEcalTracks;          //!
+      const PFJetCol          *fJets;                //!
+      const PFJetCol          *fCorJets;             //!
+      const PileupInfoCol     *fPileupInfo;          //!
+      TNtuple                 *hHggNtuple;           //!
+      TNtuple                 *hVtxNtuple;           //!
 
 
       ClassDef(HGGMod, 1) // Full example analysis module

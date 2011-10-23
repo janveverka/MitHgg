@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: $
+// $Id: ZmmAnalysis.h,v 1.1 2011/01/24 14:57:09 paus Exp $
 //
 // ZmmAnalysis
 //
@@ -57,14 +57,9 @@ namespace mithep
     double                   fOverlapCut;               // cut to allow for rejection of overlap
     // muon selection cuts
     double                   fMuonEtMin;                // minimal transverse energy for muon
-    //Bool_t                   fNoPixelSeedCut;           // request that there be no pixel seed?
-    //double                   fMuonSigEeBarMax;          // maximal sigma(eta,eta), barrel
-    //double                   fMuonSigEeEcpMax;          // maximal sigma(eta,eta), endcap
     double                   fMuonIsoMax;               // maximal combined isolation
     // high mass di-muon selection cuts
     double                   f2MuonMassMin;             // minimum di-muon mass, high mass sample
-    //// R9 cleaned muon selection cuts
-    //double                   fMuonR9Min;              // minimum R9 for cleaner muons
  
     // keep track of our muons
     std::vector<UInt_t>      fSelectedMuons;            // muon indices, selected
@@ -77,9 +72,6 @@ namespace mithep
     TH1D                    *hAllNMuons;         //! all number of muons
     TH1D                    *hAllMuonPt;         //! all muon pt
     TH1D                    *hAllMuonEta;        //! all muon eta
-    //TH1D                    *hAllMuonPixelSeed;  //! pixel seed or not
-    //TH1D                    *hAllMuonSigEeBar;   //! sigma(eta,eta) of muons, barrel
-    //TH1D                    *hAllMuonSigEeEcp;   //! sigma(eta,eta) of muons, endcap
     TH1D                    *hAllMuonEcHcTrIso;  //! combined isolation
     // trigger monitoring
     TH1D                    *hTrigDeltaEta;      //! trigger match (delta Eta)
@@ -98,17 +90,11 @@ namespace mithep
     TH1D                    *hMuonEta2;          //! Eta 2 muon
     TH1D                    *hMuonPhi1;          //! Phi 1 muon
     TH1D                    *hMuonPhi2;          //! Phi 2 muon
-    //TH1D                    *hMuonR91;           //! R9  1 muon
-    //TH1D                    *hMuonR92;           //! R9  2 muon
     TH1D                    *hMuonDelR;          //! delta R(muon1,muon2)
     TH1D                    *h2MuonEtSum;        //! di-muon Et sum
     TH1D                    *h2MuonPt;           //! di-muon Pt
     TH1D                    *h2MuonEta;          //! di-muon Eta
     TH1D                    *h2MuonMass;         //! di-muon mass (at least one trig)
-    //// high mass di-muons
-    //TH1D                    *hHmMuonR91;         //! R9  1 muon
-    //TH1D                    *hHmMuonR92;         //! R9  2 muon
-    // R9 cleaned muons
     TH1D                    *h2R9MuonMass;       //! di-muon mass (after R9 cleanup)
     // selected and triggered
     TH1D                    *hNTrigMuons;        //! number of muons, selected and triggered

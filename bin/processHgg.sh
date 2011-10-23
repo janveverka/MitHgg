@@ -6,8 +6,10 @@
 #===================================================================================================
 
 echo " Config: ${MIT_HGG_DIR}/config/${MIT_PROD_CFG}.txt"
+
 for dataset in `cat ${MIT_HGG_DIR}/config/${MIT_PROD_CFG}.txt|grep -v ^#|tr -s ' '|cut -d' ' -f 2`
 do
+
   # find the line to this dataset and do further analysis
   line=`grep $dataset ${MIT_HGG_DIR}/config/${MIT_PROD_CFG}.txt`
   # determine the MIT version of this sample
@@ -20,6 +22,7 @@ do
   # now submit the sucker
   submit.sh $MIT_PROD_MACRO $MIT_CATALOG $MIT_PROD_BOOK/$VERSION $dataset noskim \
             $MIT_ANA_CFG    $MIT_PROD_HIST 1
+
 done
 
 exit 0

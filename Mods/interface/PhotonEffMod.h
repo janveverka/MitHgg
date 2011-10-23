@@ -1,9 +1,9 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhotonEffMod.h,v 1.1 2011/01/24 14:57:09 paus Exp $
+// $Id: PhotonEffMod.h,v 1.1 2011/03/22 12:58:27 fabstoec Exp $
 //
 // PhotonEffMod
 //
-// This module compues photon eff from Z->mumugamma
+// This module computes photon eff from Z->mumugamma
 //
 // Authors: F,.Stoeckli
 //--------------------------------------------------------------------------------------------------

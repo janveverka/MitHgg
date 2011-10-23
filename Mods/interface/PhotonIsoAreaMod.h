@@ -1,9 +1,9 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhotonIsoAreaMod.h,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
+// $Id: PhotonIsoAreaMod.h,v 1.2 2011/07/15 17:26:34 fabstoec Exp $
 //
 // PhotonIsoAreaMod
 //
-// This module compues photon eff from Z->mumugamma
+// This module computes photon isolation area.
 //
 // Authors: F,.Stoeckli
 //--------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ namespace mithep
   {
   public:
     PhotonIsoAreaMod(const char *name  = "PhotonIsoAreaMod", 
-		const char *title = "Photon Efficiency Analysis");
+		     const char *title = "Photon Efficiency Analysis");
 
 
     // setting all the input Names
@@ -49,44 +49,38 @@ namespace mithep
     void                SetPUInfoName(const char *n)      { fPileUpName = n;             }
     void                SetBeamspotName(const char *n)    { fBeamspotName = n;           }
 
-    void                SetIsData(bool b) { fIsData = b; }
-
-    // set Trigger Leg Strings
+    void                SetIsData(bool b)                 { fIsData = b; }
+    void                SetTrigObjsName(const char* n)    { fTrigObjsName = n; }
     void                SetTriggerLegs(const char* tight, const char* loose) {
-      fTightTriggerLeg = tight;
-      fLooseTriggerLeg = loose;
-    }
+                                                             fTightTriggerLeg = tight;
+							     fLooseTriggerLeg = loose;   }
 
-    void SetTrigObjsName(const char* n) { fTrigObjsName = n; }
 
   protected:
-
-    void                     Begin();
-    void                     Process();
-    void                     SlaveBegin();
-    void                     SlaveTerminate();
-    void                     Terminate();
-
-    void                     MatchObjectsToTrigger(bool isData);   // create trig photon indices from sel.
-
-    void                     ResetSelectedElectronsAndPhotons();
+    void                          Begin();
+    void                          Process();
+    void                          SlaveBegin();
+    void                          SlaveTerminate();
+    void                          Terminate();
+    void                          MatchObjectsToTrigger(bool isData);
+    void                          ResetSelectedElectronsAndPhotons();
 
     // Names for the input Collections
-    TString             fPhotonBranchName;
-    TString             fElectronName;
-    TString             fConversionName;
-    TString             fTrackBranchName;
-    TString             fPileUpDenName;    
-    TString             fPVName;
-    TString             fBeamspotName;
-    TString             fPFCandName;
-    TString             fMCParticleName;
-    TString             fPileUpName;
-    TString             fTrigObjsName;
-
-    // photon selection
-    double                   fPhotonEtMin;              // minimal transverse energy for photon
-    double                   fElectronEtMin;              // minimal transverse energy for photon
+    TString                       fPhotonBranchName;
+    TString                       fElectronName;
+    TString                       fConversionName;
+    TString                       fTrackBranchName;
+    TString                       fPileUpDenName;    
+    TString                       fPVName;
+    TString                       fBeamspotName;
+    TString                       fPFCandName;
+    TString                       fMCParticleName;
+    TString                       fPileUpName;
+    TString                       fTrigObjsName;
+			          
+    // photon selection	          
+    double                        fPhotonEtMin;              // minimal transverse energy for photon
+    double                        fElectronEtMin;              // minimal transverse energy for photon
 
     const PhotonCol              *fPhotons;
     const ElectronCol            *fElectrons;
@@ -97,21 +91,21 @@ namespace mithep
     const PileupInfoCol          *fPileUp;    
 
     // is it Data or MC?
-    Bool_t              fIsData;
+    Bool_t                        fIsData;
     
     // in case there's some PV pre-selection
-    Bool_t              fPhotonsFromBranch;
-    Bool_t              fEleFromBranch;
-    Bool_t              fPVFromBranch;
+    Bool_t                        fPhotonsFromBranch;
+    Bool_t                        fEleFromBranch;
+    Bool_t                        fPVFromBranch;
  
     // Trigger strings, need to be provided by USER
-    TString             fTightTriggerLeg;
-    TString             fLooseTriggerLeg;
+    TString                       fTightTriggerLeg;
+    TString                       fLooseTriggerLeg;
 
-    std::vector<UInt_t>      fSelectedElectrons;
-    std::vector<UInt_t>      fSelectedPhotons;
-    std::vector<UInt_t>      fTrigElectrons;
-    std::vector<UInt_t>      fTrigPhotons;
+    std::vector<UInt_t>           fSelectedElectrons;
+    std::vector<UInt_t>           fSelectedPhotons;
+    std::vector<UInt_t>           fTrigElectrons;
+    std::vector<UInt_t>           fTrigPhotons;
 
     // The output Ntuple
     TNtuple* hPhIsoAreaTuple;
