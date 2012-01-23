@@ -1,4 +1,4 @@
-// $Id: PhotonMCDataSFMod.cc,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
+// $Id: PhotonMCDataSFMod.cc,v 1.1 2011/07/15 17:26:34 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -16,6 +16,7 @@
 #include "FWCore/ParameterSet/interface/FileInPath.h"
 
 #include "MitPhysics/Utils/interface/IsolationTools.h"
+#include "MitPhysics/Utils/interface/MVATools.h"
 
 using namespace mithep;
 
@@ -79,6 +80,7 @@ PhotonMCDataSFMod::PhotonMCDataSFMod(const char *name, const char *title) :
   fTupleName("hPhEffTuple")
   
 {
+
   // Constructor.
 }
 
@@ -254,6 +256,7 @@ void PhotonMCDataSFMod::Process()
   
   Float_t _mass    = ( _tEl ? (_tEl->Mom()+tProbe_M).M() : -100.);
   Float_t _mass_dp = (tTag_M+tProbe_M).M();
+
 
   Float_t fillEvent[] = { Float_t(fIsData),
 			  _tPhEt  ,

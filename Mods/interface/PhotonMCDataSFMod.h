@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhotonMCDataSFMod.h,v 1.1 2011/04/06 15:59:54 fabstoec Exp $
+// $Id: PhotonMCDataSFMod.h,v 1.1 2011/07/15 17:26:34 fabstoec Exp $
 //
 // PhotonMCDataSFMod
 //
@@ -27,6 +27,7 @@ class PFCandidateCol;
 class Vertex;
 class BaseVertex;
 class BeamSpotCol;
+class MVATools;
 
 class TRandom3;
 
@@ -135,6 +136,7 @@ namespace mithep
     std::vector<UInt_t>      fTrigElectrons;
     std::vector<UInt_t>      fTrigSC_EB;
     std::vector<UInt_t>      fTrigSC_EE;
+
 
     TRandom3* rng;
 
