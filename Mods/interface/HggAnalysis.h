@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: $
+// $Id: HggAnalysis.h,v 1.1 2011/01/24 14:57:09 paus Exp $
 //
 // HggAnalysis
 //
@@ -48,6 +48,8 @@ namespace mithep
     Bool_t                   fPhotonsFromBranch;        // photons are loaded from a branch
     TString                  fMcEventInfoName;          // name of MC Event information
     const PhotonCol         *fPhotons;                  //! photon from data stream
+    const SuperClusterCol   *fScB;                      //! photon from data stream
+    const SuperClusterCol   *fScE;                      //! photon from data stream
     const MCEventInfo       *fMcEventInfo;              //! MC event information branch
     Bool_t                   fIsData;                   // looking at Data (or MC)
 

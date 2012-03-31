@@ -1,4 +1,4 @@
-// $Id: PhSCEffMod.C,v 1.2 2011/04/28 19:40:54 fabstoec Exp $
+// $Id: PhSCEffMod.C,v 1.3 2011/06/10 16:58:27 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -28,55 +28,42 @@ ClassImp(mithep::PhSCEffMod)
 PhSCEffMod::PhSCEffMod(const char *name, const char *title) :
   BaseMod             (name,title),
   // initialize bambu objects
-  fMcEventInfoName    (Names::gkMCEvtInfoBrn),
-
-  fTrackName (Names::gkTrackBrn),
-  fTracks(0),
-
-  fMCParticleName(Names::gkMCPartBrn),
-  fMCParticles(0),
-
-  fBarrelSCName       (Names::gkBarrelSuperClusterBrn),
-  fBarrelSC(0),
-  fEndcapSCName       (Names::gkEndcapSuperClusterBrn),
-  fEndcapSC(0),
-
   fTrigObjsName       (Names::gkHltObjBrn),
-
-  fPVName("PrimaryVertexes"),
-  fPV(0),
-  fPVFromBranch(kTRUE),
-
+  fMcEventInfoName    (Names::gkMCEvtInfoBrn),
+  fTrackName          (Names::gkTrackBrn),
+  fTracks             (0),
+  fMCParticleName     (Names::gkMCPartBrn),
+  fMCParticles        (0),
+  fBarrelSCName       (Names::gkBarrelSuperClusterBrn),
+  fBarrelSC           (0),
+  fEndcapSCName       (Names::gkEndcapSuperClusterBrn),
+  fEndcapSC           (0),
+  fPVName             ("PrimaryVertexes"),
+  fPV                 (0),
+  fPVFromBranch       (kTRUE),
   fElectronName       (Names::gkElectronBrn),
-  fElectrons(0),
+  fElectrons          (0),
   fElectronsFromBranch(kTRUE),
-
-
   fPhotonName         (Names::gkPhotonBrn),
-  fPhotons(0),
-  fPhotonsFromBranch(kTRUE),
-  
+  fPhotons            (0),
+  fPhotonsFromBranch  (kTRUE),
   fMcEventInfo        (0),
   fPileUpName         ("PileupInfo"),
   fPileUp             (0),
   fPileUpDen          (0),
   fPileUpDenName      ("Rho"),
-
   fIsData             (kTRUE),
   fSkimming           (kFALSE),
-
   // scale removal
   fOverlapCut         (-1.0),
   // cuts for selection
   fPhotonEtMin        (30.0),
   fElectronEtMin      (30.0),
-
   // SC selection
-  fSCEtMin (25.),
-  fSCBarrelEtaMax (1.4442),
-  fSCEndcapEtaMax (2.5),
-  fSCEndcapEtaMin (1.556)
-
+  fSCEtMin            (25.),
+  fSCBarrelEtaMax     (1.4442),
+  fSCEndcapEtaMax     (2.5),
+  fSCEndcapEtaMin     (1.556)
 {
   
   rng = new TRandom3(0);
@@ -126,7 +113,7 @@ void PhSCEffMod::Process()
   if( !fIsData )
     numPU = (Float_t) fPileUp->At(0)->GetPU_NumInteractions();  
   Float_t _tRho = (Float_t) fPileUpDen->At(0)->Rho();  
-  const BaseVertex *bsp = dynamic_cast<const BaseVertex*>(fBeamspot->At(0));    
+  //const BaseVertex *bsp = dynamic_cast<const BaseVertex*>(fBeamspot->At(0));    
 
   // find all the SC
   ResetSelectedSC();

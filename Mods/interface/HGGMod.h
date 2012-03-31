@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: HGGMod.h,v 1.2 2011/04/13 12:14:26 bendavid Exp $
+// $Id: HGGMod.h,v 1.3 2011/10/23 01:53:17 paus Exp $
 //
 // HGGMod
 //
@@ -106,7 +106,6 @@ namespace mithep
       const PileupInfoCol     *fPileupInfo;          //!
       TNtuple                 *hHggNtuple;           //!
       TNtuple                 *hVtxNtuple;           //!
-
 
       ClassDef(HGGMod, 1) // Full example analysis module
   };

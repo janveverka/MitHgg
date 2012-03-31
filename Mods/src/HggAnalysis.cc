@@ -1,4 +1,4 @@
-// $Id: HggAnalysis.cc,v 1.1 2011/01/24 14:57:09 paus Exp $
+// $Id: HggAnalysis.cc,v 1.2 2011/02/22 02:48:26 bendavid Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -32,7 +32,7 @@ HggAnalysis::HggAnalysis(const char *name, const char *title) :
   // scale removal
   fOverlapCut         (-1.0),
   // cuts for selection
-  fPhotonEtMin        (20.0),
+  fPhotonEtMin        (22.0),
   fNoPixelSeedCut     (kTRUE),
   fPhotonSigEeBarMax  ( 0.0105),
   fPhotonSigEeEcpMax  ( 0.0300),
@@ -103,6 +103,10 @@ void HggAnalysis::Process()
 
   // access the photons
   LoadEventObject(fPhotonName,fPhotons);
+  //if (fPhotonName == TString("SkmPhotons")) {
+  //  LoadEventObject("SkmBarrelSuperClusters",fScB);
+  //  LoadEventObject("SkmEndcapSuperClusters",fScE);
+  //}
 
   // monitor how many photons have been found in this event (no additional selection)
   hAllNPhotons->Fill(fPhotons->GetEntries());
@@ -110,33 +114,36 @@ void HggAnalysis::Process()
   // loop through them and make some pictures and select the ones relevant to our analysis
   double lastEt = 99999.0;
   ResetSelectedPhotons();
+
   for (UInt_t i=0; i<fPhotons->GetEntries(); ++i) {
     const Photon *p = fPhotons->At(i);
     hAllPhotonPt ->Fill(p->Pt());
     hAllPhotonEta->Fill(p->Eta());
 
     double sigEtaEta = p->SCluster()->Seed()->CoviEtaiEta();
+    printf(" HggAnalysis -- UID %d\n",p->SCluster()->GetUniqueID()&0xfffff);
     if      (p->IsEB())
       hAllPhotonSigEeBar->Fill(sigEtaEta);
     else if (p->IsEE())
       hAllPhotonSigEeEcp->Fill(sigEtaEta);
-    double isoTot = (p->HollowConeTrkIsoDr04() + p->EcalRecHitIsoDr04() + p->HcalTowerSumEtDr04())
-                    / p->Pt();
+    double isoTot = (p->HollowConeTrkIsoDr04() + p->EcalRecHitIsoDr04() + p->HcalTowerSumEtDr04())/
+                    p->Pt();
     hAllPhotonEcHcTrIso->Fill(isoTot);
     hAllPhotonPixelSeed->Fill((int) p->HasPixelSeed());
 
-    // check the photons are really order according to pt
-    if (lastEt <= p->Et()) {
-      printf("\n WARNING -- photons are out of order (%f larger  %f)\n\n",p->Et(),lastEt);
-    }
-
+    //// check the photons are really order according to pt
+    //if (lastEt <= p->Et())
+    //  printf("\n WARNING -- photons are out of order (%f larger  %f)\n\n",p->Et(),lastEt);
+  
     // apply photon selection (just an Et cut)
     if (p->Et() > fPhotonEtMin                   &&         // minimum Et
 	(! p->HasPixelSeed() && fNoPixelSeedCut) &&         // no pixel seed
 	isoTot  < fPhotonIsoMax                  &&         // maximum isolation
 	((p->IsEB() && sigEtaEta < fPhotonSigEeBarMax) ||   // shower shape (barrel/encap separate)
-	 (p->IsEE() && sigEtaEta < fPhotonSigEeEcpMax) 	 ))
+	 (p->IsEE() && sigEtaEta < fPhotonSigEeEcpMax) 	 ) ) {
+      p->Mark();
       fSelectedPhotons.push_back(i);
+    }
 
     // make sure to keep the Et accounting up to speed
     lastEt = p->Et();
@@ -147,7 +154,8 @@ void HggAnalysis::Process()
   hNTrigPhotons->Fill(fTriggeredPhotons.size());
 
   // loop through our selected photons and make histograms only if one was matched to trigger
-  if (fTriggeredPhotons.size()>0) {
+  if (fSelectedPhotons.size()>0) {
+    //if (fTriggeredPhotons.size()>0) {
     UInt_t n2Photons = 0;
     for (UInt_t i=0; i<fSelectedPhotons.size(); i++) {
       const Photon *p1 = fPhotons->At(fSelectedPhotons[i]);
@@ -232,6 +240,10 @@ void HggAnalysis::SlaveBegin()
 
   // request the following Event Objects (often branches, but could be locally created ones)
   ReqEventObject(fPhotonName,fPhotons,fPhotonsFromBranch);
+  //if (fPhotonName == TString("SkmPhotons")) {
+  //  ReqEventObject("SkmBarrelSuperClusters",fScB,kTRUE);
+  //  ReqEventObject("SkmEndcapSuperClusters",fScE,kTRUE);
+  //}
 
   // for MC only to adjust potential overlaps from generation
   if (! fIsData) {
@@ -343,10 +355,10 @@ void HggAnalysis::MatchPhotonsToTrigger()
       MDB(kGeneral,1) {
         //printf(" Ambiguos match found: %d\n",matched);
         //printf(" Photon:  %8.3f %8.3f %8.3f\n",p->Eta(), p->Phi(), p->Pt());
-        for (UInt_t j=0; j<nEnts; ++j) {
-          const TriggerObject *to = tos->At(j);
-          //printf(" TrigObj: %8.3f %8.3f %8.3f\n",to->Eta(),to->Phi(),to->Pt());
-        }
+        //for (UInt_t j=0; j<nEnts; ++j) {
+        //  const TriggerObject *to = tos->At(j);
+        //  printf(" TrigObj: %8.3f %8.3f %8.3f\n",to->Eta(),to->Phi(),to->Pt());
+	//}
       }
     }
   }

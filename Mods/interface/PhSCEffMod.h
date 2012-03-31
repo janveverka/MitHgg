@@ -1,11 +1,11 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhSCEffMod.h,v 1.1 2011/04/28 16:08:56 fabstoec Exp $
+// $Id: PhSCEffMod.h,v 1.2 2011/06/10 16:58:28 fabstoec Exp $
 //
 // PhSCEffMod
 //
-// This module compues photon eff from Z->mumugamma
+// This module computes photon eff from Z->mumugamma
 //
-// Authors: F,.Stoeckli
+// Authors: F.Stoeckli
 //--------------------------------------------------------------------------------------------------
 
 #ifndef MITHGG_MODS_PHSCEFFMOD_H
@@ -35,7 +35,7 @@ namespace mithep
   {
   public:
     PhSCEffMod(const char *name  = "PhSCEffMod", 
-		const char *title = "Photon Efficiency Analysis");
+	       const char *title = "Photon Efficiency Analysis");
 
   protected:
 
@@ -67,41 +67,38 @@ namespace mithep
     void MatchSCToTrigger();
     double findHiggsPt();
 
-    // Muon Collection & Cuts
+    TString                  fTrigObjsName;            // name of the Electron Tag & Probe Trigger
+    TString                  fMcEventInfoName;         // name of MC Event information
 
-    TString fTrackName;
-    const TrackCol* fTracks;
+    TString                  fTrackName;
+    const TrackCol          *fTracks;
 
-    TString fMCParticleName;
-    const MCParticleCol* fMCParticles;
+    TString                  fMCParticleName;
+    const MCParticleCol*     fMCParticles;
 
     TString                  fBarrelSCName;
     const SuperClusterCol   *fBarrelSC;
     TString                  fEndcapSCName;
     const SuperClusterCol   *fEndcapSC;
 
+    TString                  fPVName;
+    const VertexCol         *fPV;
+    Bool_t                   fPVFromBranch;
 
-    TString                  fTrigObjsName;             // name of the Electron Tag & Probe Trigger
-    TString                  fMcEventInfoName;          // name of MC Event information
+    const BeamSpotCol       *fBeamspot;
 
-    TString fPVName;
-    const VertexCol *fPV;
-    Bool_t fPVFromBranch;
+    TString                  fElectronName;
+    const ElectronCol*       fElectrons;
+    Bool_t                   fElectronsFromBranch;
 
-    const BeamSpotCol *fBeamspot;
-
-    TString fElectronName;
-    const ElectronCol* fElectrons;
-    Bool_t fElectronsFromBranch;
-
-    TString fPhotonName;
-    const PhotonCol* fPhotons;
-    Bool_t fPhotonsFromBranch;
+    TString                  fPhotonName;
+    const PhotonCol*         fPhotons;
+    Bool_t                   fPhotonsFromBranch;
 
     const MCEventInfo       *fMcEventInfo;              //! MC event information branch
     TString                  fPileUpName;
     const PileupInfoCol     *fPileUp;
-    const PileupEnergyDensityCol     *fPileUpDen;
+    const PileupEnergyDensityCol *fPileUpDen;
     TString                  fPileUpDenName;
 
     Bool_t                   fIsData;                   // looking at Data (or MC)
@@ -125,21 +122,16 @@ namespace mithep
     // SC selection
     std::vector<UInt_t>      fSelectedPhotons;
     std::vector<UInt_t>      fSelectedPV;    
-    std::vector<UInt_t>      fTrigPhotons;         // photon indices, selected and triggered
-
+    std::vector<UInt_t>      fTrigPhotons;              // photon indices, selected and triggered
     std::vector<UInt_t>      fTrigElectrons;            // photon indices, selected and triggered
-
     std::vector<UInt_t>      fSelectedSCEB;
     std::vector<UInt_t>      fSelectedSCEE;
-
     std::vector<UInt_t>      fTrigSCEB;
     std::vector<UInt_t>      fTrigSCEE;
 
     // The output Ntuple
-    TNtuple* hPhTrigEffTuple;
-
-    TRandom3* rng;
-
+    TNtuple*                 hPhTrigEffTuple;
+    TRandom3*                rng;
 
     ClassDef(PhSCEffMod, 1)
   };
