@@ -1,4 +1,4 @@
-// $Id: HGGSimMod.cc,v 1.6 2010/03/12 13:51:26 bendavid Exp $
+// $Id: HGGSimMod.cc,v 1.1 2011/02/22 02:48:26 bendavid Exp $
 
 #include "MitHgg/Mods/interface/HGGSimMod.h"
 #include <TH1D.h>
@@ -209,39 +209,39 @@ void HGGSimMod::Process()
     Double_t cosdbetaboost = normboost1.Dot(normboost2);
 
     
-    Float_t fillGen[] = { p->Pt(),
-                          p->Eta(),
-                          p->Phi(),
-                          p->Mass(),
-                          g1->Pt(),
-                          g1->Eta(),
-                          g1->Phi(),
-                          g2->Pt(),
-                          g2->Eta(),
-                          g2->Phi(),
-                          isconverted1,
-                          simg1->DecayVertex().X(),
-                          simg1->DecayVertex().Y(),
-                          simg1->DecayVertex().Z(),
-                          simg1->DecayVertex().Rho(),
-                          simg1->DecayVertex().Phi(),
-                          ept11,
-                          ept21,
-                          isconverted2,
-                          simg2->DecayVertex().X(),
-                          simg2->DecayVertex().Y(),
-                          simg2->DecayVertex().Z(),
-                          simg2->DecayVertex().Rho(),
-                          simg2->DecayVertex().Phi(),
-                          ept12,
-                          ept22,
-                          cosdalpha1,
-                          cosdalpha2,
-                          cosdbeta,
-                          cosdalphaboost1,
-                          cosdalphaboost2,
-                          cosdbetaboost,
-                          (g1->Mom() + g2->Mom()).Pt()
+    Float_t fillGen[] = { (Float_t) p->Pt(),
+                          (Float_t) p->Eta(),
+                          (Float_t) p->Phi(),
+                          (Float_t) p->Mass(),
+                          (Float_t) g1->Pt(),
+                          (Float_t) g1->Eta(),
+                          (Float_t) g1->Phi(),
+                          (Float_t) g2->Pt(),
+                          (Float_t) g2->Eta(),
+                          (Float_t) g2->Phi(),
+                          (Float_t) isconverted1,
+                          (Float_t) simg1->DecayVertex().X(),
+                          (Float_t) simg1->DecayVertex().Y(),
+                          (Float_t) simg1->DecayVertex().Z(),
+                          (Float_t) simg1->DecayVertex().Rho(),
+                          (Float_t) simg1->DecayVertex().Phi(),
+                          (Float_t) ept11,
+                          (Float_t) ept21,
+                          (Float_t) isconverted2,
+                          (Float_t) simg2->DecayVertex().X(),
+                          (Float_t) simg2->DecayVertex().Y(),
+                          (Float_t) simg2->DecayVertex().Z(),
+                          (Float_t) simg2->DecayVertex().Rho(),
+                          (Float_t) simg2->DecayVertex().Phi(),
+                          (Float_t) ept12,
+                          (Float_t) ept22,
+                          (Float_t) cosdalpha1,
+                          (Float_t) cosdalpha2,
+                          (Float_t) cosdbeta,
+                          (Float_t) cosdalphaboost1,
+                          (Float_t) cosdalphaboost2,
+                          (Float_t) cosdbetaboost,
+                          (Float_t) (g1->Mom() + g2->Mom()).Pt()
                           };
                           
     hGenNtuple->Fill(fillGen);
