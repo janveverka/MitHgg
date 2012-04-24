@@ -1,4 +1,4 @@
-// $Id: PhotonMCDataSFMod.cc,v 1.1 2011/07/15 17:26:34 fabstoec Exp $
+// $Id: PhotonMCDataSFMod.cc,v 1.2 2012/01/23 11:56:26 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
@@ -356,7 +356,7 @@ void PhotonMCDataSFMod::MatchObjectsToTrigger(bool isData)
 {
 
   // for MC assume always accept for both legs...
-  if(!isData) {
+  if(!isData || true) {
 
     for (UInt_t i=0; i<fSelectedElectrons.size(); i++)
       fTrigElectrons.push_back(fSelectedElectrons[i]);
@@ -365,6 +365,16 @@ void PhotonMCDataSFMod::MatchObjectsToTrigger(bool isData)
     for (UInt_t i=0; i<fSelectedSC_EE.size(); i++)
       fTrigSC_EE.push_back(fSelectedSC_EE[i]);
     
+    const TriggerObjectCol *tos = GetHLTObjects(fTrigObjsName);
+    if (! tos)             // this can only happen if HLTMod::SetAbortIfNotAccepted(kFALSE) was called
+      return;
+    
+    UInt_t nEnts = tos->GetEntries();
+    for (UInt_t j=0; j<nEnts; ++j) {
+      const TriggerObject *to = tos->At(j);
+      std::cout<<to->ModuleName()<<std::endl;
+    }
+
   } else {
     
     // For Data, dio the trigger matching
