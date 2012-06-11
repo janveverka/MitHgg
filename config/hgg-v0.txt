@@ -6,14 +6,15 @@
 #==============================================================================================================================================================
 #data 
 #==============================================================================================================================================================
-t2mit/filefi/028  r12a-pho-pr-v1                 noskim         data                            -1.0              1.0   -1.0   Cert_190456-194479_8TeV_PromptReco_Collisions12_JSON.txt
-t2mit/filefi/028  r12b-dph-pr-v1                 noskim         data                            -1.0              1.0   -1.0   Cert_190456-194479_8TeV_PromptReco_Collisions12_JSON.txt
+t2mit/filefi/028  r12a-pho-pr-v1                 noskim         data                            -1.0              1.0   -1.0    Cert_190456-195396_8TeV_PromptReco_Collisions12_JSON_v2.txt
+t2mit/filefi/028  r12b-dph-pr-v1                 noskim         data                            -1.0              1.0   -1.0    Cert_190456-195396_8TeV_PromptReco_Collisions12_JSON_v2.txt
 #==============================================================================================================================================================
 #background MC
 #==============================================================================================================================================================
-t2mit/filefi/028  s12-2pibo10_25-v9              noskim          Prompt-Prompt                  264.5             1.3     -1.0      ~  
-t2mit/filefi/028  s12-2pibo25_250-v9             noskim          ~                              25.48             1.3     -1.0      ~  
-t2mit/filefi/028  s12-2pibo250-v9                noskim          ~                              0.029038          1.3     -1.0      ~  
+#t2mit/filefi/028  s12-2pibo10_25-v9              noskim          Prompt-Prompt                  264.5             1.3     -1.0      ~  
+#t2mit/filefi/028  s12-2pibo25_250-v9             noskim          ~                              25.48             1.3     -1.0      ~  
+#t2mit/filefi/028  s12-2pibo250-v9                noskim          ~                              0.029038          1.3     -1.0      ~  
+t2mit/filefi/028  s12-diphoj-v9                  noskim          ~                              81               1.15     -1.0      ~  
 t2mit/filefi/028  s12-2pibx10_25-v9              noskim          ~                              424.8             1.3     -1.0      ~  
 t2mit/filefi/028  s12-2pibx25_250-v9             noskim          ~                              15.54             1.3     -1.0      ~  
 t2mit/filefi/028  s12-2pibx250-v9                noskim          ~                              0.0011805         1.3     -1.0      ~  
