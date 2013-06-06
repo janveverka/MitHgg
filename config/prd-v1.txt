@@ -1,0 +1,35 @@
+#==============================================================================================================================================================
+# dataset (version, name)                        skim           legend for plot                 xs(pb)      scale   ovlap  JSON file
+#==============================================================================================================================================================
+#==============================================================================================================================================================
+#2011 backport
+#==============================================================================================================================================================
+t2mit/filefi/025   r11a-pho-j16-v1-bp            noskim         data                            -1.0        1.0     -1.0   Cert_160404-180252_7TeV_ReRecoNov08_Collisions11_JSON_v2.txt
+t2mit/filefi/025   r11b-pho-j16-v1-bp            noskim         data                            -1.0        1.0     -1.0   Cert_160404-180252_7TeV_ReRecoNov08_Collisions11_JSON_v2.txt
+##==============================================================================================================================================================
+##2012 Jun29 Rereco
+##==============================================================================================================================================================
+#t2mit/filefi/029   r12a-pho-j22-v1               noskim         data                            -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12a-del-j22-v1               noskim         data                            -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12b-dph-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12b-del-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12c-dph-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12c-del-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12d-dph-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12d-del-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12a-dmu-j22-v1               noskim         data                            -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12b-dmu-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12c-dmu-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+#t2mit/filefi/029   r12d-dmu-j22-v1               noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+t2mit/filefi/029   r12a-mueg-j22-v1              noskim         data                            -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+t2mit/filefi/029   r12b-mueg-j22-v1              noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+t2mit/filefi/029   r12c-mueg-j22-v1              noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+t2mit/filefi/029   r12d-mueg-j22-v1              noskim         ~                               -1.0        1.0     -1.0   Cert_190456-208686_8TeV_PromptReco_Collisions12_JSON.txt
+####
+#t2mit/filefi/029   s12-h125gg-gf-v7a             noskim         h->#gamma#gamma~125~GeV         0.03742     1.0     -1.0   ~  
+#t2mit/filefi/029   s12-h125gg-tt-v7a             noskim         h->#gamma#gamma~125~GeV         0.03742     1.0     -1.0   ~  
+#t2mit/filefi/029   s12-h125gg-vbf-v7a            noskim         h->#gamma#gamma~125~GeV         0.03742     1.0     -1.0   ~  
+#t2mit/filefi/029   s12-h125gg-vh-v7a             noskim         h->#gamma#gamma~125~GeV         0.03742     1.0     -1.0   ~  
+######
+#t2mit/filefi/029   s12-zllm50-v7a                noskim         Z->ee                           2950.0      1.15    -1.0   ~
+#t2mit/filefi/029   s12-zllm1050-v7a              noskim         Z->ee                           2950.0      1.15    -1.0   ~
