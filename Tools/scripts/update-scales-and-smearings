@@ -1,0 +1,3 @@
+#! /usr/bin/env sh
+env python $CMSSW_BASE/src/MitHgg/Tools/python/update_scales_and_smearings.py
+
