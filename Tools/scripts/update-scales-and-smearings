@@ -1,3 +1,17 @@
 #! /usr/bin/env sh
-env python $CMSSW_BASE/src/MitHgg/Tools/python/update_scales_and_smearings.py
+##
+## update-scales-and-smearings
+## ---------------------------
+## This is a shell wrapper for a python script that updates the
+## MIT framework run macro with given configuration for scale corrections
+## and MC smearings from Shervin. The run macro to be updated and the files
+## with the scale corrections and smearings are specified in a python
+## configuration file. When no configuration file is supplied, a default
+## file is used.
+##
+## USAGE: update-scales-and-smearings [cfg.py]
+##
+## Jan Veverka, MIT, jan.veverka@cern.ch, 14 October 2013
+
+env python $CMSSW_BASE/src/MitHgg/Tools/python/update_scales_and_smearings.py $@
 

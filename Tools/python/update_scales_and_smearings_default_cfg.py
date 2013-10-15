@@ -18,10 +18,10 @@ smearings_source_file_name = os.path.join(
         'Et_25-noPF-FitResult.config'
     )
 
-source_macro_file_name = os.path.join(_base_path, 'runHgg2013Final_8TeV_test.C')
+source_macro_file_name = os.path.join(_base_path, 'runHgg2013Final_8TeV.C')
 
 destination_macro_file_name = os.path.join(_base_path,
-                                           'runHgg2013Final_8TeV_test_new.C')
+                                           'runHgg2013Final_7TeV.C')
 
 #_______________________________________________________________________________
 ## SCALE CONFIGURATION
