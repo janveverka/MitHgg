@@ -36,7 +36,8 @@ scale_setters = '''
 mit_scale_categories = '''
     corr_EBlowEta_hR9central
     corr_EBlowEta_hR9gap
-    corr_EBlowEta_lR9
+    corr_EBlowEta_lR9central
+    corr_EBlowEta_lR9gap
     corr_EBhighEta_hR9
     corr_EBhighEta_lR9
     corr_EElowEta_hR9
@@ -50,7 +51,8 @@ mit_scale_categories = '''
 ecalelf_from_mit_scale_category = {
     'corr_EBlowEta_hR9central' : 'EB-absEta_0_1-gold'     ,
     'corr_EBlowEta_hR9gap'     : 'EB-absEta_0_1-gold'     ,
-    'corr_EBlowEta_lR9'        : 'EB-absEta_0_1-bad'      ,
+    'corr_EBlowEta_lR9central' : 'EB-absEta_0_1-bad'      ,
+    'corr_EBlowEta_lR9gap'     : 'EB-absEta_0_1-bad'      ,
     'corr_EBhighEta_hR9'       : 'EB-absEta_1_1.4442-gold',
     'corr_EBhighEta_lR9'       : 'EB-absEta_1_1.4442-bad' ,
     'corr_EElowEta_hR9'        : 'EE-absEta_1.566_2-gold' ,
@@ -76,7 +78,8 @@ smearing_setters = '''
 mit_smearing_categories = '''
     _EBlowEta_hR9central
     _EBlowEta_hR9gap
-    _EBlowEta_lR9
+    _EBlowEta_lR9central
+    _EBlowEta_lR9gap
     _EBhighEta_hR9
     _EBhighEta_lR9
     _EElowEta_hR9
@@ -90,7 +93,8 @@ mit_smearing_categories = '''
 ecalelf_from_mit_smearing_category = {
     '_EBlowEta_hR9central' : 'EBlowEtaGold' ,
     '_EBlowEta_hR9gap'     : 'EBlowEtaGold' ,
-    '_EBlowEta_lR9'        : 'EBlowEtaBad'  ,
+    '_EBlowEta_lR9central' : 'EBlowEtaBad'  ,
+    '_EBlowEta_lR9gap'     : 'EBlowEtaBad'  ,
     '_EBhighEta_hR9'       : 'EBhighEtaGold',
     '_EBhighEta_lR9'       : 'EBhighEtaBad' ,
     '_EElowEta_hR9'        : 'EElowEtaGold' ,

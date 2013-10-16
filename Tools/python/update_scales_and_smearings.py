@@ -29,6 +29,7 @@ def main():
     cfg.macro = read_file(cfg.source_macro_file_name)
     process_scales(cfg)
     process_smearings(cfg)
+    update_main_function_name(cfg)
     write_macro_to_file(cfg.macro, cfg.destination_macro_file_name)
     print_termination_message()
 
@@ -71,6 +72,14 @@ def process_smearings(cfg):
     print 'Updating smearings to:'
     pprint.pprint(cfg.smearings)
     update_macro_with_smearings(cfg)
+
+#_______________________________________________________________________________
+def update_main_function_name(cfg):
+    old_name = os.path.basename(cfg.source_macro_file_name).replace('.C', '')
+    new_name = os.path.basename(cfg.destination_macro_file_name).replace('.C',
+                                                                         '')
+    print 'Replacing %s with %s' % (old_name, new_name)
+    cfg.macro = cfg.macro.replace(old_name, new_name)
 
 #_______________________________________________________________________________
 def write_macro_to_file(macro, file_name):
