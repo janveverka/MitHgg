@@ -26,7 +26,7 @@ def main():
     '''
     print_welcome_message()
     cfg = parse_arguments()
-    cfg.macro = read_file(cfg.source_macro_file_name)
+    cfg.macro = read_macro_from_file(cfg.source_macro_file_name)
     process_scales(cfg)
     process_smearings(cfg)
     update_main_function_name(cfg)
@@ -52,10 +52,10 @@ def parse_arguments():
     return cfg
 
 #_______________________________________________________________________________
-def read_file(file_name):
-    with open(file_name) as source:
-        text = source.read()
-    return text
+def read_macro_from_file(file_name):
+    print 'Reading source macro from:'
+    print file_name
+    return read_file(file_name)
 
 #_______________________________________________________________________________
 def process_scales(cfg):
@@ -96,6 +96,12 @@ def print_termination_message():
 #_______________________________________________________________________________
 def print_usage():
     print 'USAGE: update-scales-and-smearings [cfg.py]'
+
+#_______________________________________________________________________________
+def read_file(file_name):
+    with open(file_name) as source:
+        text = source.read()
+    return text
 
 #_______________________________________________________________________________
 def parse_scales(cfg):
