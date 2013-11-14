@@ -1,6 +1,10 @@
 // Modified script dumpCiC_moriond.C from Mingiming, which in turn
 // is a modified script from Josh for signal modeling
-
+// TODO: 
+// * Add per-photon variables bcInd, nBC, deltaEtaBCSC, deltaPhiBCSC
+//   scInd
+// * Add vertex variables
+// * Fix ESEffSigmaRR in the barrel
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
@@ -62,7 +66,7 @@
 
 // Declaration of functions.
 //_____________________________________________________________________________
-void dumpMvaInputs(bool debug = true,
+void dumpMvaInputs(bool debug = false,
                    TString fileName =
                       "/home/mingyang/cms/hist/hgg-2013Final8TeV/merged/"
                       "hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root");
@@ -75,8 +79,8 @@ void dumpMvaInputs(bool debug, TString fileName) {
  
   TFile* file = TFile::Open(fileName.Data());
 
-  // const char *treeName = "PhotonTreeWriterPresel";
-  const char *treeName = "PhotonTreeWriterPreselNoSmear";
+  const char *treeName = "PhotonTreeWriterPresel";
+  // const char *treeName = "PhotonTreeWriterPreselNoSmear";
   TDirectory* theDir = (TDirectory*) file->FindObjectAny(treeName);
   TTree* theTree = (TTree*) theDir->Get("hPhotonTree");
  
@@ -402,7 +406,7 @@ void dumpMvaInputs(bool debug, TString fileName) {
   reader->AddVariable("masserrsmearedwrongvtx/mass", &wVtxSigmaMoM);
   reader->AddVariable("vtxprob"                    , &vtxprob     );
   reader->AddVariable("ph1.pt/mass"                , &pho1_ptOverM);
-  reader->AddVariable("ph2.pt/mass"                , &pho1_ptOverM);
+  reader->AddVariable("ph2.pt/mass"                , &pho2_ptOverM);
   reader->AddVariable("ph1.eta"                    , &teta1       );
   reader->AddVariable("ph2.eta"                    , &teta2       );
   reader->AddVariable("TMath::Cos(ph1.phi-ph2.phi)", &cosDPhi     );
@@ -436,8 +440,10 @@ void dumpMvaInputs(bool debug, TString fileName) {
     eventCounter++;
 
     // Calculate needed variables
-    rVtxSigmaMoM = masserr_ns / mass;
-    wVtxSigmaMoM = masserrwvtx_ns / mass;
+    // rVtxSigmaMoM = masserr_ns / mass;       // no smearing
+    // wVtxSigmaMoM = masserrwvtx_ns / mass;   // no smearing
+    rVtxSigmaMoM = masserr / mass;         // with smearing
+    wVtxSigmaMoM = masserrwvtx / mass; // with smearing
     cosDPhi = TMath::Cos(phi1 - phi2);
     pho1_ptOverM = ph1pt / mass;
     pho2_ptOverM = ph2pt / mass;

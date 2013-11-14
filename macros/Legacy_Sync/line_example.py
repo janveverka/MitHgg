@@ -27,6 +27,7 @@ per_diphoton_variables = '''
     p2Conv
     nConv
     cosDPhi
+    diphoMVA
     '''.split()
 
 ## Will be prepended with pho{1,2}_ for the leading and subleading photon.
@@ -59,6 +60,7 @@ per_photon_variables = '''
     nBC
     deltaEtaBCSC
     deltaPhiBCSC
+    idMVA
     '''.split()
 leading_photon_variables  = ['pho1_' + var for var in per_photon_variables]
 trailing_photon_variables = ['pho2_' + var for var in per_photon_variables]
