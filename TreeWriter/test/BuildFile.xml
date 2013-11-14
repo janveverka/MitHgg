@@ -1,0 +1,7 @@
+<!--CppUnit -->
+<bin name="test-mithgg-treewriter"
+     file="TestDriver.cc,PhotonTreeTest.cc">
+  <use name="MitHgg/TreeWriter"/>
+  <use name="cppunit"/>
+</bin>
+

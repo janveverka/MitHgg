@@ -1,0 +1,10 @@
+MitHgg/TreeWriter/test/README - Unit tests for the MitHgg/TreeWriter package
+----------------------------------------------------------------------------
+
+USAGE:
+  cd $CMSSW_BASE/src/MitHgg/TreeWriter && scram b runtests
+
+REFERENCES:
+  https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideDevelopersGuide
+    #Add_tests_to_your_package
+  http://www.yolinux.com/TUTORIALS/CppUnit.html
