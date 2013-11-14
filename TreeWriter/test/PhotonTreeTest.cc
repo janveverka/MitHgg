@@ -21,7 +21,8 @@ using ::mithep::hgg::PhotonTree;
  */
 class PhotonTreeTest : public ::CppUnit::TestFixture {
   CPPUNIT_TEST_SUITE(PhotonTreeTest);
-  CPPUNIT_TEST(testEntries);
+  CPPUNIT_TEST(testTreeReading);
+  CPPUNIT_TEST(testBufferModification);
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -29,7 +30,8 @@ public:
   void tearDown(void);
 
 protected:
-  void testEntries(void);
+  void testTreeReading(void);
+  void testBufferModification(void);
 
 private:
   TTree      *tree;
@@ -82,9 +84,8 @@ PhotonTreeTest::tearDown(void)
 
 //------------------------------------------------------------------------------
 void
-PhotonTreeTest::testEntries(void)
+PhotonTreeTest::testTreeReading(void)
 {
-  std::cout << std::endl;
   for (Int_t i=0; i<tree->GetEntries(); i++) {
     CPPUNIT_ASSERT_EQUAL(tree->GetEntry(i), photonTree->GetEntry(i)       );
     CPPUNIT_ASSERT_EQUAL(evtcat           , photonTree->evtcat            );
@@ -101,3 +102,70 @@ PhotonTreeTest::testEntries(void)
     CPPUNIT_ASSERT_EQUAL(ph2_isbarrel     , photonTree->ph2O("isbarrel")  );
   };
 } //HelloTest::testGetEntry(void)
+
+
+//------------------------------------------------------------------------------
+void
+PhotonTreeTest::testBufferModification(void)
+{
+  /// Load different entries for expected and actual trees.
+  tree->GetEntry(1);
+  photonTree->GetEntry(0);
+
+  /// Make sure that we have a significant number of different values
+  /// for expected and actual variables.
+  CPPUNIT_ASSERT_ASSERTION_FAIL(
+    CPPUNIT_ASSERT_EQUAL(evtcat           , photonTree->evtcat            )
+    );
+    
+  CPPUNIT_ASSERT_ASSERTION_FAIL(
+    CPPUNIT_ASSERT_EQUAL(evt              , photonTree->evt               )
+    );
+    
+  CPPUNIT_ASSERT_ASSERTION_FAIL(
+    CPPUNIT_ASSERT_EQUAL(mass             , photonTree->mass              )
+    );
+    
+  CPPUNIT_ASSERT_ASSERTION_FAIL(
+    CPPUNIT_ASSERT_EQUAL(cosdphiMetgg     , photonTree->cosdphiMetgg      )
+    );
+    
+  CPPUNIT_ASSERT_ASSERTION_FAIL(
+    CPPUNIT_ASSERT_EQUAL(ph1_e            , photonTree->ph1F("e")         )
+    );
+    
+  CPPUNIT_ASSERT_ASSERTION_FAIL(
+    CPPUNIT_ASSERT_EQUAL(ph2_e            , photonTree->ph2F("e")         )
+    );
+    
+  /// Skipping variables that will be the same for many entries:
+  /// ph{1,2}_hasphoton, ph{1,2}_index, ph{1,2}_isbarrel
+
+  /// Set the actual values in the PhotonTree buffers to the expected ones.
+  photonTree->evtcat             = evtcat       ;
+  photonTree->evt                = evt          ;
+  photonTree->mass               = mass         ;
+  photonTree->cosdphiMetgg       = cosdphiMetgg ;
+  photonTree->ph1F("e")          = ph1_e        ;
+  photonTree->ph2F("e")          = ph2_e        ;
+  photonTree->ph1b("hasphoton")  = ph1_hasphoton;
+  photonTree->ph2b("hasphoton")  = ph2_hasphoton;
+  photonTree->ph1i("index")      = ph1_index    ;
+  photonTree->ph2i("index")      = ph2_index    ;
+  photonTree->ph1O("isbarrel")   = ph1_isbarrel ;
+  photonTree->ph2O("isbarrel")   = ph2_isbarrel ;
+
+  /// Test that the actual and expected values agree.
+  CPPUNIT_ASSERT_EQUAL(evtcat           , photonTree->evtcat            );
+  CPPUNIT_ASSERT_EQUAL(evt              , photonTree->evt               );
+  CPPUNIT_ASSERT_EQUAL(mass             , photonTree->mass              );
+  CPPUNIT_ASSERT_EQUAL(cosdphiMetgg     , photonTree->cosdphiMetgg      );
+  CPPUNIT_ASSERT_EQUAL(ph1_e            , photonTree->ph1F("e")         );
+  CPPUNIT_ASSERT_EQUAL(ph2_e            , photonTree->ph2F("e")         );
+  CPPUNIT_ASSERT_EQUAL(ph1_hasphoton    , photonTree->ph1b("hasphoton") );
+  CPPUNIT_ASSERT_EQUAL(ph2_hasphoton    , photonTree->ph2b("hasphoton") );
+  CPPUNIT_ASSERT_EQUAL(ph1_index        , photonTree->ph1i("index")     );
+  CPPUNIT_ASSERT_EQUAL(ph2_index        , photonTree->ph2i("index")     );
+  CPPUNIT_ASSERT_EQUAL(ph1_isbarrel     , photonTree->ph1O("isbarrel")  );
+  CPPUNIT_ASSERT_EQUAL(ph2_isbarrel     , photonTree->ph2O("isbarrel")  );
+}
