@@ -1,0 +1,4 @@
+*.dat
+*.d
+*_C.so
+dumps
