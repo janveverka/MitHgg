@@ -1,6 +1,6 @@
-<!--CppUnit -->
+<Flags CXXFLAGS="-DCMSSW_BASE=${CMSSW_BASE}"/>
 <bin name="test-mithgg-treewriter"
-     file="TestDriver.cc,PhotonTreeTest.cc">
+     file="TestDriver.cc,PhotonTreeReaderTest.cc,PhotonTreeReaderDiphotonEventTest.cc,PhotonTreeReaderPhotonTest.cc">
   <use name="MitHgg/TreeWriter"/>
   <use name="cppunit"/>
 </bin>

@@ -1,3 +1,4 @@
+<flags CXXFLAGS="-DCMSSW_BASE=${CMSSW_BASE}"/>
 <use   name="MitPhysics/Mods"/>
 <use   name="root"/>
 <use   name="rootrflx"/>

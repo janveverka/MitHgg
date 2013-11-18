@@ -13,6 +13,9 @@
 #include "TTree.h"
 #include "MitHgg/TreeWriter/interface/PhotonTree.h"
 
+#define CPPUNIT_ASSERT_INEQUAL(a, b) \
+  CPPUNIT_ASSERT_ASSERTION_FAIL(CPPUNIT_ASSERT_EQUAL(a, b))
+
 using ::mithep::hgg::PhotonTree;
 
 //------------------------------------------------------------------------------
@@ -43,6 +46,8 @@ private:
   UChar_t    ph1_hasphoton, ph2_hasphoton;
   UInt_t     ph1_index    , ph2_index    ;
   Float_t    ph1_e        , ph2_e        ;
+  Float_t    ph1_pt       , ph2_pt       ;
+  Float_t    ph1_idmva    , ph2_idmva    ;
   Bool_t     ph1_isbarrel , ph2_isbarrel ;
 }; // class PhotonTreeTest
 
@@ -68,6 +73,10 @@ PhotonTreeTest::setUp(void)
   tree->SetBranchAddress("ph2.index"    , &ph2_index    );
   tree->SetBranchAddress("ph1.e"        , &ph1_e        );
   tree->SetBranchAddress("ph2.e"        , &ph2_e        );
+  tree->SetBranchAddress("ph1.pt"       , &ph1_pt       );
+  tree->SetBranchAddress("ph2.pt"       , &ph2_pt       );
+  tree->SetBranchAddress("ph1.idmva"    , &ph1_idmva    );
+  tree->SetBranchAddress("ph2.idmva"    , &ph2_idmva    );
   tree->SetBranchAddress("ph1.isbarrel" , &ph1_isbarrel );
   tree->SetBranchAddress("ph2.isbarrel" , &ph2_isbarrel );
   photonTree = new PhotonTree((TTree*) tree->Clone());
@@ -94,6 +103,10 @@ PhotonTreeTest::testTreeReading(void)
     CPPUNIT_ASSERT_EQUAL(cosdphiMetgg     , photonTree->cosdphiMetgg      );
     CPPUNIT_ASSERT_EQUAL(ph1_e            , photonTree->ph1F("e")         );
     CPPUNIT_ASSERT_EQUAL(ph2_e            , photonTree->ph2F("e")         );
+    CPPUNIT_ASSERT_EQUAL(ph1_pt           , photonTree->ph1F("pt")        );
+    CPPUNIT_ASSERT_EQUAL(ph2_pt           , photonTree->ph2F("pt")        );
+    CPPUNIT_ASSERT_EQUAL(ph1_idmva        , photonTree->ph1F("idmva")     );
+    CPPUNIT_ASSERT_EQUAL(ph2_idmva        , photonTree->ph2F("idmva")     );
     CPPUNIT_ASSERT_EQUAL(ph1_hasphoton    , photonTree->ph1b("hasphoton") );
     CPPUNIT_ASSERT_EQUAL(ph2_hasphoton    , photonTree->ph2b("hasphoton") );
     CPPUNIT_ASSERT_EQUAL(ph1_index        , photonTree->ph1i("index")     );
@@ -114,29 +127,16 @@ PhotonTreeTest::testBufferModification(void)
 
   /// Make sure that we have a significant number of different values
   /// for expected and actual variables.
-  CPPUNIT_ASSERT_ASSERTION_FAIL(
-    CPPUNIT_ASSERT_EQUAL(evtcat           , photonTree->evtcat            )
-    );
-    
-  CPPUNIT_ASSERT_ASSERTION_FAIL(
-    CPPUNIT_ASSERT_EQUAL(evt              , photonTree->evt               )
-    );
-    
-  CPPUNIT_ASSERT_ASSERTION_FAIL(
-    CPPUNIT_ASSERT_EQUAL(mass             , photonTree->mass              )
-    );
-    
-  CPPUNIT_ASSERT_ASSERTION_FAIL(
-    CPPUNIT_ASSERT_EQUAL(cosdphiMetgg     , photonTree->cosdphiMetgg      )
-    );
-    
-  CPPUNIT_ASSERT_ASSERTION_FAIL(
-    CPPUNIT_ASSERT_EQUAL(ph1_e            , photonTree->ph1F("e")         )
-    );
-    
-  CPPUNIT_ASSERT_ASSERTION_FAIL(
-    CPPUNIT_ASSERT_EQUAL(ph2_e            , photonTree->ph2F("e")         )
-    );
+  CPPUNIT_ASSERT_INEQUAL(evtcat           , photonTree->evtcat            );
+  CPPUNIT_ASSERT_INEQUAL(evt              , photonTree->evt               );
+  CPPUNIT_ASSERT_INEQUAL(mass             , photonTree->mass              );
+  CPPUNIT_ASSERT_INEQUAL(cosdphiMetgg     , photonTree->cosdphiMetgg      );
+  CPPUNIT_ASSERT_INEQUAL(ph1_e            , photonTree->ph1F("e")         );
+  CPPUNIT_ASSERT_INEQUAL(ph2_e            , photonTree->ph2F("e")         );
+  CPPUNIT_ASSERT_INEQUAL(ph1_pt           , photonTree->ph1F("pt")        );
+  CPPUNIT_ASSERT_INEQUAL(ph2_pt           , photonTree->ph2F("pt")        );
+  CPPUNIT_ASSERT_INEQUAL(ph1_idmva        , photonTree->ph1F("idmva")     );
+  CPPUNIT_ASSERT_INEQUAL(ph2_idmva        , photonTree->ph2F("idmva")     );
     
   /// Skipping variables that will be the same for many entries:
   /// ph{1,2}_hasphoton, ph{1,2}_index, ph{1,2}_isbarrel
@@ -148,6 +148,10 @@ PhotonTreeTest::testBufferModification(void)
   photonTree->cosdphiMetgg       = cosdphiMetgg ;
   photonTree->ph1F("e")          = ph1_e        ;
   photonTree->ph2F("e")          = ph2_e        ;
+  photonTree->ph1F("pt")         = ph1_pt       ;
+  photonTree->ph2F("pt")         = ph2_pt       ;
+  photonTree->ph1F("idmva")      = ph1_idmva    ;
+  photonTree->ph2F("idmva")      = ph2_idmva    ;
   photonTree->ph1b("hasphoton")  = ph1_hasphoton;
   photonTree->ph2b("hasphoton")  = ph2_hasphoton;
   photonTree->ph1i("index")      = ph1_index    ;
@@ -162,6 +166,10 @@ PhotonTreeTest::testBufferModification(void)
   CPPUNIT_ASSERT_EQUAL(cosdphiMetgg     , photonTree->cosdphiMetgg      );
   CPPUNIT_ASSERT_EQUAL(ph1_e            , photonTree->ph1F("e")         );
   CPPUNIT_ASSERT_EQUAL(ph2_e            , photonTree->ph2F("e")         );
+  CPPUNIT_ASSERT_EQUAL(ph1_pt           , photonTree->ph1F("pt")        );
+  CPPUNIT_ASSERT_EQUAL(ph2_pt           , photonTree->ph2F("pt")        );
+  CPPUNIT_ASSERT_EQUAL(ph1_idmva        , photonTree->ph1F("idmva")     );
+  CPPUNIT_ASSERT_EQUAL(ph2_idmva        , photonTree->ph2F("idmva")     );
   CPPUNIT_ASSERT_EQUAL(ph1_hasphoton    , photonTree->ph1b("hasphoton") );
   CPPUNIT_ASSERT_EQUAL(ph2_hasphoton    , photonTree->ph2b("hasphoton") );
   CPPUNIT_ASSERT_EQUAL(ph1_index        , photonTree->ph1i("index")     );

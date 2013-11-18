@@ -1,10 +1,15 @@
 #ifndef MITHGG_TREEWRITER_LINKDEF_H
 #define MITHGG_TREEWRITER_LINKDEF_H
 
-#include "MitHgg/TreeWriter/interface/PhotonTree.h"
+// #include "MitHgg/TreeWriter/interface/DiphotonMvaReader.h"
+#include "MitHgg/TreeWriter/interface/PhotonTreeReader.h"
+#include "MitHgg/TreeWriter/interface/PhotonTreeReaderDiphotonEvent.h"
+#include "MitHgg/TreeWriter/interface/PhotonTreeReaderPhoton.h"
+/// Provides mithep::PhotonTreeWriterDiphotonEvent and 
+///          mithep::PhotonTreeWriterPhoton
+#include "MitPhysics/Mods/interface/PhotonTreeWriter.h"
 
-#endif // MITHGG_TREEWRITER_LINKDEF_H
-
+#endif /// MITHGG_TREEWRITER_LINKDEF_H
 
 #ifdef __CINT__
 
@@ -16,6 +21,10 @@
 #pragma link C++ namespace mithep;
 #pragma link C++ namespace mithep::hgg;
 
-#pragma link C++ class mithep::hgg::PhotonTree+;
+// #pragma link C++ class mithep::hgg::DiphotonMvaReader+;
+#pragma link C++ class mithep::hgg::PhotonTreeReaderDiphotonEvent;
+#pragma link C++ class mithep::hgg::PhotonTreeReaderPhotonBase;
+#pragma link C++ class mithep::hgg::PhotonTreeReaderPhoton;
+#pragma link C++ class mithep::hgg::PhotonTreeReader;
 
 #endif // __CINT__
