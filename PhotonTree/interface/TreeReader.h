@@ -17,14 +17,15 @@ namespace mithep
     class TreeReader : public DiphotonEventReader
     {
       public:
-        TreeReader (TTree* iTree);
+        TreeReader (TTree *iTree);
         virtual ~TreeReader() {}
-        
+
         virtual Int_t GetEntry(Long64_t entry = 0, Int_t getall = 0);
-        
+        virtual Long64_t GetEntries() const {return fTree->GetEntries();}
+
         PhotonReader ph1;
         PhotonReader ph2;
-        
+
       protected:
         TTree *fTree;
         ClassDef(TreeReader, 0)
