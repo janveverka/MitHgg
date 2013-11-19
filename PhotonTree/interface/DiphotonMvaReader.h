@@ -1,4 +1,4 @@
-// MitHgg/PhotonTree/DiphotonMvaReader.h - DiphotonMvaReader class
+// MitHgg/PhotonTree/interface/DiphotonMvaReader.h - DiphotonMvaReader class
 // Reads diphoton mva weigths given a PhotonTree and path to the weights file.
 // Author: J. Veverka
 //-----------------------------------------------------------------------------

@@ -3,10 +3,12 @@ MitHgg/TreeWriter
 
 To-Do List
 ----------
-  * Rename package to MitHgg/PhotonTree (done)
-  * Virtually base DiphotonMvaReader on TreeReader
-  * Virtually base DijetMvaReader on TreeReader
-  * Make CategoryReader based on DiphotonMvaReader and DijetMvaReader
+  * Rename package to MitHgg/PhotonTree (done 19.11. 03:55)
+  * Virtually base DiphotonMvaReader on TreeReader (done 19.11. 15:10)
+  * Virtually base DijetMvaReader on TreeReader (done 19.11 17:10)
+  * Base CombinedMvaReader on DiphotonMvaReader and DijetMvaReader
+  * Base CategoryReader on CombinedMvaReader
+  * Produce dumps of data and MC
   * Make a dumper that is an exacutable based on the CategoryReader
   * Add missing variables
   * Fix cos theta star
