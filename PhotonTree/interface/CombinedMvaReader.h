@@ -2,17 +2,6 @@
 // Reads combined mva weigths given a PhotonTree and path to the weights file.
 // Author: J. Veverka
 //-----------------------------------------------------------------------------
-/**
-  <Variables NVar="3">
-    <Variable VarIndex="0" Expression="dipho_mva"         ... />
-    <Variable VarIndex="1" Expression="bdt_dijet_maxdPhi" ... />
-    <Variable VarIndex="2" Expression="dipho_pt/mass"     ... />
-  </Variables>
-  diphoMVA
-  dijetMVA
-  ptgg_over_mass
-*/
-
 #ifndef MitHgg_PhotonTree_CombinedMvaReader_h
 #define MitHgg_PhotonTree_CombinedMvaReader_h
 
@@ -31,8 +20,8 @@ namespace mithep
 {
   namespace hgg
   {
-    class CombinedMvaReader : virtual public DijetMvaReader,
-                              virtual public DiphotonMvaReader
+    class CombinedMvaReader : public DijetMvaReader,
+                              public DiphotonMvaReader
     {
     public:
       CombinedMvaReader(

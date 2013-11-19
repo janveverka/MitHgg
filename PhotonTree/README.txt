@@ -21,3 +21,4 @@ To-Do List
   * Factor out members and methods common to MVA readers to a separate
     class and ecapsulate those there while keeping the unique bits
     (mva weights value, etc.)
+  * Delete TMVA readers in MVA reader dtors

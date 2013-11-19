@@ -1,6 +1,16 @@
 <Flags CXXFLAGS="-DCMSSW_BASE=${CMSSW_BASE}"/>
-<bin name="test-mithgg-photontree"
-     file="TestDriver.cc,PhotonReaderTest.cc,DiphotonEventReaderTest.cc,TreeReaderTest.cc,DiphotonMvaReaderTest.cc,DijetMvaReaderTest.cc,CombinedMvaReaderTest.cc">
+<bin name="test-mithgg-photontree-treereader"
+     file="TestDriver.cc,PhotonReaderTest.cc,DiphotonEventReaderTest.cc,TreeReaderTest.cc">
+  <use name="MitHgg/PhotonTree"/>
+  <use name="cppunit"/>
+</bin>
+<bin name="test-mithgg-photontree-mvareaders"
+     file="TestDriver.cc,DiphotonMvaReaderTest.cc,DijetMvaReaderTest.cc,CombinedMvaReaderTest.cc">
+  <use name="MitHgg/PhotonTree"/>
+  <use name="cppunit"/>
+</bin>
+<bin name="test-mithgg-photontree-mvacategoryreader"
+     file="TestDriver.cc,MvaCategoryReaderTest.cc">
   <use name="MitHgg/PhotonTree"/>
   <use name="cppunit"/>
 </bin>
