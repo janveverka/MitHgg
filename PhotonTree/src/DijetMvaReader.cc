@@ -14,9 +14,9 @@ ClassImp(DijetMvaReader)
 DijetMvaReader::DijetMvaReader(TTree *iTree, const char *iWeights,
                                Float_t iMaxDPhi) :
   TreeReader(iTree),
-  fWeightsPath(iWeights),
+  fDijetWeights(iWeights),
   fMaxDPhi(iMaxDPhi),
-  fMvaReader(new TMVA::Reader())
+  fDijetMvaReader(new TMVA::Reader())
 {
   Init();
 } /// Ctor
@@ -24,7 +24,9 @@ DijetMvaReader::DijetMvaReader(TTree *iTree, const char *iWeights,
 
 //------------------------------------------------------------------------------
 DijetMvaReader::~DijetMvaReader()
-{} /// Dtor
+{
+  delete fDijetMvaReader;
+} /// Dtor
 
 
 //------------------------------------------------------------------------------
@@ -41,18 +43,18 @@ DijetMvaReader::GetEntry(Long64_t entry, Int_t getall)
 void
 DijetMvaReader::Init()
 {
-  fMvaReader->AddVariable("dijet_leadEta"        , &jet1eta            );
-  fMvaReader->AddVariable("dijet_subleadEta"     , &jet2eta            );
-  fMvaReader->AddVariable("dijet_LeadJPt"        , &jet1pt             );
-  fMvaReader->AddVariable("dijet_SubJPt"         , &jet2pt             );
-  fMvaReader->AddVariable("dijet_Zep"            , &zeppenfeld         );
-  fMvaReader->AddVariable("min(dijet_dPhi,2.916)", &dijet_DPhiTruncated);
-  fMvaReader->AddVariable("dijet_Mjj"            , &dijetmass          );
-  fMvaReader->AddVariable("dipho_pt/mass"        , &ptgg_over_mass     );
+  fDijetMvaReader->AddVariable("dijet_leadEta"        , &jet1eta            );
+  fDijetMvaReader->AddVariable("dijet_subleadEta"     , &jet2eta            );
+  fDijetMvaReader->AddVariable("dijet_LeadJPt"        , &jet1pt             );
+  fDijetMvaReader->AddVariable("dijet_SubJPt"         , &jet2pt             );
+  fDijetMvaReader->AddVariable("dijet_Zep"            , &zeppenfeld         );
+  fDijetMvaReader->AddVariable("min(dijet_dPhi,2.916)", &dijet_DPhiTruncated);
+  fDijetMvaReader->AddVariable("dijet_Mjj"            , &dijetmass          );
+  fDijetMvaReader->AddVariable("dipho_pt/mass"        , &ptgg_over_mass     );
 
   std::cout << "\nINFO: mithep::hgg::DijetMvaReader::Init(): "
             << "Booking TMVA Reader ...\n";
-  fMvaReader->BookMVA("BDTG", fWeightsPath.Data());
+  fDijetMvaReader->BookMVA("BDTG", fDijetWeights.Data());
 } /// Init
 
 
@@ -63,5 +65,5 @@ DijetMvaReader::Update(void)
   /// Calculate derived diphoMVA inputs.
   dijet_DPhiTruncated = std::min(std::abs(dphidijetgg), fMaxDPhi);
   ptgg_over_mass = ptgg / mass;
-  dijetMVA = fMvaReader->EvaluateMVA("BDTG");
+  dijetMVA = fDijetMvaReader->EvaluateMVA("BDTG");
 } /// Update

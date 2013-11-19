@@ -6,6 +6,7 @@
 #include "MitHgg/PhotonTree/interface/TreeReader.h"
 #include "MitHgg/PhotonTree/interface/DiphotonMvaReader.h"
 #include "MitHgg/PhotonTree/interface/DijetMvaReader.h"
+#include "MitHgg/PhotonTree/interface/CombinedMvaReader.h"
 
 #endif /// MitHgg_PhotonTree_MitHggPhotonTreeLinkDef_h
 
@@ -28,5 +29,6 @@
 #pragma link C++ class mithep::hgg::TreeReader;
 #pragma link C++ class mithep::hgg::DiphotonMvaReader+;
 #pragma link C++ class mithep::hgg::DijetMvaReader+;
+#pragma link C++ class mithep::hgg::CombinedMvaReader+;
 
 #endif // __CINT__

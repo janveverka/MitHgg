@@ -27,7 +27,6 @@ namespace mithep
                          const char *iWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH);
       virtual ~DiphotonMvaReader();
       virtual Int_t GetEntry(Long64_t entry = 0, Int_t getall = 0);
-      TMVA::Reader* MvaReader() {return fMvaReader;}
 
       Float_t rVtxSigmaMoM;
       Float_t wVtxSigmaMoM;
@@ -39,8 +38,8 @@ namespace mithep
     protected:
       void Update(void);
       void Init(void);
-      TString const fWeightsPath;
-      TMVA::Reader *fMvaReader;
+      TString const fDiphotonWeights;
+      TMVA::Reader *fDiphotonMvaReader;
       ClassDef(DiphotonMvaReader, 0)
     }; /// DiphotonMvaReader
   } /// hgg

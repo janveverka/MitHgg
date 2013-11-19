@@ -12,8 +12,8 @@ ClassImp(DiphotonMvaReader)
 //------------------------------------------------------------------------------
 DiphotonMvaReader::DiphotonMvaReader(TTree *iTree, const char *iWeights) :
   TreeReader(iTree),
-  fWeightsPath(iWeights),
-  fMvaReader(new TMVA::Reader())
+  fDiphotonWeights(iWeights),
+  fDiphotonMvaReader(new TMVA::Reader())
 {
   Init();
 } /// Ctor
@@ -21,7 +21,9 @@ DiphotonMvaReader::DiphotonMvaReader(TTree *iTree, const char *iWeights) :
 
 //------------------------------------------------------------------------------
 DiphotonMvaReader::~DiphotonMvaReader()
-{} /// Dtor
+{
+  delete fDiphotonMvaReader;
+} /// Dtor
 
 
 //------------------------------------------------------------------------------
@@ -38,20 +40,20 @@ DiphotonMvaReader::GetEntry(Long64_t entry, Int_t getall)
 void
 DiphotonMvaReader::Init()
 {
-  fMvaReader->AddVariable("masserrsmeared/mass"        , &rVtxSigmaMoM);
-  fMvaReader->AddVariable("masserrsmearedwrongvtx/mass", &wVtxSigmaMoM);
-  fMvaReader->AddVariable("vtxprob"                    , &vtxprob     );
-  fMvaReader->AddVariable("ph1.pt/mass"                , &pho1_ptOverM);
-  fMvaReader->AddVariable("ph2.pt/mass"                , &pho2_ptOverM);
-  fMvaReader->AddVariable("ph1.eta"                    , &ph1.eta     );
-  fMvaReader->AddVariable("ph2.eta"                    , &ph2.eta     );
-  fMvaReader->AddVariable("TMath::Cos(ph1.phi-ph2.phi)", &cosDPhi     );
-  fMvaReader->AddVariable("ph1.idmva"                  , &ph1.idmva   );
-  fMvaReader->AddVariable("ph2.idmva"                  , &ph2.idmva   );
+  fDiphotonMvaReader->AddVariable("masserrsmeared/mass"        , &rVtxSigmaMoM);
+  fDiphotonMvaReader->AddVariable("masserrsmearedwrongvtx/mass", &wVtxSigmaMoM);
+  fDiphotonMvaReader->AddVariable("vtxprob"                    , &vtxprob     );
+  fDiphotonMvaReader->AddVariable("ph1.pt/mass"                , &pho1_ptOverM);
+  fDiphotonMvaReader->AddVariable("ph2.pt/mass"                , &pho2_ptOverM);
+  fDiphotonMvaReader->AddVariable("ph1.eta"                    , &ph1.eta     );
+  fDiphotonMvaReader->AddVariable("ph2.eta"                    , &ph2.eta     );
+  fDiphotonMvaReader->AddVariable("TMath::Cos(ph1.phi-ph2.phi)", &cosDPhi     );
+  fDiphotonMvaReader->AddVariable("ph1.idmva"                  , &ph1.idmva   );
+  fDiphotonMvaReader->AddVariable("ph2.idmva"                  , &ph2.idmva   );
 
   std::cout << "\nINFO: mithep::hgg::DiphotonMvaReader::Init(): "
             << "Booking TMVA Reader ...\n";
-  fMvaReader->BookMVA("BDTG", fWeightsPath.Data());
+  fDiphotonMvaReader->BookMVA("BDTG", fDiphotonWeights.Data());
 } /// Init
 
 
@@ -67,5 +69,5 @@ DiphotonMvaReader::Update(void)
   cosDPhi      = TMath::Cos(ph1.phi - ph2.phi);
   pho1_ptOverM = ph1.pt / mass;
   pho2_ptOverM = ph2.pt / mass;
-  diphoMVA = fMvaReader->EvaluateMVA("BDTG");
+  diphoMVA = fDiphotonMvaReader->EvaluateMVA("BDTG");
 } /// Update

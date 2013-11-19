@@ -1,6 +1,6 @@
 <Flags CXXFLAGS="-DCMSSW_BASE=${CMSSW_BASE}"/>
 <bin name="test-mithgg-photontree"
-     file="TestDriver.cc,PhotonReaderTest.cc,DiphotonEventReaderTest.cc,TreeReaderTest.cc,DiphotonMvaReaderTest.cc,DijetMvaReaderTest.cc">
+     file="TestDriver.cc,PhotonReaderTest.cc,DiphotonEventReaderTest.cc,TreeReaderTest.cc,DiphotonMvaReaderTest.cc,DijetMvaReaderTest.cc,CombinedMvaReaderTest.cc">
   <use name="MitHgg/PhotonTree"/>
   <use name="cppunit"/>
 </bin>

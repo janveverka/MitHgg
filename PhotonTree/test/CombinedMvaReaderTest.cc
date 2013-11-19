@@ -2,17 +2,17 @@
 #include <utility>  // std::pair
 #include <map>      // std::map
 #include <cppunit/extensions/HelperMacros.h>
-#include "MitHgg/PhotonTree/interface/DijetMvaReader.h"
+#include "MitHgg/PhotonTree/interface/CombinedMvaReader.h"
 #include "MitHgg/PhotonTree/interface/TestTreeFactory.h"
 
-using ::mithep::hgg::DijetMvaReader;
+using ::mithep::hgg::CombinedMvaReader;
 using namespace std;
 //------------------------------------------------------------------------------
 /**
- * DijetMvaReader test fixture
+ * CombinedMvaReader test fixture
  */
-class DijetMvaReaderTest : public ::CppUnit::TestFixture {
-  CPPUNIT_TEST_SUITE(DijetMvaReaderTest);
+class CombinedMvaReaderTest : public ::CppUnit::TestFixture {
+  CPPUNIT_TEST_SUITE(CombinedMvaReaderTest);
   CPPUNIT_TEST(testWeightReading);
   CPPUNIT_TEST_SUITE_END();
 
@@ -26,56 +26,56 @@ protected:
   void testWeightReading(void);
 
 private:
-  DijetMvaReader *mva;
+  CombinedMvaReader *mva;
   EventMvaMap     mvaForRunEvent;
-}; /// DijetMvaReaderTest
+}; /// CombinedMvaReaderTest
 
 
 //------------------------------------------------------------------------------
-CPPUNIT_TEST_SUITE_REGISTRATION(DijetMvaReaderTest);
+CPPUNIT_TEST_SUITE_REGISTRATION(CombinedMvaReaderTest);
 
 //------------------------------------------------------------------------------
 void
-DijetMvaReaderTest::setUp(void)
+CombinedMvaReaderTest::setUp(void)
 {
   TTree *tree = ::mithep::hgg::TestTreeFactory::Create();
-  mva      = new DijetMvaReader(tree);
-  /// Dummy values
-  mvaForRunEvent[RunEvent(200519, 68683)] = -0.997401;
-  mvaForRunEvent[RunEvent(200519, 68687)] = -0.977856;
-  mvaForRunEvent[RunEvent(200519, 68689)] = -0.704309;
-  mvaForRunEvent[RunEvent(200519, 68690)] = -0.963622;
+  mva      = new CombinedMvaReader(tree);
+  /// Globe values from Francesco Micheli emailed on 19 Nov.
+  mvaForRunEvent[RunEvent(200519, 68683)] = -0.994136;
+  mvaForRunEvent[RunEvent(200519, 68687)] = -0.995291;
+  mvaForRunEvent[RunEvent(200519, 68689)] = -0.997381;
+  mvaForRunEvent[RunEvent(200519, 68690)] = -0.995763;
 } /// setUp
 
-
+                                            
 //------------------------------------------------------------------------------
 void
-DijetMvaReaderTest::tearDown(void)
+CombinedMvaReaderTest::tearDown(void)
 {
   delete mva;
 } /// tearDown
 
 //------------------------------------------------------------------------------
 void
-DijetMvaReaderTest::testWeightReading(void)
+CombinedMvaReaderTest::testWeightReading(void)
 {
-  Float_t delta = 0.08;
-  std::cout << "\nDijetMvaReaderTest::testWeightReading ... \n";
+  Float_t delta = 0.5;
+  std::cout << "\nCombinedMvaReaderTest::testWeightReading ... \n";
   for (int i=0; i < mva->GetEntries() && i < (int) mvaForRunEvent.size(); i++) {
     mva     ->GetEntry(i);
     RunEvent runEvent(mva->run, mva->evt);
     if (mvaForRunEvent.find(runEvent) == mvaForRunEvent.end()) {
-      std::cout << "WARNING: DijetMvaReaderTest::testWeightReading: Skipping"
+      std::cout << "WARNING: CombinedMvaReaderTest::testWeightReading: Skipping"
                 << " run "    << mva->run
                 << ", event " << mva->evt << "...\n";
       continue;
     }
     Float_t expected = mvaForRunEvent[runEvent];
-    std::cout << "   run:"             << mva->run
-              << "   lumi:"            << mva->lumi
-              << "   event:"           << mva->evt
-              << "   dijetMVA(Globe):" << expected
-              << "   dijetMVA(MIT):"   << mva->dijetMVA << "\n";
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, mva->dijetMVA, delta);
+    std::cout << "   run:" << mva->run
+              << "   lumi:" << mva->lumi
+              << "   event:" << mva->evt
+              << "   combinedMVA(Globe):" << expected
+              << "   combinedMVA(MIT):" << mva->combinedMVA << "\n";
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, mva->combinedMVA, delta);
   } /// Loop over entries.
 } /// testWeightReading
