@@ -59,23 +59,30 @@ DijetMvaReaderTest::tearDown(void)
 void
 DijetMvaReaderTest::testWeightReading(void)
 {
+  bool verbose = false;
   Float_t delta = 0.08;
-  std::cout << "\nDijetMvaReaderTest::testWeightReading ... \n";
+  if (verbose) {
+    std::cout << "\nDijetMvaReaderTest::testWeightReading ... \n";
+  } /// verbose
   for (int i=0; i < mva->GetEntries() && i < (int) mvaForRunEvent.size(); i++) {
     mva     ->GetEntry(i);
     RunEvent runEvent(mva->run, mva->evt);
     if (mvaForRunEvent.find(runEvent) == mvaForRunEvent.end()) {
-      std::cout << "WARNING: DijetMvaReaderTest::testWeightReading: Skipping"
-                << " run "    << mva->run
-                << ", event " << mva->evt << "...\n";
+      if (verbose) {
+        std::cout << "\nWARNING: DijetMvaReaderTest::testWeightReading: "
+                  << "Skipping run "    << mva->run
+                  << ", event " << mva->evt << "...\n";
+      }
       continue;
     }
     Float_t expected = mvaForRunEvent[runEvent];
-    std::cout << "   run:"             << mva->run
-              << "   lumi:"            << mva->lumi
-              << "   event:"           << mva->evt
-              << "   dijetMVA(Globe):" << expected
-              << "   dijetMVA(MIT):"   << mva->dijetMVA << "\n";
+    if (verbose) {
+      std::cout << "   run:"             << mva->run
+                << "   lumi:"            << mva->lumi
+                << "   event:"           << mva->evt
+                << "   dijetMVA(Globe):" << expected
+                << "   dijetMVA(MIT):"   << mva->dijetMVA << "\n";
+    } /// verbose
     CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, mva->dijetMVA, delta);
   } /// Loop over entries.
 } /// testWeightReading

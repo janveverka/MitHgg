@@ -16,7 +16,7 @@ DijetMvaReader::DijetMvaReader(TTree *iTree, const char *iWeights,
   TreeReader(iTree),
   fDijetWeights(iWeights),
   fMaxDPhi(iMaxDPhi),
-  fDijetMvaReader(new TMVA::Reader())
+  fDijetMvaReader(new TMVA::Reader("Silent"))
 {
   Init();
 } /// Ctor
@@ -52,8 +52,6 @@ DijetMvaReader::Init()
   fDijetMvaReader->AddVariable("dijet_Mjj"            , &dijetmass          );
   fDijetMvaReader->AddVariable("dipho_pt/mass"        , &ptgg_over_mass     );
 
-  std::cout << "\nINFO: mithep::hgg::DijetMvaReader::Init(): "
-            << "Booking TMVA Reader ...\n";
   fDijetMvaReader->BookMVA("BDTG", fDijetWeights.Data());
 } /// Init
 

@@ -17,7 +17,7 @@ CombinedMvaReader::CombinedMvaReader(TTree *iTree,
   DijetMvaReader    (iTree, iDijetWeights, iDijetMaxDPhi),
   DiphotonMvaReader (iTree, iDiphotonWeights            ),
   fCombinedWeights  (iCombinedWeights                   ),
-  fCombinedMvaReader(new TMVA::Reader()                 )
+  fCombinedMvaReader(new TMVA::Reader("Silent")         )
 {
   Init();
 } /// Ctor
@@ -35,9 +35,7 @@ Int_t
 CombinedMvaReader::GetEntry(Long64_t entry, Int_t getall)
 {
   Int_t bytesRead = fTree->GetEntry(entry, getall);
-  DiphotonMvaReader::Update();
-  DijetMvaReader   ::Update();
-  CombinedMvaReader::Update();
+  Update();
   return bytesRead;
 } /// GetEntry
 
@@ -50,8 +48,6 @@ CombinedMvaReader::Init()
   fCombinedMvaReader->AddVariable("bdt_dijet_maxdPhi", &dijetMVA      );
   fCombinedMvaReader->AddVariable("dipho_pt/mass"    , &ptgg_over_mass);
 
-  std::cout << "\nINFO: mithep::hgg::CombinedMvaReader::Init(): "
-            << "Booking TMVA Reader ...\n";
   fCombinedMvaReader->BookMVA("BDTG", fCombinedWeights.Data());
 } /// Init
 
@@ -60,5 +56,7 @@ CombinedMvaReader::Init()
 void
 CombinedMvaReader::Update(void)
 {
+  DiphotonMvaReader::Update();
+  DijetMvaReader   ::Update();
   combinedMVA = fCombinedMvaReader->EvaluateMVA("BDTG");
 } /// Update

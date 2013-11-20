@@ -71,15 +71,18 @@ DiphotonMvaReaderTest::tearDown(void)
 void
 DiphotonMvaReaderTest::testWeightReading(void)
 {
+  bool verbose = false;
   Float_t epsilon = 1e-5;
   for (int i=0; i < diphoton->GetEntries(); i++) {
     diphoton->GetEntry(i);
     mva     ->GetEntry(i);
     RunEvent runEvent(mva->run, mva->evt);
     if (mvaForRunEvent.find(runEvent) == mvaForRunEvent.end()) {
-      std::cout << "WARNING: DiphotonMvaReaderTest::testWeightReading: Skipping"
-                << " run "    << mva->run
-                << ", event " << mva->evt << "...\n";
+      if (verbose) {
+        std::cout << "\nWARNING: DiphotonMvaReaderTest::testWeightReading: "
+                  << "Skipping run "    << mva->run
+                  << ", event " << mva->evt << "...\n";
+      }
       continue;
     }
     Float_t expected = mvaForRunEvent[runEvent];

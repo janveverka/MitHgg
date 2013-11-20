@@ -13,7 +13,7 @@ ClassImp(DiphotonMvaReader)
 DiphotonMvaReader::DiphotonMvaReader(TTree *iTree, const char *iWeights) :
   TreeReader(iTree),
   fDiphotonWeights(iWeights),
-  fDiphotonMvaReader(new TMVA::Reader())
+  fDiphotonMvaReader(new TMVA::Reader("Silent"))
 {
   Init();
 } /// Ctor
@@ -51,8 +51,6 @@ DiphotonMvaReader::Init()
   fDiphotonMvaReader->AddVariable("ph1.idmva"                  , &ph1.idmva   );
   fDiphotonMvaReader->AddVariable("ph2.idmva"                  , &ph2.idmva   );
 
-  std::cout << "\nINFO: mithep::hgg::DiphotonMvaReader::Init(): "
-            << "Booking TMVA Reader ...\n";
   fDiphotonMvaReader->BookMVA("BDTG", fDiphotonWeights.Data());
 } /// Init
 

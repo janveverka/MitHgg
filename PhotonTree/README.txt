@@ -22,3 +22,7 @@ To-Do List
     class and ecapsulate those there while keeping the unique bits
     (mva weights value, etc.)
   * Delete TMVA readers in MVA reader dtors
+  * Remove virtual inheritance
+  * combinedMVA -> combiMVA
+  * Define GetEntry once and inherit it elsewhere, make Update virtual and let
+  the magic happen there, e.g. call all the needed base class updates.
