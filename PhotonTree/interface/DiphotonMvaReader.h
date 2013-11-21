@@ -20,13 +20,13 @@ namespace mithep
 {
   namespace hgg
   {
-    class DiphotonMvaReader : virtual public TreeReader
+    class DiphotonMvaReader : public TreeReader
     {
     public:
-      DiphotonMvaReader (TTree *iTree,
-                         const char *iWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH);
+      DiphotonMvaReader (TTree *tree,
+                         const char *weights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+                         bool useSmearedMassError=true);
       virtual ~DiphotonMvaReader();
-      virtual Int_t GetEntry(Long64_t entry = 0, Int_t getall = 0);
 
       Float_t rVtxSigmaMoM;
       Float_t wVtxSigmaMoM;
@@ -36,9 +36,10 @@ namespace mithep
       Float_t diphoMVA    ;
 
     protected:
-      void Update(void);
+      virtual void Update(void);
       void Init(void);
       TString const fDiphotonWeights;
+      bool fUseSmearedMassError;
       TMVA::Reader *fDiphotonMvaReader;
       ClassDef(DiphotonMvaReader, 0)
     }; /// DiphotonMvaReader

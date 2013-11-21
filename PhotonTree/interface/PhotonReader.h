@@ -33,6 +33,8 @@ namespace mithep
         Double_t & GetD(const char *name){return *(Double_t *) GetPtr(name);}
         
         /// References to private data members of the PhotonTreeWriterPhoton.
+        /// Auto-generated using 
+        /// MitHgg/PhotonTree/scripts/dump-photon-reader-snippets.py
         UChar_t &hasphoton                  ;
         UInt_t  &index                      ;
         Float_t &e                          ;

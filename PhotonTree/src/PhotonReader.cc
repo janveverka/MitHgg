@@ -9,6 +9,9 @@ ClassImp(PhotonReaderBase)
 //------------------------------------------------------------------------------
 PhotonReader::PhotonReader(TTree *iTree, const char *prefix) :
   PhotonReaderBase(iTree, prefix),
+  /// Initiliaze references to private members of PhotonTreeWriterPhoton.
+  /// Auto-generated using 
+  /// MitHgg/PhotonTree/scripts/dump-photon-reader-snippets.py
   hasphoton                  (Getb("hasphoton"                  )),
   index                      (Geti("index"                      )),
   e                          (GetF("e"                          )),

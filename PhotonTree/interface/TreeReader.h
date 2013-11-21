@@ -27,6 +27,7 @@ namespace mithep
         PhotonReader ph2;
 
       protected:
+        virtual void Update();
         TTree *fTree;
         ClassDef(TreeReader, 0)
     }; /// TreeReader

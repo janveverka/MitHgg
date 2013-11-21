@@ -2,6 +2,7 @@
 #include <utility>  // std::pair
 #include <map>      // std::map
 #include <cppunit/extensions/HelperMacros.h>
+#include "TMVA/Reader.h"
 #include "MitHgg/PhotonTree/interface/TreeReader.h"
 #include "MitHgg/PhotonTree/interface/DiphotonMvaReader.h"
 #include "MitHgg/PhotonTree/interface/TestTreeFactory.h"
@@ -28,9 +29,17 @@ protected:
   void testWeightReading(void);
 
 private:
-  TreeReader        *diphoton;
-  DiphotonMvaReader *mva;
-  EventMvaMap       mvaForRunEvent;
+  TreeReader        *tree          ;
+  DiphotonMvaReader *actualMVA     ;
+  EventMvaMap        mvaForRunEvent;
+  Float_t            rVtxSigmaMoM  ;
+  Float_t            wVtxSigmaMoM  ;
+  Float_t            cosDPhi       ;
+  Float_t            pho1_ptOverM  ;
+  Float_t            pho2_ptOverM  ;
+  Float_t            diphoMVA      ;
+  TMVA::Reader *     expectedMVA   ;  
+  bool          useSmearedMassError;
 }; /// DiphotonMvaReaderTest
 
 
@@ -43,19 +52,26 @@ DiphotonMvaReaderTest::setUp(void)
 {
   TTree *tree1 = ::mithep::hgg::TestTreeFactory::Create();
   TTree *tree2 = static_cast<TTree*>(tree1->Clone());
-  diphoton = new TreeReader       (tree1);
-  mva      = new DiphotonMvaReader(tree2);
+  const char *weights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH;
+  bool useSmearedMassError = false; /// default is true
+  tree      = new TreeReader       (tree1                              );
+  actualMVA = new DiphotonMvaReader(tree2, weights, useSmearedMassError);
 
-  /// For $ head mit_inputvariables_wzh120_oct18.txt | awk '{print $1, $3, $68}'
-  mvaForRunEvent[RunEvent(200519, 68683)] =  0.0975732;
-  mvaForRunEvent[RunEvent(200519, 68687)] = -0.416784 ;
-  mvaForRunEvent[RunEvent(200519, 68689)] =  0.437828 ;
-  mvaForRunEvent[RunEvent(200519, 68690)] =  0.677142 ;
-  mvaForRunEvent[RunEvent(200519, 68693)] =  0.0798072;
-  mvaForRunEvent[RunEvent(200519, 68694)] = -0.136305 ;
-  mvaForRunEvent[RunEvent(200519, 68695)] =  0.148157 ;
-  mvaForRunEvent[RunEvent(200519, 68697)] = -0.0837085;
-  mvaForRunEvent[RunEvent(200519, 68698)] =  0.373162 ;
+  expectedMVA = new TMVA::Reader("Silent");
+  
+  expectedMVA->AddVariable("masserrsmeared/mass"        , &rVtxSigmaMoM   );
+  expectedMVA->AddVariable("masserrsmearedwrongvtx/mass", &wVtxSigmaMoM   );
+  expectedMVA->AddVariable("vtxprob"                    , &tree->vtxprob  );
+  expectedMVA->AddVariable("ph1.pt/mass"                , &pho1_ptOverM   );
+  expectedMVA->AddVariable("ph2.pt/mass"                , &pho2_ptOverM   );
+  expectedMVA->AddVariable("ph1.eta"                    , &tree->ph1.eta  );
+  expectedMVA->AddVariable("ph2.eta"                    , &tree->ph2.eta  );
+  expectedMVA->AddVariable("TMath::Cos(ph1.phi-ph2.phi)", &cosDPhi        );
+  expectedMVA->AddVariable("ph1.idmva"                  , &tree->ph1.idmva);
+  expectedMVA->AddVariable("ph2.idmva"                  , &tree->ph2.idmva);
+
+  expectedMVA->BookMVA("BDTG", weights);
+  
 } /// setUp
 
 
@@ -63,30 +79,35 @@ DiphotonMvaReaderTest::setUp(void)
 void
 DiphotonMvaReaderTest::tearDown(void)
 {
-  delete diphoton;
-  delete mva;
+  delete tree;
+  delete expectedMVA;
+  delete actualMVA;
 } /// tearDown
 
 //------------------------------------------------------------------------------
 void
 DiphotonMvaReaderTest::testWeightReading(void)
 {
-  bool verbose = false;
-  Float_t epsilon = 1e-5;
-  for (int i=0; i < diphoton->GetEntries(); i++) {
-    diphoton->GetEntry(i);
-    mva     ->GetEntry(i);
-    RunEvent runEvent(mva->run, mva->evt);
-    if (mvaForRunEvent.find(runEvent) == mvaForRunEvent.end()) {
-      if (verbose) {
-        std::cout << "\nWARNING: DiphotonMvaReaderTest::testWeightReading: "
-                  << "Skipping run "    << mva->run
-                  << ", event " << mva->evt << "...\n";
-      }
-      continue;
+  Float_t epsilon = 1e-6;
+  for (int i=0; i < tree->GetEntries(); i++) {
+    tree     ->GetEntry(i);
+    actualMVA->GetEntry(i);
+    
+    if (useSmearedMassError) {
+      rVtxSigmaMoM = tree->masserrsmeared / tree->mass;
+      wVtxSigmaMoM = tree->masserrsmearedwrongvtx / tree->mass;
+    } else {
+      rVtxSigmaMoM = tree->masserr / tree->mass;
+      wVtxSigmaMoM = tree->masserrwrongvtx / tree->mass;
     }
-    Float_t expected = mvaForRunEvent[runEvent];
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, mva->diphoMVA, epsilon);
+    cosDPhi      = TMath::Cos(tree->ph1.phi - tree->ph2.phi);
+    pho1_ptOverM = tree->ph1.pt / tree->mass;
+    pho2_ptOverM = tree->ph2.pt / tree->mass;
+    
+    Float_t expected = expectedMVA->EvaluateMVA("BDTG");
+    Float_t actual   = actualMVA  ->diphoMVA;
+
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, actual, epsilon);
   } /// Loop over entries.
 } /// testWeightReading
 

@@ -10,9 +10,11 @@ ClassImp(DiphotonMvaReader)
 
 
 //------------------------------------------------------------------------------
-DiphotonMvaReader::DiphotonMvaReader(TTree *iTree, const char *iWeights) :
-  TreeReader(iTree),
-  fDiphotonWeights(iWeights),
+DiphotonMvaReader::DiphotonMvaReader(TTree *tree, const char *weights,
+                                     bool useSmearedMassError) :
+  TreeReader(tree),
+  fDiphotonWeights(weights),
+  fUseSmearedMassError(useSmearedMassError),
   fDiphotonMvaReader(new TMVA::Reader("Silent"))
 {
   Init();
@@ -24,16 +26,6 @@ DiphotonMvaReader::~DiphotonMvaReader()
 {
   delete fDiphotonMvaReader;
 } /// Dtor
-
-
-//------------------------------------------------------------------------------
-Int_t
-DiphotonMvaReader::GetEntry(Long64_t entry, Int_t getall)
-{
-  Int_t ret = fTree->GetEntry(entry, getall);
-  Update();
-  return ret;
-} /// GetEntry
 
 
 //------------------------------------------------------------------------------
@@ -59,11 +51,15 @@ DiphotonMvaReader::Init()
 void
 DiphotonMvaReader::Update(void)
 {
+  TreeReader::Update();
   /// Calculate derived diphoMVA inputs.
-  // rVtxSigmaMoM = masserr_ns / mass;               /// no smearing
-  // wVtxSigmaMoM = masserrwvtx_ns / mass;           /// no smearing
-  rVtxSigmaMoM = masserrsmeared / mass;           /// with smearing
-  wVtxSigmaMoM = masserrsmearedwrongvtx / mass;   /// with smearing
+  if (fUseSmearedMassError) {
+    rVtxSigmaMoM = masserrsmeared / mass;
+    wVtxSigmaMoM = masserrsmearedwrongvtx / mass;
+  } else {
+    rVtxSigmaMoM = masserr / mass;
+    wVtxSigmaMoM = masserrwrongvtx / mass;
+  }
   cosDPhi      = TMath::Cos(ph1.phi - ph2.phi);
   pho1_ptOverM = ph1.pt / mass;
   pho2_ptOverM = ph2.pt / mass;
