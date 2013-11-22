@@ -7,7 +7,7 @@
 </bin>
 
 <bin name="test-mithgg-photontree-mvareaders"
-     file="TestDriver.cc,DiphotonMvaReaderTest.cc">
+     file="TestDriver.cc,DiphotonMvaReaderTest.cc,DijetMvaReaderTest.cc">
   <use name="MitHgg/PhotonTree"/>
   <use name="cppunit"/>
 </bin>

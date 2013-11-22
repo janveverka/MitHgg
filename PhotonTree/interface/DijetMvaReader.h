@@ -7,7 +7,7 @@
 #define MitHgg_PhotonTree_DijetMvaReader_h
 
 #include "TMVA/Reader.h"
-#include "MitHgg/PhotonTree/interface/TreeReader.h"
+#include "MitHgg/PhotonTree/interface/DiphotonMvaReader.h"
 #include "MitHgg/Tools/interface/PathMacros.h"
 
 #define HGG_DEFAULT_DIJET_WEIGHTS_FILE src/MitHgg/PhotonTree/data/\
@@ -20,24 +20,26 @@ namespace mithep
 {
   namespace hgg
   {
-    class DijetMvaReader : virtual public TreeReader
+    class DijetMvaReader : public ::mithep::hgg::DiphotonMvaReader
     {
     public:
-      DijetMvaReader(TTree *iTree,
-                     const char *iWeights=HGG_DEFAULT_DIJET_WEIGHTS_PATH,
-                     Float_t iMaxDPhi=2.916);
+      DijetMvaReader(
+        TTree      *iTree,
+        const char *iDiphoWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+        const char *iDijetWeights=HGG_DEFAULT_DIJET_WEIGHTS_PATH,
+        bool        iDiphoUseSmearedMassError=true,
+        Float_t     iDijetMaxDPhi=2.916);
       virtual ~DijetMvaReader();
-      virtual Int_t GetEntry(Long64_t entry = 0, Int_t getall = 0);
 
       Float_t dijet_DPhiTruncated;
       Float_t ptgg_over_mass;
       Float_t dijetMVA;
 
     protected:
-      void Update(void);
-      void Init(void);
+      virtual void Update(void);
+              void Init  (void);
       TString const fDijetWeights;
-      Float_t fMaxDPhi;
+      Float_t       fDijetMaxDPhi;
       TMVA::Reader *fDijetMvaReader;
       ClassDef(DijetMvaReader, 0)
     }; /// DijetMvaReader

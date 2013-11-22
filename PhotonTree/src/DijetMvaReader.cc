@@ -1,22 +1,25 @@
-#include <iostream>     // std::cout
 #include <algorithm>    // std::min
 #include <complex>      // std::abs
+#include <iostream>     // std::cout
 #include "MitHgg/PhotonTree/interface/DijetMvaReader.h"
 
 using ::mithep::hgg::DijetMvaReader;
-using ::mithep::hgg::TreeReader;
+using ::mithep::hgg::DiphotonMvaReader;
 
 /// Make this a ROOT class
 ClassImp(DijetMvaReader)
 
 
 //------------------------------------------------------------------------------
-DijetMvaReader::DijetMvaReader(TTree *iTree, const char *iWeights,
-                               Float_t iMaxDPhi) :
-  TreeReader(iTree),
-  fDijetWeights(iWeights),
-  fMaxDPhi(iMaxDPhi),
-  fDijetMvaReader(new TMVA::Reader("Silent"))
+DijetMvaReader::DijetMvaReader(TTree *iTree, 
+                               const char *iDiphoWeights,
+                               const char *iDijetWeights,
+                               bool        iDiphoUseSmearedMassError,
+                               Float_t     iDijetMaxDPhi) :
+  DiphotonMvaReader(iTree, iDiphoWeights, iDiphoUseSmearedMassError),
+  fDijetWeights    (iDijetWeights),
+  fDijetMaxDPhi    (iDijetMaxDPhi),
+  fDijetMvaReader  (new TMVA::Reader("Silent"))
 {
   Init();
 } /// Ctor
@@ -27,16 +30,6 @@ DijetMvaReader::~DijetMvaReader()
 {
   delete fDijetMvaReader;
 } /// Dtor
-
-
-//------------------------------------------------------------------------------
-Int_t
-DijetMvaReader::GetEntry(Long64_t entry, Int_t getall)
-{
-  Int_t bytesRead = fTree->GetEntry(entry, getall);
-  Update();
-  return bytesRead;
-} /// GetEntry
 
 
 //------------------------------------------------------------------------------
@@ -60,8 +53,9 @@ DijetMvaReader::Init()
 void
 DijetMvaReader::Update(void)
 {
+  DiphotonMvaReader::Update();
   /// Calculate derived diphoMVA inputs.
-  dijet_DPhiTruncated = std::min(std::abs(dphidijetgg), fMaxDPhi);
+  dijet_DPhiTruncated = std::min(std::abs(dphidijetgg), fDijetMaxDPhi);
   ptgg_over_mass = ptgg / mass;
   dijetMVA = fDijetMvaReader->EvaluateMVA("BDTG");
 } /// Update

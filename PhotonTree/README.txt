@@ -32,3 +32,4 @@ To-Do List
     the magic happen there, e.g. call all the needed base class updates.
   * Understand why there is a difference in the MC diphoMVA between
     Globe Nov 5 and MIT Nov 20
+  * Add diphoMVA check to DijetMvaReaderTest.
