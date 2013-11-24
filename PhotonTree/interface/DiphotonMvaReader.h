@@ -29,6 +29,18 @@ namespace mithep
         bool        iDiphoUseSmearedMassError=true
       );
       virtual ~DiphotonMvaReader();
+      
+      void SetDiphoMvaUseSmearedMassError(bool b) 
+      {
+        fDiphoUseSmearedMassError = b;
+      }
+      void SetDiphoMvaWeigths(const char *path) {fDiphoWeights = path;}
+      
+      bool GetDiphoMvaUseSmearedMassError(void) 
+      { 
+        return fDiphoUseSmearedMassError;
+      }
+      const char* GetDiphoMvaWeights(void) {return fDiphoWeights.Data();}
 
       Float_t rVtxSigmaMoM;
       Float_t wVtxSigmaMoM;
@@ -40,7 +52,7 @@ namespace mithep
     protected:
       virtual void Update(void);
               void Init  (void);
-      TString const fDiphoWeights;
+      TString  fDiphoWeights;
       bool          fDiphoUseSmearedMassError;
       TMVA::Reader *fDiphoMvaReader;
       ClassDef(DiphotonMvaReader, 0)

@@ -5,7 +5,7 @@
 #include "MitHgg/PhotonTree/interface/DiphotonEventReader.h"
 #include "MitHgg/PhotonTree/interface/TreeReader.h"
 #include "MitHgg/PhotonTree/interface/DiphotonMvaReader.h"
-#include "MitHgg/PhotonTree/interface/DijetMvaReader.h"
+#include "MitHgg/PhotonTree/interface/DiphotonAndDijetMvaReader.h"
 // #include "MitHgg/PhotonTree/interface/CombinedMvaReader.h"
 // #include "MitHgg/PhotonTree/interface/MvaCategoryReader.h"
 
@@ -29,7 +29,7 @@
 #pragma link C++ class mithep::hgg::DiphotonEventReader;
 #pragma link C++ class mithep::hgg::TreeReader;
 #pragma link C++ class mithep::hgg::DiphotonMvaReader;
-#pragma link C++ class mithep::hgg::DijetMvaReader;
+#pragma link C++ class mithep::hgg::DiphotonAndDijetMvaReader;
 // #pragma link C++ class mithep::hgg::CombinedMvaReader;
 // #pragma link C++ class mithep::hgg::MvaCategoryReader;
 

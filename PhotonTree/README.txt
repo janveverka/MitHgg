@@ -18,18 +18,21 @@ To-Do List
     PhotonAnalysis/src/PhotonAnalysis.cc#L4369-L4377
   * Add diphoton MVA cuts to exclusive cats
   * Double-check b-jet ID (medium vs tight)
-  * Produce dumps
-  * Compare dumps
+  * Produce dumps (preliminarily done 22.11.)
+  * Compare dumps (preliminarily done 22.11.)
   * Find interesting events with large discrepancies and/or
     representing large miscategorization groups
   * Factor out members and methods common to MVA readers to a separate
     class and ecapsulate those there while keeping the unique bits
     (mva weights value, etc.)
   * Delete TMVA readers in MVA reader dtors
-  * Remove virtual inheritance
+  * Remove virtual inheritance (done 23.11.)
   * combinedMVA -> combiMVA
   * Define GetEntry once and inherit it elsewhere, make Update virtual and let
     the magic happen there, e.g. call all the needed base class updates.
   * Understand why there is a difference in the MC diphoMVA between
-    Globe Nov 5 and MIT Nov 20
-  * Add diphoMVA check to DijetMvaReaderTest.
+    Globe Nov 5 and MIT Nov 20 (done 21.11. - mass error smearing)
+  * Add diphoMVA check to DiphotonAndDijetMvaReaderTest. (done 24.11. 23:40)
+  * Rename DijetMvaReader to DiphotonAndDijetMvaReader (done 24.11. 23:40)
+  * Check jet-lepton Delta R cut in VH lep
+  * Fix MET corrections
