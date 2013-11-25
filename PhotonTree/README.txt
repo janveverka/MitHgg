@@ -19,6 +19,8 @@ To-Do List
     class and ecapsulate those there while keeping the unique bits
     (mva weights value, etc.)
   * Add more thorough tests of all 3 MVA's to CombinedMvaReaderTest
+  * Update the tthTag convention in the PhotonTreeWriter
+  * Update the VHHadTag convention in the PhotonTreeWriter
 
 To-Done List
 ------------

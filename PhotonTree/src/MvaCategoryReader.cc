@@ -1,22 +1,25 @@
 #include <iostream>     // std::cout
 #include "TMath.h"
 #include "MitHgg/PhotonTree/interface/MvaCategoryReader.h"
+#include "MitCommon/MathTools/interface/MathUtils.h"
 
+using ::mithep::MathUtils;
 using ::mithep::hgg::MvaCategoryReader;
+
 namespace default_8tev = ::mithep::hgg::mva_category_defaults_8tev;
 
 /// Make this a ROOT class
 ClassImp(MvaCategoryReader)
 
 //------------------------------------------------------------------------------
-MvaCategoryReader::MvaCategoryReader(TTree *iTree,
-                                     const char *iCombiWeights,
-                                     const char *iDijetWeights,
-                                     const char *iDiphoWeights,
-                                     Float_t iDijetMaxDPhi) :
-  TreeReader       (iTree),
+MvaCategoryReader::MvaCategoryReader(TTree      *iTree                    ,
+                                     const char *iCombiWeights            ,
+                                     const char *iDijetWeights            ,
+                                     const char *iDiphoWeights            ,
+                                     bool        iDiphoUseSmearedMassError,
+                                     Float_t     iDijetMaxDPhi            ) :
   CombinedMvaReader(iTree, iCombiWeights, iDijetWeights, iDiphoWeights,
-                    iDijetMaxDPhi),
+                    iDiphoUseSmearedMassError, iDijetMaxDPhi),
   VHMetTag(0),
   dijetCat(-1),
   inclCat(-1),
@@ -39,16 +42,6 @@ MvaCategoryReader::MvaCategoryReader(TTree *iTree,
 //------------------------------------------------------------------------------
 MvaCategoryReader::~MvaCategoryReader()
 {} /// Dtor
-
-
-//------------------------------------------------------------------------------
-Int_t
-MvaCategoryReader::GetEntry(Long64_t entry, Int_t getall)
-{
-  Int_t bytesRead = fTree->GetEntry(entry, getall);
-  Update();
-  return bytesRead;
-} /// GetEntry
 
 
 //------------------------------------------------------------------------------
@@ -82,7 +75,7 @@ void
 MvaCategoryReader::SetDiphoMvaCuts(const std::vector<float> & cuts)
 {
   diphoMvaCuts = cuts;
-  numInclCats = cuts.size();
+  numInclCats  = cuts.size();
   UpdateCategoryDefinitions();
 } /// SetDiphoMvaCuts
 
@@ -144,8 +137,8 @@ MvaCategoryReader::UpdateDijetCat(void)
   }
 
   for (dijetCat=0; dijetCat < numDijetCats; dijetCat++) {
-    if (dijetMVA    > dijetMvaCuts[dijetCat] &&
-        combinedMVA > combiMvaCuts[dijetCat]) {
+    if (dijetMVA > dijetMvaCuts[dijetCat] &&
+        combiMVA > combiMvaCuts[dijetCat]) {
       break;
     }
   }
@@ -160,10 +153,14 @@ MvaCategoryReader::UpdateDijetCat(void)
 void
 MvaCategoryReader::UpdateVHMetTag(void)
 {
-  double dr1 = DeltaR(ph1.sceta, ph1.scphi, jetleadNoIDeta, jetleadNoIDphi);
-  double dr2 = DeltaR(ph2.sceta, ph2.scphi, jetleadNoIDeta, jetleadNoIDphi);
-  double dPhiMetGG  = DeltaPhi(phigg         , corrpfmetphi);
-  double dPhiMetJet = DeltaPhi(jetleadNoIDphi, corrpfmetphi);
+  double jet_phi = jetleadNoIDphi;
+  double jet_eta = jetleadNoIDeta;
+  double dr1 = MathUtils::DeltaR(ph1.scphi, ph1.sceta, jet_phi, jet_eta);
+  double dr2 = MathUtils::DeltaR(ph2.scphi, ph2.sceta, jet_phi, jet_eta);
+  double dPhiMetGG  = MathUtils::DeltaPhi((Double_t) phigg  ,
+                                          (Double_t) corrpfmetphi);
+  double dPhiMetJet = MathUtils::DeltaPhi((Double_t) jet_phi,
+                                          (Double_t) corrpfmetphi);
 
   if (TMath::Abs(ph1.sceta) < 1.4442   &&
       TMath::Abs(ph2.sceta) < 1.4442   &&
@@ -214,21 +211,3 @@ MvaCategoryReader::UpdateMvaCat(void)
   else if (inclCat  >= 0) mvaCat = kIncl0 + inclCat;
   else                    mvaCat = -999;
 } /// UpdateMvaCat
-
-
-//------------------------------------------------------------------------------
-double
-MvaCategoryReader::DeltaR(double eta1, double phi1, double eta2, double phi2)
-{
-  double deta   = eta1 - eta2;
-  double dphi   = DeltaPhi(phi1, phi2);
-  return TMath::Sqrt(deta * deta + dphi * dphi);
-} /// DeltaR
-
-
-//------------------------------------------------------------------------------
-double
-MvaCategoryReader::DeltaPhi(double phi1, double phi2)
-{
-  return TMath::ACos(TMath::Cos(phi1 - phi2));
-} /// DeltaPhi

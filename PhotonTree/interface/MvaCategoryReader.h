@@ -18,19 +18,21 @@ namespace mithep
     {
     public:
       MvaCategoryReader(
-        TTree *iTree,
+        TTree      *iTree                                            ,
         const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
         const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
         const char *iDiphoWeights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+        bool        iDiphoUseSmearedMassError = true                 ,
         Float_t     iDijetMaxDPhi = 2.916
         );
       virtual ~MvaCategoryReader();
-      virtual Int_t GetEntry(Long64_t entry = 0, Int_t getall = 0);
 
       void SetDiphoMvaCuts(const std::vector<float> & cuts);
       void SetDijetMvaCuts(const std::vector<float> & cuts);
       void SetCombiMvaCuts(const std::vector<float> & cuts);
       const std::vector<float>& DiphoMvaCuts() const {return diphoMvaCuts;}
+      const std::vector<float>& DijetMvaCuts() const {return dijetMvaCuts;}
+      const std::vector<float>& CombiMvaCuts() const {return combiMvaCuts;}
 
       Int_t VHMetTag;
       Int_t dijetCat;
@@ -38,17 +40,15 @@ namespace mithep
       Int_t mvaCat  ;
 
     protected:
-      void Init(void);
-      void Update(void);
-      void UpdateCategoryDefinitions(void);
-      void UpdateInclusiveCat(void);
-      void UpdateDijetCat(void);
-      void UpdateVHMetTag(void);
-      void UpdateTTHTagConvention(void);
-      void UpdateVHHadTagConvention(void);
-      void UpdateMvaCat(void);
-      static double DeltaR(double eta1, double phi1, double eta2, double phi2);
-      static double DeltaPhi(double phi1, double phi2);
+      void         Init                     (void);
+      virtual void Update                   (void);
+      void         UpdateCategoryDefinitions(void);
+      void         UpdateInclusiveCat       (void);
+      void         UpdateDijetCat           (void);
+      void         UpdateVHMetTag           (void);
+      void         UpdateTTHTagConvention   (void);
+      void         UpdateVHHadTagConvention (void);
+      void         UpdateMvaCat             (void);
 
       std::vector<float> diphoMvaCuts;
       std::vector<float> dijetMvaCuts;

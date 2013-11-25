@@ -98,14 +98,14 @@ MvaCategoryReaderTest::testReading(void)
     }
     Tags expected = tagsForRunEvent[runEvent];
     if (verbose) {
-    std::cout << "   run:" << reader->run
-              << "   lumi:" << reader->lumi
-              << "   event:" << reader->evt
-              << "   diphoMVA:"        << reader->diphoMVA
-              << "   dijetMVA:"        << reader->dijetMVA
-              << "   combinedMVA:" << reader->combinedMVA
+    std::cout << "   run:"           << reader->run
+              << "   lumi:"          << reader->lumi
+              << "   event:"         << reader->evt
+              << "   diphoMVA:"      << reader->diphoMVA
+              << "   dijetMVA:"      << reader->dijetMVA
+              << "   combiMVA:"      << reader->combiMVA
               << "   cat(expected):" << expected.cat
-              << "   cat(actual):" << reader->mvaCat
+              << "   cat(actual):"   << reader->mvaCat
               << "\n";
     }
     CPPUNIT_ASSERT_EQUAL(expected.vhLep, reader->VHLepTag);
