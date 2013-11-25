@@ -13,24 +13,7 @@ namespace mithep
 {
   namespace hgg
   {
-    namespace mva_category_defaults_8tev
-    {
-      const unsigned int numInclCats  = 5;
-      const unsigned int numDijetCats = 3;
-
-      const float initDiphoMvaCuts[numInclCats ] = {0.915, 0.75, 0.52, 0.13,
-                                                   -0.4};
-      const float initDijetMvaCuts[numDijetCats] = {0.64 , 0.64, 0.47};
-      const float initCombiMvaCuts[numDijetCats] = {0.906, 0.74, 0.5 };
-
-      const std::vector<float> diphoMvaCuts(initDiphoMvaCuts,
-                                            initDiphoMvaCuts + numInclCats );
-      const std::vector<float> dijetMvaCuts(initDijetMvaCuts,
-                                            initDijetMvaCuts + numDijetCats);
-      const std::vector<float> combiMvaCuts(initCombiMvaCuts,
-                                            initCombiMvaCuts + numDijetCats);
-    } /// mva_category_defaults_8tev
-
+    //--------------------------------------------------------------------------
     class MvaCategoryReader : public CombinedMvaReader
     {
     public:
@@ -81,6 +64,32 @@ namespace mithep
 
       ClassDef(MvaCategoryReader, 0)
     }; /// MvaCategoryReader
+
+
+    //--------------------------------------------------------------------------
+    namespace mva_category_defaults_8tev_jim
+    {
+      const unsigned int numInclCats  = 5;
+      const unsigned int numDijetCats = 3;
+
+      const float initDiphoMvaCuts[numInclCats ] = {0.915, 0.75, 0.52, 0.13,
+                                                   -0.4};
+      const float initDijetMvaCuts[numDijetCats] = {0.64 , 0.64, 0.47};
+      const float initCombiMvaCuts[numDijetCats] = {0.906, 0.74, 0.5 };
+
+      const std::vector<float> diphoMvaCuts(initDiphoMvaCuts,
+                                            initDiphoMvaCuts + numInclCats );
+      const std::vector<float> dijetMvaCuts(initDijetMvaCuts,
+                                            initDijetMvaCuts + numDijetCats);
+      const std::vector<float> combiMvaCuts(initCombiMvaCuts,
+                                            initCombiMvaCuts + numDijetCats);
+    } /// mva_category_defaults_8tev_jim
+
+
+    //--------------------------------------------------------------------------
+    namespace mva_category_defaults_8tev = mva_category_defaults_8tev_jim;
+
+
   } /// hgg
 } /// mithep
 

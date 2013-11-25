@@ -82,9 +82,9 @@ CombinedMvaReaderTest::testWeightReading(void)
                 << "   event:" << mva->evt
                 << "   diphoMVA:"        << mva->diphoMVA
                 << "   dijetMVA:"        << mva->dijetMVA
-                << "   combinedMVA(Globe):" << expected
-                << "   combinedMVA(MIT):" << mva->combinedMVA << "\n";
+                << "   combiMVA(Globe):" << expected
+                << "   combiMVA(MIT):" << mva->combiMVA << "\n";
     }
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, mva->combinedMVA, delta);
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(expected, mva->combiMVA, delta);
   } /// Loop over entries.
 } /// testWeightReading

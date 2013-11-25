@@ -29,15 +29,15 @@ namespace mithep
         bool        iDiphoUseSmearedMassError=true
       );
       virtual ~DiphotonMvaReader();
-      
+
       void SetDiphoMvaUseSmearedMassError(bool b) 
       {
         fDiphoUseSmearedMassError = b;
       }
-      void SetDiphoMvaWeigths(const char *path) {fDiphoWeights = path;}
-      
-      bool GetDiphoMvaUseSmearedMassError(void) 
-      { 
+      void SetDiphoMvaWeigths(const char *path);
+
+      bool GetDiphoMvaUseSmearedMassError(void)
+      {
         return fDiphoUseSmearedMassError;
       }
       const char* GetDiphoMvaWeights(void) {return fDiphoWeights.Data();}

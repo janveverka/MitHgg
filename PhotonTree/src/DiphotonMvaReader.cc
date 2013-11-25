@@ -27,6 +27,15 @@ DiphotonMvaReader::~DiphotonMvaReader()
   delete fDiphoMvaReader;
 } /// Dtor
 
+//------------------------------------------------------------------------------
+void
+DiphotonMvaReader::SetDiphoMvaWeigths(const char *path)
+{
+  fDiphoWeights = path;
+  delete fDiphoMvaReader;
+  fDiphoMvaReader = new TMVA::Reader("Silent");
+  Init();
+} /// SetDiphoMvaWeigths
 
 //------------------------------------------------------------------------------
 void

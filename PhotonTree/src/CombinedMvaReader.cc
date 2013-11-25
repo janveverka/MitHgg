@@ -9,15 +9,18 @@ ClassImp(CombinedMvaReader)
 
 //------------------------------------------------------------------------------
 CombinedMvaReader::CombinedMvaReader(TTree *iTree,
-                                     const char *iCombinedWeights,
-                                     const char *iDijetWeights   ,
-                                     const char *iDiphotonWeights,
+                                     const char *iDiphoWeights,
+                                     const char *iDijetWeights,
+                                     const char *iCombiWeights,
+                                     bool iDiphoUseSmearedMassError,
                                      Float_t iDijetMaxDPhi) :
-  TreeReader        (iTree                              ),
-  DijetMvaReader    (iTree, iDijetWeights, iDijetMaxDPhi),
-  DiphotonMvaReader (iTree, iDiphotonWeights            ),
-  fCombinedWeights  (iCombinedWeights                   ),
-  fCombinedMvaReader(new TMVA::Reader("Silent")         )
+  DiphotonAndDijetMvaReader(iTree,
+                            iDiphoWeights,
+                            iDijetWeights,
+                            iDiphoUseSmearedMassError,
+                            iDijetMaxDPhi             ),
+  fCombiWeights            (iCombiWeights             ),
+  fCombiMvaReader          (new TMVA::Reader("Silent"))
 {
   Init();
 } /// Ctor
@@ -26,29 +29,30 @@ CombinedMvaReader::CombinedMvaReader(TTree *iTree,
 //------------------------------------------------------------------------------
 CombinedMvaReader::~CombinedMvaReader()
 {
-  delete fCombinedMvaReader;
+  delete fCombiMvaReader;
 } /// Dtor
 
 
 //------------------------------------------------------------------------------
-Int_t
-CombinedMvaReader::GetEntry(Long64_t entry, Int_t getall)
+void
+CombinedMvaReader::SetCombiMvaWeights(const char *path)
 {
-  Int_t bytesRead = fTree->GetEntry(entry, getall);
-  Update();
-  return bytesRead;
-} /// GetEntry
+  fCombiWeights = path;
+  delete fCombiMvaReader;
+  fCombiMvaReader = new TMVA::Reader("Silent");
+  Init();
+} /// SetCombiMvaWeights
 
 
 //------------------------------------------------------------------------------
 void
 CombinedMvaReader::Init()
 {
-  fCombinedMvaReader->AddVariable("dipho_mva"        , &diphoMVA      );
-  fCombinedMvaReader->AddVariable("bdt_dijet_maxdPhi", &dijetMVA      );
-  fCombinedMvaReader->AddVariable("dipho_pt/mass"    , &ptgg_over_mass);
+  fCombiMvaReader->AddVariable("dipho_mva"        , &diphoMVA      );
+  fCombiMvaReader->AddVariable("bdt_dijet_maxdPhi", &dijetMVA      );
+  fCombiMvaReader->AddVariable("dipho_pt/mass"    , &ptgg_over_mass);
 
-  fCombinedMvaReader->BookMVA("BDTG", fCombinedWeights.Data());
+  fCombiMvaReader->BookMVA("BDTG", fCombiWeights.Data());
 } /// Init
 
 
@@ -56,7 +60,6 @@ CombinedMvaReader::Init()
 void
 CombinedMvaReader::Update(void)
 {
-  DiphotonMvaReader::Update();
-  DijetMvaReader   ::Update();
-  combinedMVA = fCombinedMvaReader->EvaluateMVA("BDTG");
+  DiphotonAndDijetMvaReader::Update();
+  combiMVA = fCombiMvaReader->EvaluateMVA("BDTG");
 } /// Update
