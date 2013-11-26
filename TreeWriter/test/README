@@ -1,8 +1,8 @@
-MitHgg/TreeWriter/test/README - Unit tests for the MitHgg/TreeWriter package
+MitHgg/PhotonTree/test/README - Unit tests for the MitHgg/PhotonTree package
 ----------------------------------------------------------------------------
 
 USAGE:
-  cd $CMSSW_BASE/src/MitHgg/TreeWriter && scram b runtests
+  cd $CMSSW_BASE/src/MitHgg/PhotonTree && scram b runtests
 
 REFERENCES:
   https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideDevelopersGuide
