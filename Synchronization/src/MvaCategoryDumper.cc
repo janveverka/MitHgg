@@ -25,12 +25,43 @@ MvaCategoryDumper::produceDump()
 {
   for (unsigned iEntry=0; iEntry < fTree->GetEntries(); iEntry++) {
     GetEntry(iEntry);
-    dumpVar("run"  , run );
-    dumpVar("lumi" , lumi);
-    dumpVar("event", evt );
+    dumpAllVariables();
     std::cout << std::endl;
   } /// Loop over entries
-} /// run
+} /// produceDump
+
+
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::dumpAllVariables()
+{
+  dumpEventHeader();
+  dumpCategoryVariables();
+} /// dumpAllVariables
+
+
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::dumpEventHeader()
+{
+  dumpVar("run"  , run );
+  dumpVar("lumi" , lumi);
+  dumpVar("event", evt );
+} /// dumpEventHeader
+
+
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::dumpCategoryVariables()
+{
+  dumpVar("cat"     , mvaCat  );
+  dumpVar("tth"     , tthTag  );
+  dumpVar("vhLep"   , VHLepTag);
+  dumpVar("vhMet"   , VHMetTag);
+  dumpVar("vhHad"   , VHHadTag);
+  dumpVar("numJets" , numJets );
+  dumpVar("numBJets", numBJets);
+} /// dumpCategoryVariables
 
 
 //------------------------------------------------------------------------------

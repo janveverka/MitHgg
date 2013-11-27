@@ -16,6 +16,9 @@ namespace mithep
         virtual ~MvaCategoryDumper();
         void produceDump();
       protected:
+        void dumpAllVariables(void);
+        void dumpEventHeader(void);
+        void dumpCategoryVariables(void);
         template <class T>
         void dumpVar(const char *name, T value, const char *suffix="\t");
     }; // MvaCategoryDumper

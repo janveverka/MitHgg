@@ -18,7 +18,6 @@ per_event_variables = '''
 
 ## These are without a prefix.
 per_diphoton_variables = '''
-    mass
     cat
     tth
     vhLep
@@ -26,6 +25,7 @@ per_diphoton_variables = '''
     vhHad
     numJets
     numBJets
+    mass
     met
     met_phi
     uncorrMet
@@ -33,7 +33,7 @@ per_diphoton_variables = '''
     diphoMVA
     dijetMVA
     combiMVA
-    cosThetaStar    
+    cosThetaStar
     '''.split()
 ## cat is the index of the final category:
 # 0-3 incl

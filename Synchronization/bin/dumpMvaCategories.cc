@@ -8,7 +8,7 @@
 #include "MitHgg/Tools/interface/PSet.h"
 
 #define HGG_DEFAULT_MVA_CATEGORY_DUMPER_CONFIG src/MitHgg/Synchronization/\
-python/dump_mva_cagetories_default_cfg.py
+python/dump_mva_categories_default_cfg.py
 
 #define HGG_DEFAULT_MVA_CATEGORY_DUMPER_CONFIG_PATH \
   PREPEND_CMSSW_BASE_AND_STRINGIFY(HGG_DEFAULT_MVA_CATEGORY_DUMPER_CONFIG)
