@@ -1,0 +1,9 @@
+<flags CXXFLAGS="-DCMSSW_BASE=${CMSSW_BASE}"/>
+<use name="FWLite/Tools" />
+<use name="FWCore/ParameterSet" />
+<use name="FWCore/PythonParameterSet" />
+<use name="MitHgg/Synchronization" />
+<use name="root" />
+<environment>
+  <bin file="dumpMvaCategories.cc" name="mithep-hgg-dump-mva-categories"/>
+</environment>

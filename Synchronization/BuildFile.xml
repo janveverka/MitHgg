@@ -1,0 +1,8 @@
+<flags CXXFLAGS="-DCMSSW_BASE=${CMSSW_BASE}"/>
+<use name="boost"/>
+<use name="FWCore/ParameterSet"/>
+<use name="FWCore/PythonParameterSet"/>
+<use name="MitHgg/PhotonTree"/>
+<export>
+  <lib   name="1"/>
+</export>
