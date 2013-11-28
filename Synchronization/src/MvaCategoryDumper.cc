@@ -39,7 +39,49 @@ MvaCategoryDumper::Init(const PSet &iConfig)
   if (iConfig.existsAs<vdouble>("combinedBdtBoundaries")) {
     SetCombiMvaCuts(iConfig.getParameter<vdouble>("combinedBdtBoundaries"));
   }
+  
+  /// Performance  
+  fTree->SetBranchStatus("ph1.*seed"   , 0);
+  fTree->SetBranchStatus("ph1.*bc2"    , 0);
+  fTree->SetBranchStatus("ph1.*bclast" , 0);
+  fTree->SetBranchStatus("ph1.*bclast2", 0);
+  fTree->SetBranchStatus("ph1.conv*"   , 0);
+  fTree->SetBranchStatus("ph1.pfsc*"   , 0);
+  fTree->SetBranchStatus("ph1.pfcic4_*", 0);
+  fTree->SetBranchStatus("ph1.idmva_*" , 0);
+  fTree->SetBranchStatus("ph1.*bcs*"   , 0);
+  fTree->SetBranchStatus("ph1.*psc*"   , 0);
+  
+  fTree->SetBranchStatus("ph2.*seed"   , 0);
+  fTree->SetBranchStatus("ph2.*bc2"    , 0);
+  fTree->SetBranchStatus("ph2.*bclast" , 0);
+  fTree->SetBranchStatus("ph2.*bclast2", 0);
+  fTree->SetBranchStatus("ph2.conv*"   , 0);
+  fTree->SetBranchStatus("ph2.pfsc*"   , 0);
+  fTree->SetBranchStatus("ph2.pfcic4_*", 0);
+  fTree->SetBranchStatus("ph2.idmva_*" , 0);
+  fTree->SetBranchStatus("ph2.*bcs*"   , 0);
+  fTree->SetBranchStatus("ph2.*psc*"   , 0);
+  
+  fTree->SetCacheSize(5e8);
+  fTree->AddBranchToCache("*");
+  fTree->DropBranchFromCache("ph1.*");
+  fTree->DropBranchFromCache("ph2.*");
+  
+  
 } /// Init
+
+
+//------------------------------------------------------------------------------
+bool
+MvaCategoryDumper::PassPreselection()
+{
+  return (100 < mass && mass < 180 &&
+          mass/3 < ph1.pt &&
+          mass/4 < ph2.pt &&
+          -0.2 < ph1.idmva &&
+          -0.2 < ph2.idmva);
+}
 
 
 //------------------------------------------------------------------------------
@@ -48,6 +90,7 @@ MvaCategoryDumper::ProduceDump()
 {
   for (unsigned iEntry=0; iEntry < fTree->GetEntries(); iEntry++) {
     GetEntry(iEntry);
+    if (!PassPreselection()) continue;
     DumpAllVariables();
     std::cout << std::endl;
   } /// Loop over entries
@@ -80,35 +123,6 @@ MvaCategoryDumper::DumpEventHeader()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpCategoryVariables()
-{
-  DumpVar("cat"     , mvaCat  );
-  DumpVar("tth"     , tthTag  );
-  DumpVar("vhLep"   , VHLepTag);
-  DumpVar("vhMet"   , VHMetTag);
-  DumpVar("vhHad"   , VHHadTag);
-  DumpVar("numJets" , numJets );
-  DumpVar("numBJets", numBJets);
-} /// DumpCategoryVariables
-
-
-//------------------------------------------------------------------------------
-void
-MvaCategoryDumper::DumpDiphotonVariables()
-{
-  DumpVar("met"          , corrpfmet   );
-  DumpVar("met_phi"      , corrpfmetphi);
-  DumpVar("uncorrMet"    , pfmet       );
-  DumpVar("uncorrMet_phi", pfmetphi    );
-  DumpVar("diphoMVA"     , diphoMVA    );
-  DumpVar("dijetMVA"     , dijetMVA    );
-  DumpVar("combiMVA"     , combiMVA    );
-  DumpVar("cosThetaStar" , costhetastar);
-} /// DumpDiphotonVariables
-
-
-//------------------------------------------------------------------------------
-void
 MvaCategoryDumper::DumpPhotons()
 {
   /// Lead
@@ -128,8 +142,53 @@ MvaCategoryDumper::DumpPhotons()
 
 //------------------------------------------------------------------------------
 void
+MvaCategoryDumper::DumpCategoryVariables()
+{
+  DumpVar("cat"     , mvaCat  );
+  DumpVar("tth"     , tthTag  );
+  DumpVar("vhLep"   , VHLepTag);
+  DumpVar("vhMet"   , VHMetTag);
+  DumpVar("vhHad"   , VHHadTag);
+  DumpVar("numJets" , numJets );
+  DumpVar("numBJets", numBJets);
+} /// DumpCategoryVariables
+
+
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::DumpDiphotonVariables()
+{
+  DumpVar("mass"         , mass        );
+  DumpVar("met"          , corrpfmet   );
+  DumpVar("met_phi"      , corrpfmetphi);
+  DumpVar("uncorrMet"    , pfmet       );
+  DumpVar("uncorrMet_phi", pfmetphi    );
+  DumpVar("diphoMVA"     , diphoMVA    );
+  DumpVar("dijetMVA"     , dijetMVA    );
+  DumpVar("combiMVA"     , combiMVA    );
+  DumpVar("cosThetaStar" , costhetastar);
+} /// DumpDiphotonVariables
+
+
+//------------------------------------------------------------------------------
+void
 MvaCategoryDumper::DumpMuons()
 {
+  /// Lead
+  if (mu2Pt > 0) {
+    /// We have a dimuon
+    DumpVar("mu1_pt"  , mu1Pt );
+    DumpVar("mu1_eta" , mu1Eta);
+    DumpVar("mu1_phi" , mu1Phi);
+  } else {
+    DumpVar("mu1_pt"  , muonPt );
+    DumpVar("mu1_eta" , muonEta);
+    DumpVar("mu1_phi" , muonPhi);
+  }
+  /// Sublead
+  DumpVar("mu2_pt"  , mu2Pt );
+  DumpVar("mu2_eta" , mu2Eta);
+  DumpVar("mu2_phi" , mu2Phi);  
 } /// DumpMuons
 
 
@@ -159,6 +218,14 @@ MvaCategoryDumper::DumpElectrons()
 void
 MvaCategoryDumper::DumpJets()
 {
+  /// Lead
+  DumpVar("jet1_pt" , jet1pt );
+  DumpVar("jet1_eta", jet1eta);
+  DumpVar("jet1_phi", jet1phi);
+  /// Sublead
+  DumpVar("jet2_pt" , jet2pt );
+  DumpVar("jet2_eta", jet2eta);
+  DumpVar("jet2_phi", jet2phi);
 } /// DumpJets
 
 
@@ -169,6 +236,3 @@ MvaCategoryDumper::DumpVar(const char *name, T value, const char *suffix)
 {
   std::cout << name << ":" << value << suffix;
 } /// DumpVar
-
-
-

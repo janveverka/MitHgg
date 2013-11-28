@@ -5,5 +5,5 @@
 <use name="MitHgg/Synchronization" />
 <use name="root" />
 <environment>
-  <bin file="dumpMvaCategories.cc" name="mithep-hgg-dump-mva-categories"/>
+  <bin file="dumpMvaCategories.cc" name="hgg-dump-mva-categories"/>
 </environment>
