@@ -33,5 +33,5 @@ int main(int argc, char **argv)
   // Create the dumper:
   MvaCategoryDumper dumper(&source.chain(), cfg->getParameter<PSet>("dump"));
   // Run!
-  dumper.produceDump();
+  dumper.ProduceDump();
 } // main

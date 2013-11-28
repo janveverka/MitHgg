@@ -14,13 +14,19 @@ namespace mithep
       public:
         MvaCategoryDumper(TTree *iTree, const PSet &iConfig);
         virtual ~MvaCategoryDumper();
-        void produceDump();
+        void ProduceDump();
       protected:
-        void dumpAllVariables(void);
-        void dumpEventHeader(void);
-        void dumpCategoryVariables(void);
+        void Init(const PSet &iConfig);
+        void DumpAllVariables(void);
+        void DumpEventHeader(void);
+        void DumpPhotons(void);
+        void DumpCategoryVariables(void);
+        void DumpDiphotonVariables(void);
+        void DumpElectrons(void);
+        void DumpMuons(void);
+        void DumpJets(void);
         template <class T>
-        void dumpVar(const char *name, T value, const char *suffix="\t");
+        void DumpVar(const char *name, T value, const char *suffix="\t");
     }; // MvaCategoryDumper
   } /// hgg
 } /// mithep
