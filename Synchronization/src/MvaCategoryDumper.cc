@@ -90,6 +90,7 @@ MvaCategoryDumper::ProduceDump()
 {
   for (unsigned iEntry=0; iEntry < fTree->GetEntries(); iEntry++) {
     GetEntry(iEntry);
+    if (mvaCat < 0) continue;
     if (!PassPreselection()) continue;
     DumpAllVariables();
     std::cout << std::endl;
