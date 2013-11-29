@@ -55,7 +55,7 @@ source ~/.bashrc
 kinit
 cms029
 mithgg
-source  ~/cms/cmssw/029/CMSSW_5_3_2_patch4/src/MitHgg/config/hgg.env
+source  $CMSSW_BASE/src/MitHgg/config/hgg.env
 
 ######################
 # 5. get the json
@@ -69,14 +69,14 @@ cp    /home/mingyang/cms/example/2013Moriond_190456-208686.json     ~/cms/json
 #You need to be on t3btch0{88,89,90}.mit.edu
 #######################
 
-cd ~/cms/cmssw/029/CMSSW_5_3_2_patch4/src/MitAna/bin
+cd $CMSSW_BASE/src/MitAna/bin
 ./process.sh
 
 #######################
 # 7. merge histograms
 #######################
 
-cd cms/cmssw/029/CMSSW_5_3_2_patch4/src/MitHgg/bin
+cd $CMSSW_BASE/src/MitHgg/bin
 ./mergeHgg.sh
 
 #######################
