@@ -23,7 +23,7 @@ namespace mithep
     {
     public:
       CombinedMvaReader(
-        TTree *iTree,
+        TTree      *iTree,
         const char *iDiphoWeights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
         const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
         const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,

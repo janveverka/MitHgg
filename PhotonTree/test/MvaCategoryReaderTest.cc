@@ -83,7 +83,7 @@ MvaCategoryReaderTest::testReading(void)
     std::cout << "\nMvaCategoryReaderTest::testReading ... \n";
   }
   /// Set dipho cuts as used for MC - all events end up in cat 0.
-  reader->SetDiphoMvaCuts(std::vector<float>(4, -55));
+  reader->SetDiphoMvaCuts(std::vector<double>(4, -55));
   for (int i=0; i < reader->GetEntries() && i < (int) tagsForRunEvent.size();
        i++) {
     reader->GetEntry(i);
@@ -133,7 +133,7 @@ MvaCategoryReaderTest::testCutValues(void)
                        reader->DiphoMvaCuts().size());
 
   if (verbose) {
-    reader->SetDiphoMvaCuts(std::vector<float>(4, -55));
+    reader->SetDiphoMvaCuts(std::vector<double>(4, -55));
     std::cout << "\nMvaCategoryReaderTest::testCutValues ... \n";
     for (size_t i=0; i<reader->DiphoMvaCuts().size(); ++i) {
       cout << "cut " << i << ": " << reader->DiphoMvaCuts()[i] << "\n";

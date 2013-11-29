@@ -1,3 +1,4 @@
+#include <algorithm>    // std::max
 #include <iostream>     // std::cout
 #include "TMath.h"
 #include "MitHgg/PhotonTree/interface/MvaCategoryReader.h"
@@ -13,13 +14,17 @@ ClassImp(MvaCategoryReader)
 
 //------------------------------------------------------------------------------
 MvaCategoryReader::MvaCategoryReader(TTree      *iTree                    ,
-                                     const char *iCombiWeights            ,
-                                     const char *iDijetWeights            ,
                                      const char *iDiphoWeights            ,
+                                     const char *iDijetWeights            ,
+                                     const char *iCombiWeights            ,
                                      bool        iDiphoUseSmearedMassError,
                                      Float_t     iDijetMaxDPhi            ) :
-  CombinedMvaReader(iTree, iCombiWeights, iDijetWeights, iDiphoWeights,
-                    iDiphoUseSmearedMassError, iDijetMaxDPhi),
+  CombinedMvaReader(iTree                    ,
+                    iDiphoWeights            ,
+                    iDijetWeights            ,
+                    iCombiWeights            ,
+                    iDiphoUseSmearedMassError,
+                    iDijetMaxDPhi            ),
   VHMetTag(0),
   dijetCat(-1),
   inclCat(-1),
@@ -72,30 +77,27 @@ MvaCategoryReader::Update(void)
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryReader::SetDiphoMvaCuts(const std::vector<float> & cuts)
+MvaCategoryReader::SetDiphoMvaCuts(const vdouble & cuts)
 {
   diphoMvaCuts = cuts;
-  numInclCats  = cuts.size();
   UpdateCategoryDefinitions();
 } /// SetDiphoMvaCuts
 
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryReader::SetDijetMvaCuts(const std::vector<float> & cuts)
+MvaCategoryReader::SetDijetMvaCuts(const vdouble & cuts)
 {
   dijetMvaCuts = cuts;
-  numDijetCats = cuts.size();
   UpdateCategoryDefinitions();
 } /// SetDijetMvaCuts
 
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryReader::SetCombiMvaCuts(const std::vector<float> & cuts)
+MvaCategoryReader::SetCombiMvaCuts(const vdouble & cuts)
 {
   combiMvaCuts = cuts;
-  numDijetCats = cuts.size();
   UpdateCategoryDefinitions();
 } /// SetCombiMvaCuts
 
@@ -104,13 +106,15 @@ MvaCategoryReader::SetCombiMvaCuts(const std::vector<float> & cuts)
 void
 MvaCategoryReader::UpdateCategoryDefinitions()
 {
-  kDijet0     = kIncl0      + numInclCats ;
-  kVHLepTight = kDijet0     + numDijetCats;
-  kVHLepLoose = kVHLepTight + 1           ;
-  kVHMet      = kVHLepLoose + 1           ;
-  kTTHLep     = kVHMet      + 1           ;
-  kTTHHad     = kTTHLep     + 1           ;
-  kVHHad      = kTTHHad     + 1           ;
+  numInclCats  = diphoMvaCuts.size();
+  numDijetCats = std::max(dijetMvaCuts.size(), combiMvaCuts.size());
+  kDijet0     = kIncl0      + numInclCats ; // 4-7
+  kVHLepTight = kDijet0     + numDijetCats; // 8
+  kVHLepLoose = kVHLepTight + 1           ; // 9
+  kVHMet      = kVHLepLoose + 1           ; // 10
+  kTTHLep     = kVHMet      + 1           ; // 11
+  kTTHHad     = kTTHLep     + 1           ; // 12
+  kVHHad      = kTTHHad     + 1           ; // 13
 } /// UpdateCategoryDefinitions
 
 
@@ -129,7 +133,8 @@ MvaCategoryReader::UpdateInclusiveCat(void)
 void
 MvaCategoryReader::UpdateDijetCat(void)
 {
-  assert(dijetMvaCuts.size() == combiMvaCuts.size());
+  assert(dijetMvaCuts.size() == 0 || 
+         dijetMvaCuts.size() == combiMvaCuts.size());
 
   if (vbfTag <= 0) {
     dijetCat = -1;
@@ -137,11 +142,16 @@ MvaCategoryReader::UpdateDijetCat(void)
   }
 
   for (dijetCat=0; dijetCat < numDijetCats; dijetCat++) {
-    if (dijetMVA > dijetMvaCuts[dijetCat] &&
-        combiMVA > combiMvaCuts[dijetCat]) {
-      break;
+    if (dijetMvaCuts.size() == 0) {
+      /// Use Combined MVA only
+      if (combiMVA > combiMvaCuts[dijetCat]) break;
+    } else {
+      /// Use L-shaped cats in dijet and combined MVA's
+      if (dijetMVA > dijetMvaCuts[dijetCat] &&
+          combiMVA > combiMvaCuts[dijetCat]) break;
+        break;
     }
-  }
+  } /// Loop over dijet categories
 
   if (dijetCat >= numDijetCats) {
     dijetCat = -1;
@@ -165,6 +175,7 @@ MvaCategoryReader::UpdateVHMetTag(void)
   if (TMath::Abs(ph1.sceta) < 1.4442   &&
       TMath::Abs(ph2.sceta) < 1.4442   &&
       corrpfmet             > 70.      &&
+      diphoMVA              > 0.       &&
       pho1_ptOverM          > 45./120. &&
       pho2_ptOverM          > 30./120. &&
       dPhiMetGG             > 2.1      &&
@@ -179,6 +190,29 @@ MvaCategoryReader::UpdateVHMetTag(void)
 //------------------------------------------------------------------------------
 // To comply with the Hgg group convention that differs from ours at the
 // moment.
+// TODO:
+// Check the pt of the photons, see L2064 and L2065 of the Hgg AN
+//   double reducedMass = fDiphotonEvent->mass / 120.;
+//   if (phHard->Pt() < 60. * reducedMass) return;
+//   if (phSoft->Pt() < 30. * reducedMass && !fIsCutBased) return;
+//   if (phSoft->Pt() < 25.               &&  fIsCutBased) return;
+// Check the Photon ID for ttH lep, see L2071-2072 of the Hgg AN
+//     bool passPhotonID = false;
+//     if (fIsCutBased) {
+//       passPhotonID = true;
+//     } else {
+//       passPhotonID = (phHard->IdMva() > -0.6 &&
+//                       phSoft->IdMva() > -0.6);
+//     }
+// Check the Photon ID for ttH had, see L2092-2093 of the Hgg AN
+//     bool passPhotonID = false;
+//     if (fIsCutBased) {
+//       passPhotonID = true;
+//     } else {
+//       passPhotonID = (phHard->IdMva() > -0.2 &&
+//                       phSoft->IdMva() > -0.2);
+//     }
+
 void
 MvaCategoryReader::UpdateTTHTagConvention(void)
 {
@@ -189,11 +223,26 @@ MvaCategoryReader::UpdateTTHTagConvention(void)
 
 //------------------------------------------------------------------------------
 // Poor man's merging of the to b-tag and no-b-tag categories
+// TODO: See L2007-2013 of the Hgg AN 2013/253 v3
+// phHard->Pt() > 60. * reducedMass &&
+// (fIsCutBased ? phSoft->Pt() > 25. : phSoft->Pt() > 30. * reducedMass) &&
+// 100. < mass && mass < 180. &&
 void
 MvaCategoryReader::UpdateVHHadTagConvention(void)
 {
   if (VHHadTag == 2) VHHadTag = 1;
 } /// UpdateVHHadTagConvention
+
+
+// TODO: Update VH lep tag
+//   Float_t reducedMass = fDiphotonEvent->mass / 120.;
+//   bool passesPhotonCuts = (
+//     phHard->Pt() > 45 * reducedMass &&
+//     (fIsCutBased ? phSoft->Pt() > 25 : phSoft->Pt() > 30 * reducedMass) &&
+//     (fIsCutBased ? true              : phHard->IdMva() > -0.2) &&
+//     (fIsCutBased ? true              : phSoft->IdMva() > -0.2)
+//   );
+//   if (not passesPhotonCuts) return;
 
 
 //------------------------------------------------------------------------------

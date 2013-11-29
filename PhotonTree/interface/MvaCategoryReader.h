@@ -17,22 +17,23 @@ namespace mithep
     class MvaCategoryReader : public CombinedMvaReader
     {
     public:
+      typedef std::vector<double> vdouble;
       MvaCategoryReader(
         TTree      *iTree                                            ,
-        const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
-        const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
         const char *iDiphoWeights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+        const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
+        const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
         bool        iDiphoUseSmearedMassError = true                 ,
         Float_t     iDijetMaxDPhi = 2.916
         );
       virtual ~MvaCategoryReader();
 
-      void SetDiphoMvaCuts(const std::vector<float> & cuts);
-      void SetDijetMvaCuts(const std::vector<float> & cuts);
-      void SetCombiMvaCuts(const std::vector<float> & cuts);
-      const std::vector<float>& DiphoMvaCuts() const {return diphoMvaCuts;}
-      const std::vector<float>& DijetMvaCuts() const {return dijetMvaCuts;}
-      const std::vector<float>& CombiMvaCuts() const {return combiMvaCuts;}
+      void SetDiphoMvaCuts(const vdouble & cuts);
+      void SetDijetMvaCuts(const vdouble & cuts);
+      void SetCombiMvaCuts(const vdouble & cuts);
+      const vdouble& DiphoMvaCuts() const {return diphoMvaCuts;}
+      const vdouble& DijetMvaCuts() const {return dijetMvaCuts;}
+      const vdouble& CombiMvaCuts() const {return combiMvaCuts;}
 
       Int_t VHMetTag;
       Int_t dijetCat;
@@ -50,9 +51,9 @@ namespace mithep
       void         UpdateVHHadTagConvention (void);
       void         UpdateMvaCat             (void);
 
-      std::vector<float> diphoMvaCuts;
-      std::vector<float> dijetMvaCuts;
-      std::vector<float> combiMvaCuts;
+      vdouble diphoMvaCuts;
+      vdouble dijetMvaCuts;
+      vdouble combiMvaCuts;
 
       int numInclCats;
       int numDijetCats;
@@ -72,17 +73,17 @@ namespace mithep
       const unsigned int numInclCats  = 5;
       const unsigned int numDijetCats = 3;
 
-      const float initDiphoMvaCuts[numInclCats ] = {0.915, 0.75, 0.52, 0.13,
+      const double initDiphoMvaCuts[numInclCats ] = {0.915, 0.75, 0.52, 0.13,
                                                    -0.4};
-      const float initDijetMvaCuts[numDijetCats] = {0.64 , 0.64, 0.47};
-      const float initCombiMvaCuts[numDijetCats] = {0.906, 0.74, 0.5 };
+      const double initDijetMvaCuts[numDijetCats] = {0.64 , 0.64, 0.47};
+      const double initCombiMvaCuts[numDijetCats] = {0.906, 0.74, 0.5 };
 
-      const std::vector<float> diphoMvaCuts(initDiphoMvaCuts,
-                                            initDiphoMvaCuts + numInclCats );
-      const std::vector<float> dijetMvaCuts(initDijetMvaCuts,
-                                            initDijetMvaCuts + numDijetCats);
-      const std::vector<float> combiMvaCuts(initCombiMvaCuts,
-                                            initCombiMvaCuts + numDijetCats);
+      const std::vector<double> diphoMvaCuts(initDiphoMvaCuts,
+                                             initDiphoMvaCuts + numInclCats );
+      const std::vector<double> dijetMvaCuts(initDijetMvaCuts,
+                                             initDijetMvaCuts + numDijetCats);
+      const std::vector<double> combiMvaCuts(initCombiMvaCuts,
+                                             initCombiMvaCuts + numDijetCats);
     } /// mva_category_defaults_8tev_jim
 
 
