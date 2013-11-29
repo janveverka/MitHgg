@@ -139,12 +139,7 @@ MvaCategoryReader::UpdateDijetCat(void)
          dijetMvaCuts.size() == combiMvaCuts.size());
 
   dijetCat = -1;
-  if (ph1.pt    <  40 * massOver120 || ph2.pt    <  30 * massOver120 ||
-      ph1.idmva < -0.2              || ph2.idmva < -0.2              ||
-      jet1pt    <  30               || jet2pt    <  20               ||
-      dijetmass < 250) {
-    return;
-  }
+  if (jet1pt < 30 || jet2pt < 20 || dijetmass < 250) return;
   
   for (dijetCat=0; dijetCat < numDijetCats; dijetCat++) {
     if (dijetMvaCuts.size() == 0) {
@@ -253,6 +248,9 @@ MvaCategoryReader::UpdateVHHadTagConvention(void)
 void
 MvaCategoryReader::UpdateMvaCat(void)
 {
+  mvaCat = -999;
+  if (!PassesPreselection()) return;
+
   if      (tthTag   == 2) mvaCat = kTTHLep;
   else if (VHLepTag == 2) mvaCat = kVHLepTight;
   else if (VHLepTag == 1) mvaCat = kVHLepLoose;
@@ -261,5 +259,13 @@ MvaCategoryReader::UpdateMvaCat(void)
   else if (tthTag   == 1) mvaCat = kTTHHad;
   else if (VHHadTag == 1) mvaCat = kVHHad;
   else if (inclCat  >= 0) mvaCat = kIncl0 + inclCat;
-  else                    mvaCat = -999;
 } /// UpdateMvaCat
+
+//------------------------------------------------------------------------------
+bool
+MvaCategoryReader::PassesPreselection(void)
+{
+  return (100              < mass      && mass             < 180      &&
+          40 * massOver120 < ph1.pt    && 30 * massOver120 < ph2.pt   &&
+          -0.2             < ph1.idmva && -0.2             < ph2.idmva);
+} /// PassesPreselection

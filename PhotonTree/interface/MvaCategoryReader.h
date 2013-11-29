@@ -51,6 +51,7 @@ namespace mithep
       void         UpdateTTHTagConvention   (void);
       void         UpdateVHHadTagConvention (void);
       void         UpdateMvaCat             (void);
+      bool         PassesPreselection       (void);
 
       vdouble diphoMvaCuts;
       vdouble dijetMvaCuts;
