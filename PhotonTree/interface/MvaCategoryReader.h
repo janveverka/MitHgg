@@ -48,8 +48,9 @@ namespace mithep
       void         UpdateInclusiveCat       (void);
       void         UpdateDijetCat           (void);
       void         UpdateVHMetTag           (void);
-      void         UpdateTTHTagConvention   (void);
-      void         UpdateVHHadTagConvention (void);
+      void         UpdateVHLepTag           (void);
+      void         UpdateTTHTag             (void);
+      void         UpdateVHHadTag           (void);
       void         UpdateMvaCat             (void);
       bool         PassesPreselection       (void);
 

@@ -4,14 +4,12 @@ MitHgg/PhotonTree Package
 To-Do List
 ----------
   * Produce and compare dumps often
-  * Set cos theta*  to -999 in the dump if cat not VH had,
-    similarly for dijetMVA and combiMVA if not VBF
   * Check the VH had selection, especially the photon pt and ID cuts.
   * Check the VH MET selection, especially the photon pt and ID cuts.
   * Add diphoton MVA cuts to exclusive cats, see table 41 of the AN 2013/253 v3
     (the Hgg AN)
   * Check vertex selection in exclusive categories
-  * Check the extra delta R (gsf track, photon) cut for the VH cats.
+  * Check the extra delta R (gsf track, photon) cut for the VH and ttH cats.
   * Find interesting events with large discrepancies and/or
     representing large miscategorization groups
   * Update the plotting script
@@ -25,7 +23,10 @@ To-Do List
       the number of events on/off in each framework.
     - list events with the largest differences
     - make plots of widht versus containment
+  * Point out AN v3 inconsistent wording of the cuts for ttH and VH lep where
+    MVA corresponds to diphoton in one case and photon ID in the other.
 
+  * Describe the meaning of the variables defined in the MvaCategoryReader
   * Write dump directly into a file given by the configuration
   * Print the list of the categories and their numbers
   * Factor out members and methods common to MVA readers to a separate
@@ -41,6 +42,8 @@ To-Do List
 
 To-Done List
 ------------
+  * 29.11. 13:00 - Set cos theta*  to -999 in the dump if not VH had,
+    similarly for dijetMVA and combiMVA if not VBF
   * 29.11. 12:00 - Implemented the VBF selection in the MvaCategoryReader
   * 29.11. 02:00 - Added more plots to the comparison script, produced new comparisons
     to the first Globe dump with the inclusive/dijet cats a la Josh

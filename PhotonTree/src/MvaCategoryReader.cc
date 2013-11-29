@@ -71,8 +71,8 @@ MvaCategoryReader::Update(void)
   UpdateInclusiveCat();
   UpdateDijetCat();
   UpdateVHMetTag();
-  UpdateTTHTagConvention();
-  UpdateVHHadTagConvention();
+  UpdateTTHTag();
+  UpdateVHHadTag();
   UpdateMvaCat();
 } /// Update
 
@@ -186,61 +186,54 @@ MvaCategoryReader::UpdateVHMetTag(void)
 
 
 //------------------------------------------------------------------------------
-// To comply with the Hgg group convention that differs from ours at the
-// moment.
-// TODO:
-// Check the pt of the photons, see L2064 and L2065 of the Hgg AN
-//   double reducedMass = fDiphotonEvent->mass / 120.;
-//   if (phHard->Pt() < 60. * reducedMass) return;
-//   if (phSoft->Pt() < 30. * reducedMass && !fIsCutBased) return;
-//   if (phSoft->Pt() < 25.               &&  fIsCutBased) return;
-// Check the Photon ID for ttH lep, see L2071-2072 of the Hgg AN
-//     bool passPhotonID = false;
-//     if (fIsCutBased) {
-//       passPhotonID = true;
-//     } else {
-//       passPhotonID = (phHard->IdMva() > -0.6 &&
-//                       phSoft->IdMva() > -0.6);
-//     }
-// Check the Photon ID for ttH had, see L2092-2093 of the Hgg AN
-//     bool passPhotonID = false;
-//     if (fIsCutBased) {
-//       passPhotonID = true;
-//     } else {
-//       passPhotonID = (phHard->IdMva() > -0.2 &&
-//                       phSoft->IdMva() > -0.2);
-//     }
-
 void
-MvaCategoryReader::UpdateTTHTagConvention(void)
+MvaCategoryReader::UpdateTTHTag(void)
 {
-  if      (tthTag   == 1) tthTag = 2;
-  else if (tthTag   == 2) tthTag = 1;
-} /// UpdateTTHTagConvention
+  if (tthTag < 0) return;
+  
+  bool isTTHLep = (tthTag > 1);
+  bool isTTHHad = (tthTag % 2 == 1);
+  
+  if (ph1.pt < 60 * massOver120 || 
+      ph2.pt < 30 * massOver120  ) isTTHLep = isTTHHad = false;
+  
+  if (diphoMVA < -0.6) isTTHLep = false;
+  if (diphoMVA < -0.2) isTTHHad = false;
+  
+  if      (isTTHLep) tthTag = 2;
+  else if (isTTHHad) tthTag = 1;
+  else               tthTag = 0;
+} /// UpdateTTHTag
 
 
 //------------------------------------------------------------------------------
-// Poor man's merging of the to b-tag and no-b-tag categories
-// TODO: See L2007-2013 of the Hgg AN 2013/253 v3
-// phHard->Pt() > 60. * reducedMass &&
-// (fIsCutBased ? phSoft->Pt() > 25. : phSoft->Pt() > 30. * reducedMass) &&
-// 100. < mass && mass < 180. &&
 void
-MvaCategoryReader::UpdateVHHadTagConvention(void)
+MvaCategoryReader::UpdateVHHadTag(void)
 {
-  if (VHHadTag == 2) VHHadTag = 1;
-} /// UpdateVHHadTagConvention
+  if (VHHadTag < 0) return;
+  
+  if (ph1.pt   < 60 * massOver120 || 
+      ph2.pt   < 30 * massOver120 ||
+      diphoMVA < 0.2               ) VHHadTag = 0;
+} /// UpdateVHHadTag
 
 
-// TODO: Update VH lep tag
-//   Float_t reducedMass = fDiphotonEvent->mass / 120.;
-//   bool passesPhotonCuts = (
-//     phHard->Pt() > 45 * reducedMass &&
-//     (fIsCutBased ? phSoft->Pt() > 25 : phSoft->Pt() > 30 * reducedMass) &&
-//     (fIsCutBased ? true              : phHard->IdMva() > -0.2) &&
-//     (fIsCutBased ? true              : phSoft->IdMva() > -0.2)
-//   );
-//   if (not passesPhotonCuts) return;
+//------------------------------------------------------------------------------
+void
+MvaCategoryReader::UpdateVHLepTag(void)
+{
+  if (VHLepTag < 0) return;
+  
+  bool isVHLepTight = (VHLepTag > 1);
+  bool isVHLepLoose = (VHLepTag % 2 == 1);
+  if (ph1.pt   < 45 * massOver120 || 
+      ph2.pt   < 30 * massOver120 ||
+      diphoMVA < -0.6               ) isVHLepLoose = isVHLepTight = false;
+  
+  if      (isVHLepTight) VHLepTag = 2;
+  else if (isVHLepLoose) VHLepTag = 1;
+  else                   VHLepTag = 0;
+} /// UpdateVHLepTag
 
 
 //------------------------------------------------------------------------------
