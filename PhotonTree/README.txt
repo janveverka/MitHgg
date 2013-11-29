@@ -3,32 +3,35 @@ MitHgg/TreeWriter
 
 To-Do List
 ----------
-  * Make a dumper that is an exacutable based on the CategoryReader (28.11. 04:00)
+  * Produce and compare dumps often
+  * Set cos theta*  to -999 in the dump if cat not VH had,
+    similarly for dijetMVA and combiMVA if not VBF
+  * Check the VH had selection, especially the photon pt and ID cuts.
+  * Check the VH MET selection, especially the photon pt and ID cuts.
   * Add diphoton MVA cuts to exclusive cats, see table 41 of the AN 2013/253 v3
     (the Hgg AN)
-  * Fix MET corrections
-  https://github.com/h2gglobe/h2gglobe/blob/
-  237f80d3f62f16e563d248f78507101374442a87/
-  GeneralFunctions.cc#L1273
-  Section 17.5 of
-  https://twiki.cern.ch/twiki/pub/CMS/HggAnalyisNote13253/AN-13-253_temp.pdf
-  * Produce dumps (preliminarily done 22.11.)
-  * Compare dumps (preliminarily done 22.11.)
+  * Check vertex selection in exclusive categories
+  * Check the extra delta R (gsf track, photon) cut for the VH cats.
   * Find interesting events with large discrepancies and/or
     representing large miscategorization groups
+  * Update the plotting script
+    - Make plots of all the differences
+      automatically doing the absolute ones and/or the relative ones
+      with both relative and absolute ranges.
+    - Add both fixed and floating boundary histograms
+    - exclude events with -999 in one of the frameworks, plot the 
+      variable values for these instead.
+    - make a 2D histogram of
+      the number of events on/off in each framework.
+    - list events with the largest differences
+    - make plots of widht versus containment
+
+  * Write dump directly into a file given by the configuration
+  * Print the list of the categories and their numbers
   * Factor out members and methods common to MVA readers to a separate
     class and ecapsulate those there while keeping the unique bits
     (mva weights value, etc.)
   * Add more thorough tests of all 3 MVA's to CombinedMvaReaderTest
-  * Check vertex selection in exclusive categories
-  * Update ElectronIDMod for VH-lep-tag soft electrons to store more than one
-    electron
-  * Check if the MuonIDMod for VH-lep-tag stores more than one muon.
-  * Check the extra delta R (gsf track, photon) cut for the VH cats.
-  * Check the VH had selection, especially the photon pt and ID cuts.
-  * Check the VH MET selection, especially the photon pt and ID cuts.
-  * Run nightly trees, write a log for the last version, make dumps.
-  * Remove jet veto from the thight VH-lep tag dilepton selection.
   * Use common jet selector throughout.
   * Write MvaCategoryReaderTest.
   * Factor out ctor params of the MvaCategoryReader and its bases into
@@ -38,40 +41,58 @@ To-Do List
 
 To-Done List
 ------------
-  * Added a second lepton to the ElectronIDMod for kHggLeptonTagId2012HCP
-    (28.11. 19:00)
-  * Removed the photon pt and idmva cuts from the tree writer (28.11. 18:30)
-  * Updated the VHHadTag selection - merging b-tag cats into one (26.11. 18:40)
-  * Updated the VHHadTag convention in the PhotonTreeWriter (26.11. 18:40)
-  * Double-checked b-jet ID (medium trhoughout, 26.11. 18:40)
-  * Added jet-lepton Delta R cut for ttH (26.11. 17:55)
-  * Check jet-lepton Delta R cut in VH lep (done 26.11. 17:50).
-  * Updated the photon ID MVA cuts for the tth tag to agree with the Hgg AN
-    (26.11. 13:40)
-  * Updated the photon pt cuts for the tth tag to agree with the Hgg AN
-    (26.11. 11:40)
-  * Updated the tthTag convention in the PhotonTreeWriter (done 26.11 11:00)
-  * Defined GetEntry once and inherited it elsewhere, made Update virtual and
-    let the magic happen there, e.g. call all the needed base class updates.
-    (25.11 23:30)
-  * Delete TMVA readers in MVA reader dtors (done 25.11. 15:30)
-  * combinedMVA -> combiMVA (done 25.11. 15:30)
-  * Added diphoMVA check to DiphotonAndDijetMvaReaderTest. (done 24.11. 23:40)
-  * Renamed DijetMvaReader to DiphotonAndDijetMvaReader (done 24.11. 23:40)
-  * Removed virtual inheritance (done 23.11.)
-  * Understood why there is a difference in the MC diphoMVA between
-    Globe Nov 5 and MIT Nov 20 (done 21.11. - mass error smearing)
-  * Based CategoryReader on CombinedMvaReader (done 20.11. 4:10)
-  * Added missing variables (done 20.11.)
-  * Fixed cos theta star, see (done 20.11. 4:30)
+  * 29.11. 02:00 - Added more plots to the comparison script, produced new comparisons
+    to the first Globe dump with the inclusive/dijet cats a la Josh
+    http://www.hep.caltech.edu/~veverka/plots/2013/13-11-29/globe_mit/
+  * 29.11. 01:00 - Updated the tree writer tag deffinitions for VH lep and 
+    ttH to keep track of VH lep loose and ttH had independently of VH lep tight and
+    ttH lep, respectively
+  * 28.11. 19:00 - Added the second lepton to the ElectronIDMod for
+  kHggLeptonTagId2012HCP
+  * 28.11. 18:30 - Removed the photon pt and idmva cuts from the tree 
+  writer exclusive tags
+  * 28.11. 15:00 - Josh fixed the MET corrections
+  * 28.11. 06:00 - Produced first data dumps with the updated categories,
+    compared to Jim's cats for Globe.
+    http://www.hep.caltech.edu/~veverka/plots/2013/13-11-28/globe_vs_mit/
+  * 28.11. 05:00 - Made dumper config files for data and MC with the updated
+    untagged and dijet categories from Josh
+  * 28.11. 04:00 - Made a dumper that is an exacutable based on the MvaCategoryReader
+  * 28.11. 00:45 - Josh implemented the stochastic smearing and E-dependent 
+  corrections
+  * 27.11.       - Checked that the MuonIDMod for VH-lep-tag stores more than one muon.
+  * 27.11.       - Removed the jet veto from the thight VH-lep tag dilepton selection.
+  * 26.11. 18:40 - Updated the VHHadTag selection - merging b-tag cats into one
+  * 26.11. 18:40 - Updated the VHHadTag convention in the PhotonTreeWriter
+  * 26.11. 18:40 - Double-checked b-jet ID (medium throughout)
+  * 26.11. 17:55 - Added jet-lepton Delta R cut for ttH
+  * 26.11. 17:50 - Checked jet-lepton Delta R cut in VH lep
+  * 26.11. 13:40 - Updated the photon ID MVA cuts for the tth tag to agree 
+    with the Hgg AN
+  * 26.11. 11:40 - Updated the photon pt cuts for the tth tag to agree 
+    with the Hgg AN
+  * 26.11. 11:00 - Updated the tthTag convention in the PhotonTreeWriter
+  * 25.11. 23:30 - Defined GetEntry once and inherited it elsewhere, made 
+    Update virtual and let the magic happen there, e.g. call the needed 
+    base class Update in the correct order.
+  * 25.11. 15:30 - Delete TMVA readers in all MVA reader dtors
+  * 25.11. 15:30 - combinedMVA -> combiMVA
+  * 24.11. 23:40 - Added diphoMVA check to DiphotonAndDijetMvaReaderTest
+  * 24.11. 23:40 - Renamed DijetMvaReader to DiphotonAndDijetMvaReader
+  * 23.11.       - Completely removed virtual inheritance
+  * 22.11.       - Produced and compared preliminary data dumps
+  * 21.11.       - Understood why there is a difference in the MC diphoMVA between
+    Globe Nov 5 and MIT Nov 20 (mass error smearing)
+  * 20.11. 4:10  - Based CategoryReader on CombinedMvaReader
+  * 20.11.       - Added missing variables to the category dumper
+  * 20.11. 4:30  - Fixed cos theta star, see 
     https://github.com/h2gglobe/h2gglobe/blob/\
     ae4356ac0d18e6f77da6e0420ab6f5168e353315/\
     PhotonAnalysis/src/PhotonAnalysis.cc#L4369-L4377
-  * Renamed package to MitHgg/PhotonTree (done 19.11. 03:55)
-  * Virtually based DiphotonMvaReader on TreeReader (done 19.11. 15:10)
-  * Virtually based DijetMvaReader on TreeReader (done 19.11 17:10)
-  * Based CombinedMvaReader on DiphotonMvaReader and DijetMvaReader (done 19.11.
-    20:40)
+  * 19.11. 03:55 - Renamed the MitHgg/TreeWriter package to MitHgg/PhotonTree
+  * 19.11. 15:10 - Virtually based DiphotonMvaReader on TreeReader
+  * 19.11. 17:10 - Virtually based DijetMvaReader on TreeReader
+  * 19.11. 20:40 - Based CombinedMvaReader on DiphotonMvaReader and DijetMvaReader
 
 Tree Production
 ---------------
@@ -83,4 +104,7 @@ Tree Production
   * hgg-2013Final8TeV_2
       - From Nov 21
   * hgg-2013Final8TeV_3
-      - ?
+      - From Nov 28
+      - only s12-h125gg-vh-v7n
+      - Has MET corrections, stochastic smearing, no photon pt/idmva
+      - Misses fully combinatoric VHLepTag and tthTag
