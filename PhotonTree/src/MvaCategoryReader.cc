@@ -25,10 +25,11 @@ MvaCategoryReader::MvaCategoryReader(TTree      *iTree                    ,
                     iCombiWeights            ,
                     iDiphoUseSmearedMassError,
                     iDijetMaxDPhi            ),
-  VHMetTag(0),
+  massOver120(-99),
+  VHMetTag(-1),
   dijetCat(-1),
-  inclCat(-1),
-  mvaCat(-1),
+  inclCat (-1),
+  mvaCat  (-1),
   numInclCats (default_8tev::numInclCats ),
   numDijetCats(default_8tev::numDijetCats),
   kIncl0     (0                         ),
@@ -65,6 +66,7 @@ void
 MvaCategoryReader::Update(void)
 {
   CombinedMvaReader::Update();
+  massOver120 = mass / 120.;
   UpdateCategoryDefinitions();
   UpdateInclusiveCat();
   UpdateDijetCat();
@@ -136,21 +138,22 @@ MvaCategoryReader::UpdateDijetCat(void)
   assert(dijetMvaCuts.size() == 0 || 
          dijetMvaCuts.size() == combiMvaCuts.size());
 
-  if (vbfTag <= 0) {
-    dijetCat = -1;
+  dijetCat = -1;
+  if (ph1.pt    <  40 * massOver120 || ph2.pt    <  30 * massOver120 ||
+      ph1.idmva < -0.2              || ph2.idmva < -0.2              ||
+      jet1pt    <  30               || jet2pt    <  20               ||
+      dijetmass < 250) {
     return;
   }
-
+  
   for (dijetCat=0; dijetCat < numDijetCats; dijetCat++) {
     if (dijetMvaCuts.size() == 0) {
-      /// Use Combined MVA only
       if (combiMVA > combiMvaCuts[dijetCat]) break;
     } else {
       /// Use L-shaped cats in dijet and combined MVA's
       if (dijetMVA > dijetMvaCuts[dijetCat] &&
           combiMVA > combiMvaCuts[dijetCat]) break;
-        break;
-    }
+    } /// Use Combined MVA only
   } /// Loop over dijet categories
 
   if (dijetCat >= numDijetCats) {

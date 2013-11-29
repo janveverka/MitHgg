@@ -1,5 +1,5 @@
-MitHgg/TreeWriter
-=================
+MitHgg/PhotonTree Package
+=========================
 
 To-Do List
 ----------
@@ -41,6 +41,7 @@ To-Do List
 
 To-Done List
 ------------
+  * 29.11. 12:00 - Implemented the VBF selection in the MvaCategoryReader
   * 29.11. 02:00 - Added more plots to the comparison script, produced new comparisons
     to the first Globe dump with the inclusive/dijet cats a la Josh
     http://www.hep.caltech.edu/~veverka/plots/2013/13-11-29/globe_mit/
@@ -60,6 +61,7 @@ To-Done List
   * 28.11. 04:00 - Made a dumper that is an exacutable based on the MvaCategoryReader
   * 28.11. 00:45 - Josh implemented the stochastic smearing and E-dependent 
   corrections
+  * 27.11.       - Implemented lepton arbitration for the sttH lep category
   * 27.11.       - Checked that the MuonIDMod for VH-lep-tag stores more than one muon.
   * 27.11.       - Removed the jet veto from the thight VH-lep tag dilepton selection.
   * 26.11. 18:40 - Updated the VHHadTag selection - merging b-tag cats into one

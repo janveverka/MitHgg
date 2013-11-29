@@ -35,6 +35,7 @@ namespace mithep
       const vdouble& DijetMvaCuts() const {return dijetMvaCuts;}
       const vdouble& CombiMvaCuts() const {return combiMvaCuts;}
 
+      double massOver120;
       Int_t VHMetTag;
       Int_t dijetCat;
       Int_t inclCat ;
@@ -57,7 +58,7 @@ namespace mithep
 
       int numInclCats;
       int numDijetCats;
-
+      
       /// Category labels
       Int_t kIncl0, kDijet0;
       Int_t kVHLepTight, kVHLepLoose, kVHMet;
