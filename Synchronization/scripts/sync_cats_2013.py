@@ -28,7 +28,7 @@ import operator
 import array
 
 import ROOT
-from FWLite.Tools.double32ioemulator import Double32IOEmulator
+#from FWLite.Tools.double32ioemulator import Double32IOEmulator
 
 # reduce_precision = Double32IOEmulator()
 reduce_precision = lambda x: x
@@ -165,7 +165,13 @@ histos = {
     "pho2_eErr"    : bookHisto("pho2_eErr",    1000,     0,   300,  True),
     "pho2_idMVA"   : bookHisto("pho2_idMVA",   1000,    -2,     2, False),
     "mass"         : bookHisto("mass",         1800,   100,   180,  True),
+    "met"          : bookHisto("met",          1000,     0,  2000,  True),
+    "met_phi"      : bookHisto("met_phi",      1000,  -6.5,   6.5, False),
+    "uncorrMet"    : bookHisto("uncorrMet",    1000,     0,  2000,  True),
+    "uncorrMet_phi": bookHisto("uncorrMet_phi",1000,  -6.5,   6.5, False),
     "diphoMVA"     : bookHisto("diphoMVA",     1000,    -2,     2, False),
+    "dijetMVA"     : bookHisto("dijetMVA",     1000,    -2,     2, False),
+    "combiMVA"     : bookHisto("combiMVA",     1000,    -2,     2, False),
     "jet1_pt"      : bookHisto("jet1_pt",      1000,     0,  2000,  True),
     "jet1_eta"     : bookHisto("jet1_eta",     1000,    -6,     6, False),
     "jet1_phi"     : bookHisto("jet1_phi",     1000,  -6.5,   6.5, False),
@@ -174,16 +180,16 @@ histos = {
     "jet2_phi"     : bookHisto("jet2_phi",     1000,  -6.5,   6.5, False),
     "mu1_pt"       : bookHisto("mu1_pt",       1000,     0,  2000,  True),
     "mu1_eta"      : bookHisto("mu1_eta",      1000,    -6,     6, False),
-#     "mu1_phi"      : bookHisto("mu1_phi",      1000,  -6.5,   6.5, False),
-#     "mu2_pt"       : bookHisto("mu2_pt",       1000,     0,  2000,  True),
-#     "mu2_eta"      : bookHisto("mu2_eta",      1000,    -6,     6, False),
-#     "mu2_phi"      : bookHisto("mu2_phi",      1000,  -6.5,   6.5, False),
+    "mu1_phi"      : bookHisto("mu1_phi",      1000,  -6.5,   6.5, False),
+    "mu2_pt"       : bookHisto("mu2_pt",       1000,     0,  2000,  True),
+    "mu2_eta"      : bookHisto("mu2_eta",      1000,    -6,     6, False),
+    "mu2_phi"      : bookHisto("mu2_phi",      1000,  -6.5,   6.5, False),
     "ele1_pt"      : bookHisto("ele1_pt",      1000,     0,  2000,  True),
     "ele1_eta"     : bookHisto("ele1_eta",     1000,    -6,     6, False),
-#     "ele1_phi"     : bookHisto("ele1_phi",     1000,  -6.5,   6.5, False),
-#     "ele2_pt"      : bookHisto("ele2_pt",      1000,     0,  2000,  True),
-#     "ele2_eta"     : bookHisto("ele2_eta",     1000,    -6,     6, False),
-#     "ele2_phi"     : bookHisto("ele2_phi",     1000,  -6.5,   6.5, False),
+    "ele1_phi"     : bookHisto("ele1_phi",     1000,  -6.5,   6.5, False),
+    "ele2_pt"      : bookHisto("ele2_pt",      1000,     0,  2000,  True),
+    "ele2_eta"     : bookHisto("ele2_eta",     1000,    -6,     6, False),
+    "ele2_phi"     : bookHisto("ele2_phi",     1000,  -6.5,   6.5, False),
 }
 
 catHistos = {
@@ -192,8 +198,8 @@ catHistos = {
     'vhLep' : bookCatHisto('vhLep', 3),
     'vhMet' : bookCatHisto('vhMet', 2),
     'vhHad' : bookCatHisto('vhHad', 2),
-#    'numJets' : bookCatHisto('numJets', 10),
-#    'numBJets' : bookCatHisto('numBJets', 10),
+    'numJets' : bookCatHisto('numJets', 10),
+    'numBJets' : bookCatHisto('numBJets', 10),
 }
 
 differences = {}
