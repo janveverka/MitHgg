@@ -17,7 +17,6 @@ namespace mithep
         void ProduceDump();
       protected:
         void Init(const PSet &iConfig);
-        bool PassPreselection(void);
         void DumpAllVariables(void);
         void DumpEventHeader(void);
         void DumpPhotons(void);

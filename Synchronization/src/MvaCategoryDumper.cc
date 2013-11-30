@@ -73,27 +73,14 @@ MvaCategoryDumper::Init(const PSet &iConfig)
 
 
 //------------------------------------------------------------------------------
-bool
-MvaCategoryDumper::PassPreselection()
-{
-  return (100 < mass && mass < 180 &&
-          mass/3 < ph1.pt &&
-          mass/4 < ph2.pt &&
-          -0.2 < ph1.idmva &&
-          -0.2 < ph2.idmva);
-}
-
-
-//------------------------------------------------------------------------------
 void
 MvaCategoryDumper::ProduceDump()
 {
   for (unsigned iEntry=0; iEntry < fTree->GetEntries(); iEntry++) {
     GetEntry(iEntry);
     if (mvaCat < 0) continue;
-    if (!PassPreselection()) continue;
     DumpAllVariables();
-    std::cout << std::endl;
+    std::cout << "\b\n";
   } /// Loop over entries
 } /// ProduceDump
 
@@ -159,15 +146,18 @@ MvaCategoryDumper::DumpCategoryVariables()
 void
 MvaCategoryDumper::DumpDiphotonVariables()
 {
+  if (dijetCat < 0 ) dijetMVA = combiMVA = -999;
+  if (VHHadTag <= 0) costhetastar = -999;
+  
   DumpVar("mass"         , mass        );
   DumpVar("met"          , corrpfmet   );
   DumpVar("met_phi"      , corrpfmetphi);
   DumpVar("uncorrMet"    , pfmet       );
   DumpVar("uncorrMet_phi", pfmetphi    );
   DumpVar("diphoMVA"     , diphoMVA    );
-  DumpVar("dijetMVA"     , dijetMVA    );
-  DumpVar("combiMVA"     , combiMVA    );
-  DumpVar("cosThetaStar" , costhetastar);
+  DumpVar("dijetMVA"     , dijetCat    );
+  DumpVar("combiMVA"     , dijetCat    );
+  DumpVar("cosThetaStar" , VHHadTag    );
 } /// DumpDiphotonVariables
 
 
@@ -176,16 +166,21 @@ void
 MvaCategoryDumper::DumpMuons()
 {
   /// Lead
-  if (mu2Pt > 0) {
-    /// We have a dimuon
-    DumpVar("mu1_pt"  , mu1Pt );
-    DumpVar("mu1_eta" , mu1Eta);
-    DumpVar("mu1_phi" , mu1Phi);
-  } else {
-    DumpVar("mu1_pt"  , muonPt );
-    DumpVar("mu1_eta" , muonEta);
-    DumpVar("mu1_phi" , muonPhi);
+  if (mu2Pt < 0) {
+    /// No dimuon in this event
+    mu2Pt = mu2Eta = mu2Phi = -999;
+    mu1Pt  = muonPt;
+    mu1Eta = muonEta;
+    mu1Phi = muonPhi;
   }
+  
+  if (mu1Pt < 0) {
+    mu1Pt = mu1Eta = mu1Phi = -999;
+  }
+  
+  DumpVar("mu1_pt"  , mu1Pt );
+  DumpVar("mu1_eta" , mu1Eta);
+  DumpVar("mu1_phi" , mu1Phi);
   /// Sublead
   DumpVar("mu2_pt"  , mu2Pt );
   DumpVar("mu2_eta" , mu2Eta);

@@ -48,3 +48,8 @@ process.dump = cms.PSet(
     dijetBdtBoundaries    = cms.vdouble(),
     combinedBdtBoundaries = cms.vdouble(0.94, 0.82, 0.14),
     ) ## process.dump
+
+
+#_______________________________________________________________________________
+if __name__ == '__main__':
+    import user
