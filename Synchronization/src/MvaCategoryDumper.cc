@@ -1,3 +1,4 @@
+#include <algorithm> // std::abs
 #include <iostream>  // std::cout
 #include <string>
 #include "MitHgg/Synchronization/interface/MvaCategoryDumper.h"
@@ -146,8 +147,10 @@ MvaCategoryDumper::DumpCategoryVariables()
 void
 MvaCategoryDumper::DumpDiphotonVariables()
 {
-  if (dijetCat < 0 ) dijetMVA = combiMVA = -999;
+  if (!PassDijetPreselection()) dijetMVA = combiMVA = -999;
+  
   if (VHHadTag <= 0) costhetastar = -999;
+  else               costhetastar = std::abs(costhetastar);
   
   DumpVar("mass"         , mass        );
   DumpVar("met"          , corrpfmet   );
@@ -155,9 +158,9 @@ MvaCategoryDumper::DumpDiphotonVariables()
   DumpVar("uncorrMet"    , pfmet       );
   DumpVar("uncorrMet_phi", pfmetphi    );
   DumpVar("diphoMVA"     , diphoMVA    );
-  DumpVar("dijetMVA"     , dijetCat    );
-  DumpVar("combiMVA"     , dijetCat    );
-  DumpVar("cosThetaStar" , VHHadTag    );
+  DumpVar("dijetMVA"     , dijetMVA    );
+  DumpVar("combiMVA"     , combiMVA    );
+  DumpVar("cosThetaStar" , costhetastar);
 } /// DumpDiphotonVariables
 
 
@@ -165,19 +168,20 @@ MvaCategoryDumper::DumpDiphotonVariables()
 void
 MvaCategoryDumper::DumpMuons()
 {
-  /// Lead
   if (mu2Pt < 0) {
-    /// No dimuon in this event
+    /// No dimuon present
     mu2Pt = mu2Eta = mu2Phi = -999;
     mu1Pt  = muonPt;
     mu1Eta = muonEta;
     mu1Phi = muonPhi;
   }
   
+  /// No muon present
   if (mu1Pt < 0) {
     mu1Pt = mu1Eta = mu1Phi = -999;
   }
   
+  /// Lead
   DumpVar("mu1_pt"  , mu1Pt );
   DumpVar("mu1_eta" , mu1Eta);
   DumpVar("mu1_phi" , mu1Phi);
@@ -192,17 +196,23 @@ MvaCategoryDumper::DumpMuons()
 void
 MvaCategoryDumper::DumpElectrons()
 {
-  /// Lead
-  if (ele2Pt > 0) {
-    /// We have a dielectron
-    DumpVar("ele1_pt"  , ele1Pt );
-    DumpVar("ele1_eta" , ele1Eta);
-    DumpVar("ele1_phi" , ele1Phi);
-  } else {
-    DumpVar("ele1_pt"  , elePt );
-    DumpVar("ele1_eta" , eleEta);
-    DumpVar("ele1_phi" , elePhi);
+  if (ele2Pt < 0) {
+    /// No dielectron present
+    ele2Pt = ele2Eta = ele2Phi = -999;
+    ele1Pt  = elePt;
+    ele1Eta = eleEta;
+    ele1Phi = elePhi;
   }
+
+  if (ele1Pt < 0) {
+    /// No electron present
+    ele1Pt = ele1Eta = ele1Phi = -999;
+  }
+  
+  /// Lead
+  DumpVar("ele1_pt"  , ele1Pt );
+  DumpVar("ele1_eta" , ele1Eta);
+  DumpVar("ele1_phi" , ele1Phi);
   /// Sublead
   DumpVar("ele2_pt"  , ele2Pt );
   DumpVar("ele2_eta" , ele2Eta);
@@ -212,8 +222,13 @@ MvaCategoryDumper::DumpElectrons()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpJets()
+MvaCategoryDumper::DumpJets(void)
 {
+  if (!PassDijetPreselection()) {
+    jet1pt = jet1eta = jet1phi = -999;
+    jet2pt = jet2eta = jet2phi = -999;    
+  }
+  
   /// Lead
   DumpVar("jet1_pt" , jet1pt );
   DumpVar("jet1_eta", jet1eta);
@@ -223,6 +238,14 @@ MvaCategoryDumper::DumpJets()
   DumpVar("jet2_eta", jet2eta);
   DumpVar("jet2_phi", jet2phi);
 } /// DumpJets
+
+
+//------------------------------------------------------------------------------
+bool
+MvaCategoryDumper::PassDijetPreselection(void)
+{
+  return (jet1pt > 30 && jet2pt > 20 && dijetmass > 250);
+} /// PassDijetPreselection
 
 
 //------------------------------------------------------------------------------
