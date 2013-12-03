@@ -1,15 +1,14 @@
 MitHgg/PhotonTree Package
 =========================
 
-To-Do List
-----------
+To-Do List: Features & Bugs
+---------------------------
   * Produce and compare dumps often
-  * Check the VH had selection, especially the photon pt and ID cuts.
-  * Check the VH MET selection, especially the photon pt and ID cuts.
-  * Add diphoton MVA cuts to exclusive cats, see table 41 of the AN 2013/253 v3
-    (the Hgg AN)
   * Check vertex selection in exclusive categories
   * Check the extra delta R (gsf track, photon) cut for the VH and ttH cats.
+  * Add bjet CSV
+  * Loosen the pt cut for numJets and numBJets to pt > 20 GeV
+  * Check diphoton vs lepton combinatorics/arbitration
   * Find interesting events with large discrepancies and/or
     representing large miscategorization groups
   * Update the plotting script
@@ -26,6 +25,8 @@ To-Do List
   * Point out AN v3 inconsistent wording of the cuts for ttH and VH lep where
     MVA corresponds to diphoton in one case and photon ID in the other.
 
+Wish List: Readability, Agility & User-Friendliness
+---------------------------------------------------
   * Describe the meaning of the variables defined in the MvaCategoryReader
   * Write dump directly into a file given by the configuration
   * Print the list of the categories and their numbers
@@ -33,17 +34,25 @@ To-Do List
     class and ecapsulate those there while keeping the unique bits
     (mva weights value, etc.)
   * Add more thorough tests of all 3 MVA's to CombinedMvaReaderTest
-  * Use common jet selector throughout.
+  * Use common jet selector throughout the PhotonTreeWriter
   * Write MvaCategoryReaderTest.
   * Factor out ctor params of the MvaCategoryReader and its bases into
-  separate class holding the configuration data.
+    separate classes holding the configuration data with the same
+    inheritance structure as the readers.
   * Move MitHgg/Synchronization/scripts on CVS to
     HiggsAnalysis/HggSynchroniztion/scripts on git.
 
 To-Done List
 ------------
+  * 30.11. 11:12 - DumpMvaCategories: Added new preselection for the dijet-tag 
+                   related vars, aligned ele* and cos(theta*) defaults with Globe, 
+                   changed cos(theta*) to |cos(theta*)|
+  * 30.11. 10:30 - DumpMvaCategories: Removed preselection, removed trailing 
+                   tab on each line, set undifend muon variables to -999
+  * 29.11. 14:00 - Updated photon pt and diphoton MVA cuts in and new 
+                   conventions for the ttH and VH lep in MvaCategoryReader
   * 29.11. 13:00 - Set cos theta*  to -999 in the dump if not VH had,
-    similarly for dijetMVA and combiMVA if not VBF
+                   similarly for dijetMVA and combiMVA if not VBF
   * 29.11. 12:00 - Implemented the VBF selection in the MvaCategoryReader
   * 29.11. 02:00 - Added more plots to the comparison script, produced new comparisons
     to the first Globe dump with the inclusive/dijet cats a la Josh

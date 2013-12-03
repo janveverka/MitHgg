@@ -9,6 +9,7 @@
 #include "TMVA/Reader.h"
 #include "MitHgg/PhotonTree/interface/TreeReader.h"
 #include "MitHgg/Tools/interface/PathMacros.h"
+// #include "MitHgg/Tools/interface/PSet.h"
 
 #define HGG_DEFAULT_DIPHOTON_WEIGHTS_FILE src/MitPhysics/data/\
 HggBambu_SMDipho_Oct01_redqcdweightallsigevenbkg_BDTG.weights.xml
@@ -20,43 +21,50 @@ namespace mithep
 {
   namespace hgg
   {
+    //--------------------------------------------------------------------------
     class DiphotonMvaReader : public TreeReader
     {
-    public:
-      DiphotonMvaReader (
-        TTree      *tree,
-        const char *iDiphoWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
-        bool        iDiphoUseSmearedMassError=true
-      );
-      virtual ~DiphotonMvaReader();
+      public:
+        enum EBeamEnergy {k7TeV, k8TeV};
+        
+        DiphotonMvaReader (
+          TTree       *tree,
+          EBeamEnergy  iBeamEnergy=EBeamEnergy::k8TeV,
+          const char  *iDiphoWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+          bool         iDiphoUseSmearedMassError=true
+        );
+        virtual ~DiphotonMvaReader();
 
-      void SetDiphoMvaUseSmearedMassError(bool b) 
-      {
-        fDiphoUseSmearedMassError = b;
-      }
-      void SetDiphoMvaWeigths(const char *path);
+        void SetDiphoMvaUseSmearedMassError(bool b) 
+        {
+          fDiphoUseSmearedMassError = b;
+        }      
+        void SetDiphoMvaWeigths(const char *path);
 
-      bool GetDiphoMvaUseSmearedMassError(void)
-      {
-        return fDiphoUseSmearedMassError;
-      }
-      const char* GetDiphoMvaWeights(void) {return fDiphoWeights.Data();}
+        bool GetDiphoMvaUseSmearedMassError(void)
+        {
+          return fDiphoUseSmearedMassError;
+        }
+        const char* GetDiphoMvaWeights(void) {return fDiphoWeights.Data();}
+        EBeamEnergy GetBeamEnergy(void) {return fBeamEnergy;}
 
-      Float_t rVtxSigmaMoM;
-      Float_t wVtxSigmaMoM;
-      Float_t cosDPhi     ;
-      Float_t pho1_ptOverM;
-      Float_t pho2_ptOverM;
-      Float_t diphoMVA    ;
+        Float_t rVtxSigmaMoM;
+        Float_t wVtxSigmaMoM;
+        Float_t cosDPhi     ;
+        Float_t pho1_ptOverM;
+        Float_t pho2_ptOverM;
+        Float_t diphoMVA    ;
 
-    protected:
-      virtual void Update(void);
-              void Init  (void);
-      TString  fDiphoWeights;
-      bool          fDiphoUseSmearedMassError;
-      TMVA::Reader *fDiphoMvaReader;
-      ClassDef(DiphotonMvaReader, 0)
+      protected:
+        virtual void Update(void);
+                void Init  (void);
+        EBeamEnergy   fBeamEnergy;
+        TString       fDiphoWeights;
+        bool          fDiphoUseSmearedMassError;
+        TMVA::Reader *fDiphoMvaReader;
+        ClassDef(DiphotonMvaReader, 0)
     }; /// DiphotonMvaReader
+        
   } /// hgg
 } /// mithep
 

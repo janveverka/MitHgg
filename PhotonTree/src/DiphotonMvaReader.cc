@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TMath.h"
+#include "FWCore/Utilities/interface/Exception.h"
 #include "MitHgg/PhotonTree/interface/DiphotonMvaReader.h"
 
 using ::mithep::hgg::DiphotonMvaReader;
@@ -8,11 +9,12 @@ using ::mithep::hgg::TreeReader;
 /// Make this a ROOT class
 ClassImp(DiphotonMvaReader)
 
-
 //------------------------------------------------------------------------------
-DiphotonMvaReader::DiphotonMvaReader(TTree *tree, const char *iDiphoWeights,
+DiphotonMvaReader::DiphotonMvaReader(TTree *tree, EBeamEnergy iBeamEnergy,
+                                     const char *iDiphoWeights,
                                      bool iDiphoUseSmearedMassError) :
   TreeReader(tree),
+  fBeamEnergy(iBeamEnergy),
   fDiphoWeights(iDiphoWeights),
   fDiphoUseSmearedMassError(iDiphoUseSmearedMassError),
   fDiphoMvaReader(new TMVA::Reader("Silent"))
@@ -41,16 +43,29 @@ DiphotonMvaReader::SetDiphoMvaWeigths(const char *path)
 void
 DiphotonMvaReader::Init()
 {
-  fDiphoMvaReader->AddVariable("masserrsmeared/mass"        , &rVtxSigmaMoM);
-  fDiphoMvaReader->AddVariable("masserrsmearedwrongvtx/mass", &wVtxSigmaMoM);
-  fDiphoMvaReader->AddVariable("vtxprob"                    , &vtxprob     );
-  fDiphoMvaReader->AddVariable("ph1.pt/mass"                , &pho1_ptOverM);
-  fDiphoMvaReader->AddVariable("ph2.pt/mass"                , &pho2_ptOverM);
-  fDiphoMvaReader->AddVariable("ph1.eta"                    , &ph1.eta     );
-  fDiphoMvaReader->AddVariable("ph2.eta"                    , &ph2.eta     );
-  fDiphoMvaReader->AddVariable("TMath::Cos(ph1.phi-ph2.phi)", &cosDPhi     );
-  fDiphoMvaReader->AddVariable("ph1.idmva"                  , &ph1.idmva   );
-  fDiphoMvaReader->AddVariable("ph2.idmva"                  , &ph2.idmva   );
+  switch(fBeamEnergy) {
+    case EBeamEnergy::k7TeV:
+    case EBeamEnergy::k8TeV:
+      fDiphoMvaReader->AddVariable("masserrsmeared/mass"      , &rVtxSigmaMoM);
+      fDiphoMvaReader->AddVariable("masserrsmearedwrongvtx/mass"
+                                                              , &wVtxSigmaMoM);
+      fDiphoMvaReader->AddVariable("vtxprob"                  , &vtxprob     );
+      fDiphoMvaReader->AddVariable("ph1.pt/mass"              , &pho1_ptOverM);
+      fDiphoMvaReader->AddVariable("ph2.pt/mass"              , &pho2_ptOverM);
+      fDiphoMvaReader->AddVariable("ph1.eta"                  , &ph1.eta     );
+      fDiphoMvaReader->AddVariable("ph2.eta"                  , &ph2.eta     );
+      fDiphoMvaReader->AddVariable("TMath::Cos(ph1.phi-ph2.phi)" 
+                                                              , &cosDPhi     );
+      fDiphoMvaReader->AddVariable("ph1.idmva"                , &ph1.idmva   );
+      fDiphoMvaReader->AddVariable("ph2.idmva"                , &ph2.idmva   );
+      break;
+    default:
+      /// This should never happen!
+      cms::Exception exception("BadEnum");
+      exception << __FILE__ << ":" << __LINE__ << " in " << __FUNCTION__
+                << ": Illegal EBeamEnergy enum value: " << fBeamEnergy;
+      throw exception;
+  } /// fBeamEnergy
 
   fDiphoMvaReader->BookMVA("BDTG", fDiphoWeights.Data());
 } /// Init

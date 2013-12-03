@@ -28,7 +28,9 @@
 #pragma link C++ class mithep::hgg::PhotonReader;
 #pragma link C++ class mithep::hgg::DiphotonEventReader;
 #pragma link C++ class mithep::hgg::TreeReader;
+#pragma link C++ class mithep::hgg::TreeReaderConfiguration;
 #pragma link C++ class mithep::hgg::DiphotonMvaReader;
+#pragma link C++ enum mithep::hgg::DiphotonMvaReader::EBeamEnergy;
 #pragma link C++ class mithep::hgg::DiphotonAndDijetMvaReader;
 #pragma link C++ class mithep::hgg::CombinedMvaReader;
 #pragma link C++ class mithep::hgg::MvaCategoryReader;

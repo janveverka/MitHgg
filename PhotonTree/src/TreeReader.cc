@@ -1,7 +1,9 @@
 #include <iostream>
 #include "MitHgg/PhotonTree/interface/TreeReader.h"
 using ::mithep::hgg::TreeReader;
+using ::mithep::hgg::TreeReaderConfiguration;
 ClassImp(TreeReader)
+ClassImp(TreeReaderConfiguration)
 
 //------------------------------------------------------------------------------
 TreeReader::TreeReader(TTree *iTree) : 
@@ -9,6 +11,15 @@ TreeReader::TreeReader(TTree *iTree) :
   ph1                (iTree, "ph1."),
   ph2                (iTree, "ph2."),
   fTree              (iTree        ) 
+{} /// Ctor
+
+
+//------------------------------------------------------------------------------
+TreeReader::TreeReader(const Configuration &iConfig) : 
+  DiphotonEventReader(iConfig.tree        ), 
+  ph1                (iConfig.tree, "ph1."),
+  ph2                (iConfig.tree, "ph2."),
+  fTree              (iConfig.tree        ) 
 {} /// Ctor
 
 

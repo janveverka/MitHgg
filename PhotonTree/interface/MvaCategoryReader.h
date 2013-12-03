@@ -20,6 +20,7 @@ namespace mithep
       typedef std::vector<double> vdouble;
       MvaCategoryReader(
         TTree      *iTree                                            ,
+        EBeamEnergy iBeamEnergy=EBeamEnergy::k8TeV                   ,
         const char *iDiphoWeights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
         const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
         const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,

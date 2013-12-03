@@ -14,12 +14,14 @@ ClassImp(MvaCategoryReader)
 
 //------------------------------------------------------------------------------
 MvaCategoryReader::MvaCategoryReader(TTree      *iTree                    ,
+                                     EBeamEnergy iBeamEnergy              ,
                                      const char *iDiphoWeights            ,
                                      const char *iDijetWeights            ,
                                      const char *iCombiWeights            ,
                                      bool        iDiphoUseSmearedMassError,
                                      Float_t     iDijetMaxDPhi            ) :
   CombinedMvaReader(iTree                    ,
+                    iBeamEnergy              ,
                     iDiphoWeights            ,
                     iDijetWeights            ,
                     iCombiWeights            ,

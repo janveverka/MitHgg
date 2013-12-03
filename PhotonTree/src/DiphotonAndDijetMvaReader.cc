@@ -13,12 +13,14 @@ ClassImp(DiphotonAndDijetMvaReader)
 //------------------------------------------------------------------------------
 DiphotonAndDijetMvaReader::DiphotonAndDijetMvaReader(
   TTree *iTree, 
+  EBeamEnergy iBeamEnergy,
   const char *iDiphoWeights,
   const char *iDijetWeights,
   bool        iDiphoUseSmearedMassError,
   Float_t     iDijetMaxDPhi
 ) :
-  DiphotonMvaReader         (iTree, iDiphoWeights, iDiphoUseSmearedMassError),
+  DiphotonMvaReader         (iTree, iBeamEnergy, iDiphoWeights,
+                             iDiphoUseSmearedMassError),
   fDijetWeights             (iDijetWeights),
   fDijetMaxDPhi             (iDijetMaxDPhi),
   fDijetMvaReader(new TMVA::Reader("Silent"))

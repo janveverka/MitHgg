@@ -9,6 +9,7 @@
 
 using ::mithep::hgg::DiphotonMvaReader;
 using ::mithep::hgg::TreeReader;
+typedef DiphotonMvaReader::EBeamEnergy EBeamEnergy;
 using namespace std;
 //------------------------------------------------------------------------------
 /**
@@ -55,7 +56,8 @@ DiphotonMvaReaderTest::setUp(void)
   const char *weights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH;
   bool useSmearedMassError = false; /// default is true
   tree      = new TreeReader       (tree1                              );
-  actualMVA = new DiphotonMvaReader(tree2, weights, useSmearedMassError);
+  actualMVA = new DiphotonMvaReader(tree2, EBeamEnergy::k8TeV, weights,
+                                    useSmearedMassError);
 
   expectedMVA = new TMVA::Reader("Silent");
   

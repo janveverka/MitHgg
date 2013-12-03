@@ -25,6 +25,7 @@ class TreeReaderTest : public ::CppUnit::TestFixture {
   CPPUNIT_TEST(testReading);
   CPPUNIT_TEST(testBufferModification);
   CPPUNIT_TEST(testBufferModificationWithRefs);
+  CPPUNIT_TEST(testConfigCtor);
   CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -35,6 +36,7 @@ protected:
   void testReading(void);
   void testBufferModification(void);
   void testBufferModificationWithRefs(void);
+  void testConfigCtor(void);
 
 private:
   TTree      *tree;
@@ -59,6 +61,7 @@ void
 TreeReaderTest::setUp(void)
 {
   tree = mithep::hgg::TestTreeFactory::Create();
+  TTree *tclone  = static_cast<TTree*>(tree->Clone());
   tree->SetBranchAddress("evtcat"       , &evtcat       );
   tree->SetBranchAddress("evt"          , &evt          );
   tree->SetBranchAddress("mass"         , &mass         );
@@ -75,7 +78,7 @@ TreeReaderTest::setUp(void)
   tree->SetBranchAddress("ph2.idmva"    , &ph2_idmva    );
   tree->SetBranchAddress("ph1.isbarrel" , &ph1_isbarrel );
   tree->SetBranchAddress("ph2.isbarrel" , &ph2_isbarrel );
-  reader = new TreeReader((TTree*) tree->Clone());
+  reader  = new TreeReader(tclone);
 } // TreeReaderTest::setUp(void)
 
 
@@ -238,3 +241,29 @@ TreeReaderTest::testBufferModificationWithRefs(void)
     CPPUNIT_ASSERT_EQUAL(ph2_isbarrel , reader->ph2.isbarrel );
   } /// Loop over entries.
 } /// testBufferModificationWithRefs
+
+
+//------------------------------------------------------------------------------
+void
+TreeReaderTest::testConfigCtor(void)
+{
+  TTree *tclone = static_cast<TTree*>(tree->Clone());
+  TreeReader::Configuration config(tclone);
+  TreeReader reader2(config);
+  for (Int_t i=0; i < tree->GetEntries(); i++) {
+    reader->GetEntry(i);
+    reader2.GetEntry(i);
+    CPPUNIT_ASSERT_EQUAL(reader->ph1.e        , reader2.ph1.e        );
+    CPPUNIT_ASSERT_EQUAL(reader->ph2.e        , reader2.ph2.e        );
+    CPPUNIT_ASSERT_EQUAL(reader->ph1.pt       , reader2.ph1.pt       );
+    CPPUNIT_ASSERT_EQUAL(reader->ph2.pt       , reader2.ph2.pt       );
+    CPPUNIT_ASSERT_EQUAL(reader->ph1.idmva    , reader2.ph1.idmva    );
+    CPPUNIT_ASSERT_EQUAL(reader->ph2.idmva    , reader2.ph2.idmva    );
+    CPPUNIT_ASSERT_EQUAL(reader->ph1.hasphoton, reader2.ph1.hasphoton);
+    CPPUNIT_ASSERT_EQUAL(reader->ph2.hasphoton, reader2.ph2.hasphoton);
+    CPPUNIT_ASSERT_EQUAL(reader->ph1.index    , reader2.ph1.index    );
+    CPPUNIT_ASSERT_EQUAL(reader->ph2.index    , reader2.ph2.index    );
+    CPPUNIT_ASSERT_EQUAL(reader->ph1.isbarrel , reader2.ph1.isbarrel );
+    CPPUNIT_ASSERT_EQUAL(reader->ph2.isbarrel , reader2.ph2.isbarrel );
+  } /// Loop over entries
+} /// testConfigCtor

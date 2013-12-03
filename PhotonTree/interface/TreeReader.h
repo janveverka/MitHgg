@@ -14,10 +14,20 @@ namespace mithep
 {
   namespace hgg
   {
+    //--------------------------------------------------------------------------
+    struct TreeReaderConfiguration 
+    {
+      TreeReaderConfiguration(TTree *iTree) : tree(iTree) {};
+      TTree *tree;
+    }; /// TreeReaderConfiguration
+    
+    //--------------------------------------------------------------------------
     class TreeReader : public DiphotonEventReader
     {
       public:
+        typedef TreeReaderConfiguration Configuration;
         TreeReader (TTree *iTree);
+        TreeReader (const Configuration &iConfig);
         virtual ~TreeReader() {}
 
         virtual Int_t GetEntry(Long64_t entry = 0, Int_t getall = 0);
@@ -31,6 +41,7 @@ namespace mithep
         TTree *fTree;
         ClassDef(TreeReader, 0)
     }; /// TreeReader
+    
   } /// hgg
 } /// mithep
 
