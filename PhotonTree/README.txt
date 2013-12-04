@@ -44,6 +44,12 @@ Wish List: Readability, Agility & User-Friendliness
 
 To-Done List
 ------------
+  * 04.12. 12:00 - Support configurable options for TMVA::Readers, defaults to
+                   "Silent"
+  * 04.12. 11:00 - MvaCategoryReader works for both 7 and 8 TeV
+  * 04.12. 09:00 - Fixed the missing std::max around deltaPhi vars for VH MET
+                   in the MvaCategoryReader
+  * 03.12. 22:00 - Put together a configuration file for 7 TeV
   * 30.11. 11:12 - DumpMvaCategories: Added new preselection for the dijet-tag 
                    related vars, aligned ele* and cos(theta*) defaults with Globe, 
                    changed cos(theta*) to |cos(theta*)|
@@ -122,3 +128,9 @@ Tree Production
       - only s12-h125gg-vh-v7n
       - Has MET corrections, stochastic smearing, no photon pt/idmva
       - Misses fully combinatoric VHLepTag and tthTag
+
+Dump Production
+---------------
+hgg-dump-mva-categories dump_mva_categories_8TeV_data_cfg.py > mit_cats_runABCD_dec04_v2.txt &
+hgg-dump-mva-categories dump_mva_categories_8TeV_data3_cfg.py > mit_cats_runABCD_dec04_v3.txt &
+hgg-dump-mva-categories dump_mva_categories_7TeV_data_unmerged_cfg.py > mit_cats_2011AB_dec04.txt &
