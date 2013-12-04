@@ -2,6 +2,8 @@
 '''
 Configuration for the mva category dump for the 8TeV data trees
 produced by Mingming on 29. November.
+The list of unmerged input files is globbed by the script given
+the list of source directories.
 '''
 import glob
 import os
