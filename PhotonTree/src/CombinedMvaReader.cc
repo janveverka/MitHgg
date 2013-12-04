@@ -9,21 +9,27 @@ ClassImp(CombinedMvaReader)
 
 
 //------------------------------------------------------------------------------
-CombinedMvaReader::CombinedMvaReader(TTree *iTree,
-                                     EBeamEnergy iBeamEnergy,
-                                     const char *iDiphoWeights,
-                                     const char *iDijetWeights,
-                                     const char *iCombiWeights,
-                                     bool iDiphoUseSmearedMassError,
-                                     Float_t iDijetMaxDPhi) :
-  DiphotonAndDijetMvaReader(iTree,
-                            iBeamEnergy,
-                            iDiphoWeights,
-                            iDijetWeights,
+CombinedMvaReader::CombinedMvaReader(TTree       *iTree                    , 
+                                     EBeamEnergy  iBeamEnergy              ,
+                                     const char  *iDiphoWeights            ,
+                                     const char  *iDijetWeights            ,
+                                     const char  *iCombiWeights            ,
+                                     bool         iDiphoUseSmearedMassError,
+                                     Float_t      iDijetMaxDPhi            ,
+                                     const char  *iDiphoTmvaOption         ,
+                                     const char  *iDijetTmvaOption         ,
+                                     const char  *iCombiTmvaOption         ) :
+  DiphotonAndDijetMvaReader(iTree                    ,
+                            iBeamEnergy              ,
+                            iDiphoWeights            ,
+                            iDijetWeights            ,
                             iDiphoUseSmearedMassError,
-                            iDijetMaxDPhi             ),
-  fCombiWeights            (iCombiWeights             ),
-  fCombiMvaReader          (new TMVA::Reader("Silent"))
+                            iDijetMaxDPhi            ,
+                            iDiphoTmvaOption         ,
+                            iDijetTmvaOption                  ),
+  fCombiWeights            (iCombiWeights                     ),
+  fCombiTmvaOption         (iCombiTmvaOption                  ),
+  fCombiMvaReader          (new TMVA::Reader(iCombiTmvaOption))
 {
   Init();
 } /// Ctor
@@ -42,7 +48,7 @@ CombinedMvaReader::SetCombiMvaWeights(const char *path)
 {
   fCombiWeights = path;
   delete fCombiMvaReader;
-  fCombiMvaReader = new TMVA::Reader("Silent");
+  fCombiMvaReader = new TMVA::Reader(fCombiTmvaOption.Data());
   Init();
 } /// SetCombiMvaWeights
 

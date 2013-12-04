@@ -23,13 +23,16 @@ namespace mithep
     {
     public:
       CombinedMvaReader(
-        TTree      *iTree,
-        EBeamEnergy iBeamEnergy=EBeamEnergy::k8TeV,
-        const char *iDiphoWeights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
-        const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
-        const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
-        bool        iDiphoUseSmearedMassError=true,
-        Float_t     iDijetMaxDPhi = 2.916
+        TTree      *iTree                                               ,
+        EBeamEnergy iBeamEnergy      = EBeamEnergy::k8TeV               ,
+        const char *iDiphoWeights    = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+        const char *iDijetWeights    = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
+        const char *iCombiWeights    = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
+        bool        iDiphoUseSmearedMassError = true                    ,
+        Float_t     iDijetMaxDPhi    = 2.916                            ,
+        const char *iDiphoTmvaOption = "Silent"                         ,
+        const char *iDijetTmvaOption = "Silent"                         ,
+        const char *iCombiTmvaOption = "Silent"
         );
       virtual ~CombinedMvaReader();
 
@@ -41,8 +44,9 @@ namespace mithep
     protected:
       virtual void  Update(void);
       void          Init  (void);
-      TString       fCombiWeights;
-      TMVA::Reader *fCombiMvaReader;
+      TString       fCombiWeights   ;
+      TString       fCombiTmvaOption;
+      TMVA::Reader *fCombiMvaReader ;
 
       ClassDef(CombinedMvaReader, 0)
     }; /// CombinedMvaReader

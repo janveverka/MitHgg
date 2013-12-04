@@ -1,6 +1,7 @@
 #include <algorithm>    // std::min
 #include <complex>      // std::abs
 #include <iostream>     // std::cout
+#include "FWCore/Utilities/interface/Exception.h"
 #include "MitHgg/PhotonTree/interface/DiphotonAndDijetMvaReader.h"
 
 using ::mithep::hgg::DiphotonAndDijetMvaReader;
@@ -12,18 +13,24 @@ ClassImp(DiphotonAndDijetMvaReader)
 
 //------------------------------------------------------------------------------
 DiphotonAndDijetMvaReader::DiphotonAndDijetMvaReader(
-  TTree *iTree, 
-  EBeamEnergy iBeamEnergy,
-  const char *iDiphoWeights,
-  const char *iDijetWeights,
-  bool        iDiphoUseSmearedMassError,
-  Float_t     iDijetMaxDPhi
+  TTree       *iTree                    , 
+  EBeamEnergy  iBeamEnergy              ,
+  const char  *iDiphoWeights            ,
+  const char  *iDijetWeights            ,
+  bool         iDiphoUseSmearedMassError,
+  Float_t      iDijetMaxDPhi            ,
+  const char  *iDiphoTmvaOption         ,
+  const char  *iDijetTmvaOption
 ) :
-  DiphotonMvaReader         (iTree, iBeamEnergy, iDiphoWeights,
-                             iDiphoUseSmearedMassError),
-  fDijetWeights             (iDijetWeights),
-  fDijetMaxDPhi             (iDijetMaxDPhi),
-  fDijetMvaReader(new TMVA::Reader("Silent"))
+  DiphotonMvaReader         (iTree                    , 
+                             iBeamEnergy              , 
+                             iDiphoWeights            ,
+                             iDiphoUseSmearedMassError, 
+                             iDiphoTmvaOption                  ),
+  fDijetWeights             (iDijetWeights                     ),
+  fDijetMaxDPhi             (iDijetMaxDPhi                     ),
+  fDijetTmvaOption          (iDijetTmvaOption                  ),
+  fDijetMvaReader           (new TMVA::Reader(iDijetTmvaOption))
 {
   Init();
 } /// Ctor
@@ -42,7 +49,7 @@ DiphotonAndDijetMvaReader::SetDijetMvaWeights(const char *path)
 {
   fDijetWeights = path;
   delete fDijetMvaReader;
-  fDijetMvaReader = new TMVA::Reader("Silent");
+  fDijetMvaReader = new TMVA::Reader(fDijetTmvaOption.Data());
   Init();
 } /// SetDijetMvaWeights
 
@@ -51,14 +58,36 @@ DiphotonAndDijetMvaReader::SetDijetMvaWeights(const char *path)
 void
 DiphotonAndDijetMvaReader::Init()
 {
-  fDijetMvaReader->AddVariable("dijet_leadEta"        , &jet1eta            );
-  fDijetMvaReader->AddVariable("dijet_subleadEta"     , &jet2eta            );
-  fDijetMvaReader->AddVariable("dijet_LeadJPt"        , &jet1pt             );
-  fDijetMvaReader->AddVariable("dijet_SubJPt"         , &jet2pt             );
-  fDijetMvaReader->AddVariable("dijet_Zep"            , &zeppenfeld         );
-  fDijetMvaReader->AddVariable("min(dijet_dPhi,2.916)", &dijet_DPhiTruncated);
-  fDijetMvaReader->AddVariable("dijet_Mjj"            , &dijetmass          );
-  fDijetMvaReader->AddVariable("dipho_pt/mass"        , &ptgg_over_mass     );
+  switch(fBeamEnergy) {
+    case EBeamEnergy::k7TeV:
+      fDijetMvaReader->AddVariable("dijet_leadEta"   , &jet1eta            );
+      fDijetMvaReader->AddVariable("dijet_subleadEta", &jet2eta            );
+      fDijetMvaReader->AddVariable("dijet_LeadJPt"   , &jet1pt             );
+      fDijetMvaReader->AddVariable("dijet_SubJPt"    , &jet2pt             );
+      fDijetMvaReader->AddVariable("dijet_Zep"       , &zeppenfeld         );
+      fDijetMvaReader->AddVariable("min(dijet_dPhi,2.9416)"
+                                                     , &dijet_DPhiTruncated);
+      fDijetMvaReader->AddVariable("dijet_Mjj"       , &dijetmass          );
+      fDijetMvaReader->AddVariable("dipho_pt/mass"   , &ptgg_over_mass     );
+      break;
+    case EBeamEnergy::k8TeV:
+      fDijetMvaReader->AddVariable("dijet_leadEta"   , &jet1eta            );
+      fDijetMvaReader->AddVariable("dijet_subleadEta", &jet2eta            );
+      fDijetMvaReader->AddVariable("dijet_LeadJPt"   , &jet1pt             );
+      fDijetMvaReader->AddVariable("dijet_SubJPt"    , &jet2pt             );
+      fDijetMvaReader->AddVariable("dijet_Zep"       , &zeppenfeld         );
+      fDijetMvaReader->AddVariable("min(dijet_dPhi,2.916)"
+                                                     , &dijet_DPhiTruncated);
+      fDijetMvaReader->AddVariable("dijet_Mjj"       , &dijetmass          );
+      fDijetMvaReader->AddVariable("dipho_pt/mass"   , &ptgg_over_mass     );
+      break;
+    default:
+      /// This should never happen!
+      cms::Exception exception("BadEnum");
+      exception << __FILE__ << ":" << __LINE__ << " in " << __FUNCTION__
+                << ": Illegal EBeamEnergy enum value: " << fBeamEnergy;
+      throw exception;      
+  } /// fBeamEnergy
 
   fDijetMvaReader->BookMVA("BDTG", fDijetWeights.Data());
 } /// Init

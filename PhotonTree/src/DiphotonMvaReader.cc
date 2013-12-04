@@ -10,14 +10,17 @@ using ::mithep::hgg::TreeReader;
 ClassImp(DiphotonMvaReader)
 
 //------------------------------------------------------------------------------
-DiphotonMvaReader::DiphotonMvaReader(TTree *tree, EBeamEnergy iBeamEnergy,
+DiphotonMvaReader::DiphotonMvaReader(TTree      *tree, 
+                                     EBeamEnergy iBeamEnergy,
                                      const char *iDiphoWeights,
-                                     bool iDiphoUseSmearedMassError) :
-  TreeReader(tree),
-  fBeamEnergy(iBeamEnergy),
-  fDiphoWeights(iDiphoWeights),
-  fDiphoUseSmearedMassError(iDiphoUseSmearedMassError),
-  fDiphoMvaReader(new TMVA::Reader("Silent"))
+                                     bool        iDiphoUseSmearedMassError,
+                                     const char *iDiphoTmvaOption) :
+  TreeReader               (tree                              ),
+  fBeamEnergy              (iBeamEnergy                       ),
+  fDiphoWeights            (iDiphoWeights                     ),
+  fDiphoUseSmearedMassError(iDiphoUseSmearedMassError         ),
+  fDiphoTmvaOption         (iDiphoTmvaOption                  ),
+  fDiphoMvaReader          (new TMVA::Reader(iDiphoTmvaOption))
 {
   Init();
 } /// Ctor
@@ -35,7 +38,7 @@ DiphotonMvaReader::SetDiphoMvaWeigths(const char *path)
 {
   fDiphoWeights = path;
   delete fDiphoMvaReader;
-  fDiphoMvaReader = new TMVA::Reader("Silent");
+  fDiphoMvaReader = new TMVA::Reader(fDiphoTmvaOption.Data());
   Init();
 } /// SetDiphoMvaWeigths
 

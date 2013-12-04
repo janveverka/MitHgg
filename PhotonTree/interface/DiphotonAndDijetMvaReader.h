@@ -24,12 +24,15 @@ namespace mithep
     {
     public:
       DiphotonAndDijetMvaReader(
-        TTree      *iTree,
-        EBeamEnergy iBeamEnergy=EBeamEnergy::k8TeV,
-        const char *iDiphoWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
-        const char *iDijetWeights=HGG_DEFAULT_DIJET_WEIGHTS_PATH,
-        bool        iDiphoUseSmearedMassError=true,
-        Float_t     iDijetMaxDPhi=2.916);
+        TTree      *iTree                                               ,
+        EBeamEnergy iBeamEnergy      = EBeamEnergy::k8TeV               ,
+        const char *iDiphoWeights    = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+        const char *iDijetWeights    = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
+        bool        iDiphoUseSmearedMassError = true                    ,
+        Float_t     iDijetMaxDPhi    = 2.916                            ,
+        const char *iDiphoTmvaOption = "Silent"                         ,
+        const char *iDijetTmvaOption = "Silent"
+      );
       virtual ~DiphotonAndDijetMvaReader();
       
       void SetDijetMvaWeights(const char *path);
@@ -45,9 +48,10 @@ namespace mithep
     protected:
       virtual void Update(void);
               void Init  (void);
-      TString  fDijetWeights;
-      Float_t       fDijetMaxDPhi;
-      TMVA::Reader *fDijetMvaReader;
+      TString       fDijetWeights   ;
+      Float_t       fDijetMaxDPhi   ;
+      TString       fDijetTmvaOption;
+      TMVA::Reader *fDijetMvaReader ;
       ClassDef(DiphotonAndDijetMvaReader, 0)
     }; /// DiphotonAndDijetMvaReader
   } /// hgg

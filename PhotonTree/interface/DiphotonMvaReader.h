@@ -31,7 +31,8 @@ namespace mithep
           TTree       *tree,
           EBeamEnergy  iBeamEnergy=EBeamEnergy::k8TeV,
           const char  *iDiphoWeights=HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
-          bool         iDiphoUseSmearedMassError=true
+          bool         iDiphoUseSmearedMassError=true,
+          const char  *iDiphoTmvaOptions="Silent"
         );
         virtual ~DiphotonMvaReader();
 
@@ -61,6 +62,7 @@ namespace mithep
         EBeamEnergy   fBeamEnergy;
         TString       fDiphoWeights;
         bool          fDiphoUseSmearedMassError;
+        TString       fDiphoTmvaOption;
         TMVA::Reader *fDiphoMvaReader;
         ClassDef(DiphotonMvaReader, 0)
     }; /// DiphotonMvaReader
