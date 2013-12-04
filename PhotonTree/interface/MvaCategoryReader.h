@@ -19,13 +19,16 @@ namespace mithep
     public:
       typedef std::vector<double> vdouble;
       MvaCategoryReader(
-        TTree      *iTree                                            ,
-        EBeamEnergy iBeamEnergy=EBeamEnergy::k8TeV                   ,
-        const char *iDiphoWeights = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
-        const char *iDijetWeights = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
-        const char *iCombiWeights = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
-        bool        iDiphoUseSmearedMassError = true                 ,
-        Float_t     iDijetMaxDPhi = 2.916
+        TTree      *iTree                                               ,
+        EBeamEnergy iBeamEnergy      = EBeamEnergy::k8TeV               ,
+        const char *iDiphoWeights    = HGG_DEFAULT_DIPHOTON_WEIGHTS_PATH,
+        const char *iDijetWeights    = HGG_DEFAULT_DIJET_WEIGHTS_PATH   ,
+        const char *iCombiWeights    = HGG_DEFAULT_COMBINED_WEIGHTS_PATH,
+        bool        iDiphoUseSmearedMassError = true                    ,
+        Float_t     iDijetMaxDPhi    = 2.916                            ,
+        const char *iDiphoTmvaOption = "Silent"                         ,
+        const char *iDijetTmvaOption = "Silent"                         ,
+        const char *iCombiTmvaOption = "Silent"
         );
       virtual ~MvaCategoryReader();
 
@@ -43,17 +46,24 @@ namespace mithep
       Int_t mvaCat  ;
 
     protected:
-      void         Init                     (void);
-      virtual void Update                   (void);
-      void         UpdateCategoryDefinitions(void);
-      void         UpdateInclusiveCat       (void);
-      void         UpdateDijetCat           (void);
-      void         UpdateVHMetTag           (void);
-      void         UpdateVHLepTag           (void);
-      void         UpdateTTHTag             (void);
-      void         UpdateVHHadTag           (void);
-      void         UpdateMvaCat             (void);
-      bool         PassesPreselection       (void);
+      void         Init                         (void                   );
+      virtual void Update                       (void                   );
+      void         Update7TeV                   (void                   );
+      void         Update8TeV                   (void                   );
+      void         UpdateCategoryDefinitions    (void                   );
+      void         UpdateCategoryDefinitions7TeV(void                   );
+      void         UpdateCategoryDefinitions8TeV(void                   );
+      void         UpdateInclusiveCat           (void                   );
+      void         UpdateDijetCat               (void                   );
+      void         UpdateVHLepTag               (double minDiphoMVALoose,
+                                                 double minDiphoMVATight);
+      void         UpdateVHMetTag               (double minDiphoMVA     );
+      void         UpdateTTHTag                 (double minDiphoMVALep  ,
+                                                 double minDiphoMVAHad  );
+      void         UpdateVHHadTag               (double minDiphoMVA     );
+      void         UpdateMvaCat                 (void                   );
+      bool         PassesCommonVHMetTagCuts     (void                   );
+      bool         PassesPreselection           (void                   );
 
       vdouble diphoMvaCuts;
       vdouble dijetMvaCuts;
