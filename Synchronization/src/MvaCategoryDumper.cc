@@ -1,21 +1,27 @@
 #include <algorithm> // std::abs
 #include <iostream>  // std::cout
 #include <string>
+#include "FWCore/Utilities/interface/Exception.h"
 #include "MitHgg/Synchronization/interface/MvaCategoryDumper.h"
 #include "MitHgg/PhotonTree/interface/TestTreeFactory.h"
 
+using ::std::string;
 using ::mithep::hgg::MvaCategoryDumper;
 using ::mithep::hgg::PSet;
 
 //------------------------------------------------------------------------------
 MvaCategoryDumper::MvaCategoryDumper(TTree *tree, const PSet &iConfig) :
   MvaCategoryReader(
-    tree,
-    iConfig.getParameter<std::string>("diphotonMvaWeights").c_str(),
-    iConfig.getParameter<std::string>("dijetMvaWeights"   ).c_str(),
-    iConfig.getParameter<std::string>("combinedMvaWeights").c_str(),
-    iConfig.getParameter<bool  >("diphotonMvaUseSmearedMassError"),
-    iConfig.getParameter<double>("dijetMvaMaxDPhi")
+    tree                                                                      ,
+    GetBeamEnergy                        (iConfig                    )        ,
+    iConfig.getParameter         <string>("diphotonMvaWeights"       ).c_str(),
+    iConfig.getParameter         <string>("dijetMvaWeights"          ).c_str(),
+    iConfig.getParameter         <string>("combinedMvaWeights"       ).c_str(),
+    iConfig.getParameter         <bool  >("diphotonMvaUseSmearedMassError")   ,
+    iConfig.getParameter         <double>("dijetMvaMaxDPhi"          )        ,
+    iConfig.getUntrackedParameter<string>("diphoTmvaOption", "Silent").c_str(),
+    iConfig.getUntrackedParameter<string>("dijetTmvaOption", "Silent").c_str(),
+    iConfig.getUntrackedParameter<string>("combiTmvaOption", "Silent").c_str()
   )
 {
   Init(iConfig);
@@ -27,8 +33,32 @@ MvaCategoryDumper::~MvaCategoryDumper() {} /// Dtor
 
 
 //------------------------------------------------------------------------------
+MvaCategoryDumper::EBeamEnergy
+MvaCategoryDumper::GetBeamEnergy(const PSet &iConfig)
+{
+  EBeamEnergy beamEnergy = EBeamEnergy::k8TeV;
+  if (iConfig.existsAs<string>("beamEnergy")) {
+    const string &iBeamEnergy = iConfig.getParameter<string>("beamEnergy");
+    if (iBeamEnergy == "7TeV") {
+      beamEnergy = EBeamEnergy::k7TeV;
+    } else if (iBeamEnergy == "8TeV") {
+      beamEnergy = EBeamEnergy::k8TeV;
+    } else {
+      /// This should never happen!
+      cms::Exception exception("BadConfiguration|ParamberValue");
+      exception << "Illegal value of beamEnergy: \"" << iBeamEnergy
+                << "\". Must be one of \"7TeV\" or \"8TeV\"";
+      throw exception;
+    }
+  } /// beamEnergy exists
+  
+  return beamEnergy;
+} /// GetBeamEnergy
+
+
+//------------------------------------------------------------------------------
 void
-MvaCategoryDumper::Init(const PSet &iConfig) 
+MvaCategoryDumper::Init(const PSet &iConfig)
 {
   typedef std::vector<double> vdouble;
   if (iConfig.existsAs<vdouble>("diphotonBdtBoundaries")) {
@@ -81,7 +111,7 @@ MvaCategoryDumper::ProduceDump()
     GetEntry(iEntry);
     if (mvaCat < 0) continue;
     DumpAllVariables();
-    std::cout << "\b\n";
+    std::cout << "\n";
   } /// Loop over entries
 } /// ProduceDump
 
@@ -147,10 +177,13 @@ MvaCategoryDumper::DumpCategoryVariables()
 void
 MvaCategoryDumper::DumpDiphotonVariables()
 {
+  /// Align default value with Globe: -99 -> -999
   if (!PassDijetPreselection()) dijetMVA = combiMVA = -999;
   
-  if (VHHadTag <= 0) costhetastar = -999;
-  else               costhetastar = std::abs(costhetastar);
+  if (IsUnset(costhetastar)) costhetastar = -999;
+  else                       costhetastar = std::abs(costhetastar);
+  
+  if (IsUnset(bjetcsv     )) bjetcsv      = -999;
   
   DumpVar("mass"         , mass        );
   DumpVar("met"          , corrpfmet   );
@@ -161,6 +194,7 @@ MvaCategoryDumper::DumpDiphotonVariables()
   DumpVar("dijetMVA"     , dijetMVA    );
   DumpVar("combiMVA"     , combiMVA    );
   DumpVar("cosThetaStar" , costhetastar);
+  DumpVar("bjet_csv"     , bjetcsv     );
 } /// DumpDiphotonVariables
 
 
@@ -224,10 +258,8 @@ MvaCategoryDumper::DumpElectrons()
 void
 MvaCategoryDumper::DumpJets(void)
 {
-  if (!PassDijetPreselection()) {
-    jet1pt = jet1eta = jet1phi = -999;
-    jet2pt = jet2eta = jet2phi = -999;    
-  }
+  if (jet1pt < 0) jet1pt = jet1eta = jet1phi = -999;
+  if (jet2pt < 0) jet2pt = jet2eta = jet2phi = -999;    
   
   /// Lead
   DumpVar("jet1_pt" , jet1pt );
@@ -236,7 +268,7 @@ MvaCategoryDumper::DumpJets(void)
   /// Sublead
   DumpVar("jet2_pt" , jet2pt );
   DumpVar("jet2_eta", jet2eta);
-  DumpVar("jet2_phi", jet2phi);
+  DumpVar("jet2_phi", jet2phi, ""); /// no trailing tab character
 } /// DumpJets
 
 
