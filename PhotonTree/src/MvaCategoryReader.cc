@@ -298,8 +298,6 @@ MvaCategoryReader::PassesCommonVHMetTagCuts(void)
                                           (Double_t) corrpfmetphi);
 
   return (
-           std::abs(ph1.sceta) < 1.4442   &&
-           std::abs(ph2.sceta) < 1.4442   &&
            corrpfmet           > 70.      &&
            pho1_ptOverM        > 45./120. &&
            pho2_ptOverM        > 30./120. &&
@@ -320,7 +318,7 @@ MvaCategoryReader::UpdateTTHTag(double minDiphoMVALep, double minDiphoMVAHad)
 {
   if (tthTag < 0) return;
   
-  /// Similar logic here as for the UpdatVHlepTag.
+  /// Similar logic here as for UpdateVHlepTag(..).
   bool isTTHLep = (tthTag > 1);
   bool isTTHHad = (tthTag % 2 == 1);
   

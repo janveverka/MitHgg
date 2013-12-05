@@ -3,6 +3,10 @@ MitHgg/PhotonTree Package
 
 To-Do List: Features & Bugs
 ---------------------------
+  * Dangerous events after the first logic fix:
+    - Contain exclusive-tag leptons
+    - Contain multiple photon pairs
+    - Selected pair fails some of the selection downstream 
   * Produce and compare dumps often
   * Check vertex selection in exclusive categories
   * Check the extra delta R (gsf track, photon) cut for the VH and ttH cats.
