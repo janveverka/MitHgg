@@ -56,7 +56,7 @@ ecalelf_from_mit_scale_category = {
     'corr_EBhighEta_hR9'       : 'EB-absEta_1_1.4442-gold',
     'corr_EBhighEta_lR9'       : 'EB-absEta_1_1.4442-bad' ,
     'corr_EElowEta_hR9'        : 'EE-absEta_1.566_2-gold' ,
-    'corr_EElowEta_lR9'        : 'EB-absEta_1_1.4442-gold',
+    'corr_EElowEta_lR9'        : 'EE-absEta_1.566_2-bad'  ,
     'corr_EEhighEta_hR9'       : 'EE-absEta_2_2.5-gold'   ,
     'corr_EEhighEta_lR9'       : 'EE-absEta_2_2.5-bad'    ,
     }
