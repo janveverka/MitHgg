@@ -42,6 +42,7 @@ PhotonReader::PhotonReader(TTree *iTree, const char *prefix) :
   eerr                       (GetF("eerr"                       )),
   eerrsmeared                (GetF("eerrsmeared"                )),
   esmearing                  (GetF("esmearing"                  )),
+  escale                     (GetF("escale"                     )),
   idmva                      (GetF("idmva"                      )),
   ecalisodr03                (GetF("ecalisodr03"                )),
   hcalisodr03                (GetF("hcalisodr03"                )),

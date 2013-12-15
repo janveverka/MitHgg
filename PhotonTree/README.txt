@@ -1,6 +1,84 @@
 MitHgg/PhotonTree Package
 =========================
 
+Excess events of 12 Dec 2013
+********************************
+   run *      lumi *     event *
+********************************
+196250 *        64 * 117746603 * sublead ele
+199864 *        89 * 130028405 * lead muon
+200178 *        19 *  32126525 * sublead ele
+205236 *       158 * 233579287 * sublead ele
+206401 *       127 * 148903812 * lead ele
+206542 *       371 * 607863421 * sublead ele
+207920 *       500 * 748865301 * sublead ele
+********************************
+
+
+
+Excess VH lep tight with ghost electron:
+196250:64
+
+Events missing leptons for ttH:
+run:206446 lumi:784  evt:1072391444  run:D file:50A9A2B5-0583-E211-A8E2-00266CFAE050.root 
+run:201202 lumi:51   evt:49882246    run:C file:9A6D0CDB-776E-E211-83D1-00261894383C.root
+run:200229 lumi:506  evt:537326223   run:C file:
+run:199021 lumi:1393 evt:15522682932 run:C file:
+
+CMS Dataset                              Bambu            Runs
+/Photon/Run2012A-22Jan2013-v1/AOD        r12a-pho-j22-v1  190456-193621
+/DoublePhoton/Run2012B-22Jan2013-v1/AOD  r12b-dph-j22-v1  193834-196531
+/DoublePhoton/Run2012C-22Jan2013-v2/AOD  r12c-dph-j22-v1  198022-203742
+/DoublePhoton/Run2012D-22Jan2013-v1/AOD  r12d-dph-j22-v1  203777-208509
+
+/mnt/hadoop/cms/store/user/paus/filefi/029/
+
+14 missing leptonic events
+
+#   Period  Run      Lumi    Event        File
+--------------------------------------------------------------------------------------------
+ 1  B       194691     80      63517077   BA6F366A-116D-E211-8362-0026189438E1.root mu, 0058
+ 2          195397   1172    1361890417   E8047264-3B6D-E211-BAA5-0026189437F5.root e
+ 3          195950    188     197022547   3AD29621-1C6D-E211-9EB7-0026189438D2.root e, MIA
+ 4  C       198969    341     449378235   B802FEBC-2F71-E211-8D0B-00261894387D.root e
+ 5          199008    294     369441614   464C5B08-9770-E211-B580-002354EF3BE2.root e
+ 6          199021   1393    1522682932   E2F8FB06-DC70-E211-B730-003048679244.root mu
+ 7          199832    227     280392762   DC7DB42E-5E71-E211-98E4-00261894391F.root e
+ 8          200229    506     537326223   BC4184B7-B270-E211-AB38-003048679010.root e
+ 9          201202     51      49882246   EEF3A1EC-2571-E211-9772-003048FFCB9E.root e
+10          202504     84      45496025   E40562A0-1D71-E211-8116-0026189437FA.root e
+11  D       204601    218     291520084   DCF115DA-A382-E211-951D-00266CFAE518.root e
+12          206331    106      93829188   D251C2DD-C884-E211-9D28-00A0D1EE968C.root e
+13          206446    784    1072391444   50A9A2B5-0583-E211-A8E2-00266CFAE050.root e
+14          207231    402     619292470   5C867B4C-0882-E211-9266-00A0D1EE8ECC.root e
+
+#    Run      Lep   pt          cat**
+-------------------------------------
+ 1   194691*  mu    34.75410     11
+ 2   195397   e    138.21800      9
+ 3   195950#  e    189.659        9
+ 4   198969   e     46.228698     9
+ 5   199008   e     20.823799     9
+ 6   199021*  mu    53.690799    11
+ 7   199832+  e     26.846399    11
+ 8   200229   e     56.068599    11
+ 9   201202+  e     38.626701    11
+10   202504   e     39.029098     8
+11   204601   e     21.475799     9
+12   206331   e     24.265199     9
+13   206446+  e     73.195396    11
+14   207231   e     66.628898     8
+
+* Recovered by relaxing Delta R(mu,g) > 1.0 to > 0.5 in TTHSelectMuon (test_3.txt)
+# Recovered by Josh's ElectronIDMod fix with multiple electrons logic (test_4.txt)
++ Should be recovered by properly relaxing Delta R(e,g) > 1.0 to 0.5.
+**cat definitions: VHLepTigth: 8, VHLepLoose: 9, TTHLep: 11
+Fixes from Josh:
+  * Loop over all leptons in VH lep, not just the hardest muon and highest-MVA
+    electron
+  * Remove |m(ll) - m(Z)| < 10 GeV for ttH
+  * Remove |eta(ele)| > 2.5 in 
+
 To-Do List: Features & Bugs
 ---------------------------
   * Dangerous events after the first logic fix:
@@ -118,23 +196,3 @@ To-Done List
   * 19.11. 17:10 - Virtually based DijetMvaReader on TreeReader
   * 19.11. 20:40 - Based CombinedMvaReader on DiphotonMvaReader and DijetMvaReader
 
-Tree Production
----------------
-  * hgg-2013Final8TeV_0
-      - From Nov 14
-      - only s12-h125gg-vh-v7n
-  * hgg-2013Final8TeV_1
-      - From Nov 20
-  * hgg-2013Final8TeV_2
-      - From Nov 21
-  * hgg-2013Final8TeV_3
-      - From Nov 28
-      - only s12-h125gg-vh-v7n
-      - Has MET corrections, stochastic smearing, no photon pt/idmva
-      - Misses fully combinatoric VHLepTag and tthTag
-
-Dump Production
----------------
-hgg-dump-mva-categories dump_mva_categories_8TeV_data_cfg.py > mit_cats_runABCD_dec04_v2.txt &
-hgg-dump-mva-categories dump_mva_categories_8TeV_data3_cfg.py > mit_cats_runABCD_dec04_v3.txt &
-hgg-dump-mva-categories dump_mva_categories_7TeV_data_unmerged_cfg.py > mit_cats_2011AB_dec04.txt &

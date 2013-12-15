@@ -65,6 +65,7 @@ namespace mithep
         Float_t &eerr                       ;
         Float_t &eerrsmeared                ;
         Float_t &esmearing                  ;
+        Float_t &escale                     ;
         Float_t &idmva                      ;
         Float_t &ecalisodr03                ;
         Float_t &hcalisodr03                ;
