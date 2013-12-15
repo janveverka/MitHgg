@@ -11,10 +11,10 @@ process = cms.Process('DUMP')
 #_______________________________________________________________________________
 process.inputs = cms.PSet(
     fileNames = cms.vstring(
-        join('/home/veverka/cms/hist/hgg-2013Final8TeV/merged',
-             'hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root')
-        #join('/home/mingyang/cms/hist/hgg-2013Final8TeV/merged',
+        #join('/home/veverka/cms/hist/hgg-2013Final8TeV/merged',
              #'hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root')
+        join('/home/mingyang/cms/hist/hgg-2013Final8TeV/merged',
+             'hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root')
         ),
         #+ [join(
         #'/home/mingyang/cms/hist/hgg-2013Final8TeV/filefi/030/s12-h120gg-vh-v7n',
@@ -30,7 +30,7 @@ process.inputs = cms.PSet(
         '/RunLumiSelectionMod/MCProcessSelectionMod/' +
         'HLTModP/GoodPVFilterMod/PhotonMvaMod/JetPub/JetCorrectionMod/' +
         'SeparatePileUpMod/ElectronIDMod/ElectronIDMod/MuonIDMod/MuonIDMod/' +
-        'PhotonPairSelectorPreselNoSmear/PhotonTreeWriterPreselNoSmear/' +
+        'PhotonPairSelectorPresel/PhotonTreeWriterPresel/' +
         'hPhotonTree'
         ),
     ) ## process.inputs

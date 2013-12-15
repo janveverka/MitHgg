@@ -31,7 +31,7 @@ process.inputs = cms.PSet(
 
 #_______________________________________________________________________________
 process.dump = cms.PSet(
-    maxEntriesToProcess = cms.untracked.int32(10),
+    maxEntriesToProcess = cms.untracked.int32(-1),
     beamEnergy = cms.string("7TeV"),
     ## source: /afs/cern.ch/user/b/bendavid/cmspublic/hggmvaOct29/\
     ## HggBambu_SMDipho_Oct29_rwgtptallsigevenbkg7TeV_BDTG.weights.xml

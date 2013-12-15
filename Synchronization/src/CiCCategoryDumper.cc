@@ -2,26 +2,18 @@
 #include <iostream>  // std::cout
 #include <string>
 #include "FWCore/Utilities/interface/Exception.h"
-#include "MitHgg/Synchronization/interface/MvaCategoryDumper.h"
+#include "MitHgg/Synchronization/interface/CiCCategoryDumper.h"
 #include "MitHgg/PhotonTree/interface/TestTreeFactory.h"
 
 using ::std::string;
-using ::mithep::hgg::MvaCategoryDumper;
+using ::mithep::hgg::CiCCategoryDumper;
 using ::mithep::hgg::PSet;
 
 //------------------------------------------------------------------------------
-MvaCategoryDumper::MvaCategoryDumper(TTree *tree, const PSet &iConfig) :
-  MvaCategoryReader(
-    tree                                                                      ,
-    GetBeamEnergy                        (iConfig                    )        ,
-    iConfig.getParameter         <string>("diphotonMvaWeights"       ).c_str(),
-    iConfig.getParameter         <string>("dijetMvaWeights"          ).c_str(),
-    iConfig.getParameter         <string>("combinedMvaWeights"       ).c_str(),
-    iConfig.getParameter         <bool  >("diphotonMvaUseSmearedMassError")   ,
-    iConfig.getParameter         <double>("dijetMvaMaxDPhi"          )        ,
-    iConfig.getUntrackedParameter<string>("diphoTmvaOption", "Silent").c_str(),
-    iConfig.getUntrackedParameter<string>("dijetTmvaOption", "Silent").c_str(),
-    iConfig.getUntrackedParameter<string>("combiTmvaOption", "Silent").c_str()
+CiCCategoryDumper::CiCCategoryDumper(TTree *tree, const PSet &iConfig) :
+  CiCCategoryReader(
+    tree                 ,
+    GetBeamEnergy(iConfig)
   ),
   fMaxEntries(iConfig.getUntrackedParameter<int>("maxEntriesToProcess", -1))
 {
@@ -30,12 +22,12 @@ MvaCategoryDumper::MvaCategoryDumper(TTree *tree, const PSet &iConfig) :
 
 
 //------------------------------------------------------------------------------
-MvaCategoryDumper::~MvaCategoryDumper() {} /// Dtor
+CiCCategoryDumper::~CiCCategoryDumper() {} /// Dtor
 
 
 //------------------------------------------------------------------------------
-MvaCategoryDumper::EBeamEnergy
-MvaCategoryDumper::GetBeamEnergy(const PSet &iConfig)
+CiCCategoryDumper::EBeamEnergy
+CiCCategoryDumper::GetBeamEnergy(const PSet &iConfig)
 {
   EBeamEnergy beamEnergy = EBeamEnergy::k8TeV;
   if (iConfig.existsAs<string>("beamEnergy")) {
@@ -59,19 +51,8 @@ MvaCategoryDumper::GetBeamEnergy(const PSet &iConfig)
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::Init(const PSet &iConfig)
+CiCCategoryDumper::Init(const PSet &iConfig)
 {
-  typedef std::vector<double> vdouble;
-  if (iConfig.existsAs<vdouble>("diphotonBdtBoundaries")) {
-    SetDiphoMvaCuts(iConfig.getParameter<vdouble>("diphotonBdtBoundaries"));
-  }
-  if (iConfig.existsAs<vdouble>("dijetBdtBoundaries")) {
-    SetDijetMvaCuts(iConfig.getParameter<vdouble>("dijetBdtBoundaries"));
-  }
-  if (iConfig.existsAs<vdouble>("combinedBdtBoundaries")) {
-    SetCombiMvaCuts(iConfig.getParameter<vdouble>("combinedBdtBoundaries"));
-  }
-  
   /// Performance  
   fTree->SetBranchStatus("ph1.*seed"   , 0);
   fTree->SetBranchStatus("ph1.*bc2"    , 0);
@@ -106,7 +87,7 @@ MvaCategoryDumper::Init(const PSet &iConfig)
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::ProduceDump()
+CiCCategoryDumper::ProduceDump()
 {
   unsigned numEntriesToProcess = fTree->GetEntries();
   if (fMaxEntries > 0 && fMaxEntries < (int) numEntriesToProcess) {
@@ -114,7 +95,7 @@ MvaCategoryDumper::ProduceDump()
   }
   for (unsigned iEntry=0; iEntry < numEntriesToProcess; iEntry++) {
     GetEntry(iEntry);
-    if (mvaCat < 0) continue;
+    if (cicCat < 0) continue;
     DumpAllVariables();
     std::cout << "\n";
   } /// Loop over entries
@@ -123,14 +104,13 @@ MvaCategoryDumper::ProduceDump()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpAllVariables()
+CiCCategoryDumper::DumpAllVariables()
 {
   DumpEventHeader();
   DumpPhotons();
   DumpCategoryVariables();
   DumpDiphotonVariables();
   DumpVertexVariables();
-  DumpDiphotonMvaInputs();
   DumpMuons();
   DumpElectrons();
   DumpJets();
@@ -140,7 +120,7 @@ MvaCategoryDumper::DumpAllVariables()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpEventHeader()
+CiCCategoryDumper::DumpEventHeader()
 {
   DumpVar("run"  , run );
   DumpVar("lumi" , lumi);
@@ -150,7 +130,7 @@ MvaCategoryDumper::DumpEventHeader()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpPhotons()
+CiCCategoryDumper::DumpPhotons()
 {
   /// Lead
   DumpPhoton("pho1_", ph1);
@@ -161,9 +141,9 @@ MvaCategoryDumper::DumpPhotons()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpCategoryVariables()
+CiCCategoryDumper::DumpCategoryVariables()
 {
-  DumpVar("cat"     , mvaCat  );
+  DumpVar("cat"     , cicCat  );
   DumpVar("tth"     , tthTag  );
   DumpVar("vhLep"   , VHLepTag);
   DumpVar("vhMet"   , VHMetTag);
@@ -175,11 +155,8 @@ MvaCategoryDumper::DumpCategoryVariables()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpDiphotonVariables()
-{
-  /// Align default value with Globe: -99 -> -999
-  if (!PassDijetPreselection()) dijetMVA = combiMVA = -999;
-  
+CiCCategoryDumper::DumpDiphotonVariables()
+{  
   if (IsUnset(costhetastar)) costhetastar = -999;
   else                       costhetastar = std::abs(costhetastar);
   
@@ -190,9 +167,6 @@ MvaCategoryDumper::DumpDiphotonVariables()
   DumpVar("met_phi"      , corrpfmetphi);
   DumpVar("uncorrMet"    , pfmet       );
   DumpVar("uncorrMet_phi", pfmetphi    );
-  DumpVar("diphoMVA"     , diphoMVA    );
-  DumpVar("dijetMVA"     , dijetMVA    );
-  DumpVar("combiMVA"     , combiMVA    );
   DumpVar("cosThetaStar" , costhetastar);
   DumpVar("bjet_csv"     , bjetcsv     );
   DumpVar("rho"          , rho         );
@@ -201,7 +175,7 @@ MvaCategoryDumper::DumpDiphotonVariables()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpVertexVariables()
+CiCCategoryDumper::DumpVertexVariables()
 {
   DumpVar("probmva"   , vtxprob );
   DumpVar("vertexId0" , vtxInd1 );
@@ -212,16 +186,7 @@ MvaCategoryDumper::DumpVertexVariables()
   
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpDiphotonMvaInputs()
-{
-  DumpVar("rVtxSigmaMoM", rVtxSigmaMoM);
-  DumpVar("wVtxSigmaMoM", wVtxSigmaMoM);
-} /// DumpDiphotonMvaInputs
-  
-  
-//------------------------------------------------------------------------------
-void
-MvaCategoryDumper::DumpMuons()
+CiCCategoryDumper::DumpMuons()
 {
   if (mu2Pt < 0) {
     /// No dimuon present
@@ -249,7 +214,7 @@ MvaCategoryDumper::DumpMuons()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpElectrons()
+CiCCategoryDumper::DumpElectrons()
 {
   if (ele2Pt < 0) {
     /// No dielectron present
@@ -277,7 +242,7 @@ MvaCategoryDumper::DumpElectrons()
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpJets(void)
+CiCCategoryDumper::DumpJets(void)
 {
   if (jet1pt < 0) jet1pt = jet1eta = jet1phi = -999;
   if (jet2pt < 0) jet2pt = jet2eta = jet2phi = -999;    
@@ -295,7 +260,7 @@ MvaCategoryDumper::DumpJets(void)
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpDijetVariables(void)
+CiCCategoryDumper::DumpDijetVariables(void)
 {
   float vbf_dEtaJJ = std::abs(jet1eta - jet2eta);
   if (jet1pt < 0 || jet2pt < 0) {
@@ -315,7 +280,7 @@ MvaCategoryDumper::DumpDijetVariables(void)
 
 //------------------------------------------------------------------------------
 void
-MvaCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
+CiCCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
 {
   DumpVar(prefix, "e"      , photon.e     );
   DumpVar(prefix, "eErr"   , photon.eerr * photon.e);
@@ -325,41 +290,13 @@ MvaCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
   DumpVar(prefix, "idMVA"  , photon.idmva );
   DumpVar(prefix, "r9"     , photon.r9    );
   
-  DumpPhotonIdMvaInputs(prefix, photon);
 } /// DumpPhoton
-
-
-//------------------------------------------------------------------------------
-void
-MvaCategoryDumper::DumpPhotonIdMvaInputs(const char *prefix, 
-                                         PhotonReader &photon)
-{
-  DumpVar(prefix, "scRawE"            , photon.scrawe                   );
-  DumpVar(prefix, "sieie"             , photon.sigietaieta              );
-  DumpVar(prefix, "etaWidth"          , photon.scetawidth               );
-  DumpVar(prefix, "phiWidth"          , photon.scphiwidth               );
-  DumpVar(prefix, "cieip"             , photon.idmva_CoviEtaiPhi        );
-  DumpVar(prefix, "s4Ratio"           , photon.idmva_s4ratio            );
-  DumpVar(prefix, "pfPhotonIso03"     , photon.idmva_GammaIso           );
-  DumpVar(prefix, "pfChargedIsoGood03", photon.idmva_ChargedIso_selvtx  );
-  DumpVar(prefix, "pfChargedIsoBad03" , photon.idmva_ChargedIso_worstvtx);
-  DumpVar(prefix, "scEta"             , photon.sceta                    );
-  DumpVar(prefix, "ESEffSigmaRR"      , photon.idmva_PsEffWidthSigmaRR  );
-} /// DumpPhotonIdMvaInputs
-
-
-//------------------------------------------------------------------------------
-bool
-MvaCategoryDumper::PassDijetPreselection(void)
-{
-  return (jet1pt > 30 && jet2pt > 20 && dijetmass > 250);
-} /// PassDijetPreselection
 
 
 //------------------------------------------------------------------------------
 template <class T>
 void
-MvaCategoryDumper::DumpVar(const char *name, T value, const char *suffix)
+CiCCategoryDumper::DumpVar(const char *name, T value, const char *suffix)
 {
   std::cout << name << ":" << value << suffix;
 } /// DumpVar
@@ -367,7 +304,7 @@ MvaCategoryDumper::DumpVar(const char *name, T value, const char *suffix)
 //------------------------------------------------------------------------------
 template <class T>
 void
-MvaCategoryDumper::DumpVar(const char *prefix, const char *name, T value,
+CiCCategoryDumper::DumpVar(const char *prefix, const char *name, T value,
                            const char *suffix)
 {
   std::cout << prefix << name << ":" << value << suffix;

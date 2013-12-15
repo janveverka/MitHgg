@@ -6,4 +6,5 @@
 <use name="root" />
 <environment>
   <bin file="dumpMvaCategories.cc" name="hgg-dump-mva-categories"/>
+  <bin file="dumpCiCCategories.cc" name="hgg-dump-cic-categories"/>
 </environment>
