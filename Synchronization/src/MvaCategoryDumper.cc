@@ -189,6 +189,7 @@ MvaCategoryDumper::DumpDiphotonVariables()
   DumpVar("combiMVA"     , combiMVA    );
   DumpVar("cosThetaStar" , costhetastar);
   DumpVar("bjet_csv"     , bjetcsv     );
+  DumpVar("rho"          , rho         );
 } /// DumpDiphotonVariables
 
 
@@ -300,7 +301,28 @@ MvaCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
   DumpVar(prefix, "phi"    , photon.phi   );
   DumpVar(prefix, "idMVA"  , photon.idmva );
   DumpVar(prefix, "r9"     , photon.r9    );
-} /// Dump photon
+  
+  DumpPhotonIdMvaInputs(prefix, photon);
+} /// DumpPhoton
+
+
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::DumpPhotonIdMvaInputs(const char *prefix, 
+                                         PhotonReader &photon)
+{
+  DumpVar(prefix, "scRawE"            , photon.scrawe                   );
+  DumpVar(prefix, "sieie"             , photon.sigietaieta              );
+  DumpVar(prefix, "etaWidth"          , photon.scetawidth               );
+  DumpVar(prefix, "phiWidth"          , photon.scphiwidth               );
+  DumpVar(prefix, "cieip"             , photon.idmva_CoviEtaiPhi        );
+  DumpVar(prefix, "s4Ratio"           , photon.idmva_s4ratio            );
+  DumpVar(prefix, "pfPhotonIso03"     , photon.idmva_GammaIso           );
+  DumpVar(prefix, "pfChargedIsoGood03", photon.idmva_ChargedIso_selvtx  );
+  DumpVar(prefix, "pfChargedIsoBad03" , photon.idmva_ChargedIso_worstvtx);
+  DumpVar(prefix, "scEta"             , photon.sceta                    );
+  DumpVar(prefix, "ESEffSigmaRR"      , photon.idmva_PsEffWidthSigmaRR  );
+} /// DumpPhotonIdMvaInputs
 
 
 //------------------------------------------------------------------------------
