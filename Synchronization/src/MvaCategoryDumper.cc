@@ -263,7 +263,6 @@ MvaCategoryDumper::DumpElectrons()
   DumpVar("ele1_pt"  , ele1Pt );
   DumpVar("ele1_eta" , ele1Eta);
   DumpVar("ele1_phi" , ele1Phi);
-  DumpVar("ele1_idmva", eleIdMva);
   /// Sublead
   DumpVar("ele2_pt"  , ele2Pt );
   DumpVar("ele2_eta" , ele2Eta);
