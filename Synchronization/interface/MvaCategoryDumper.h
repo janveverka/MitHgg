@@ -30,6 +30,7 @@ namespace mithep
         void DumpElectrons(void);
         void DumpMuons(void);
         void DumpJets(void);
+        void DumpDijetVariables(void);
         void DumpPhoton(const char *prefix, PhotonReader &photon);
         void DumpPhotonIdMvaInputs(const char *prefix, PhotonReader &photon);
         bool IsUnset(float variable) {return std::abs(variable + 99) < 1e-4;}

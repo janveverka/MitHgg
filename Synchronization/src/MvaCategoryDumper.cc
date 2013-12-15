@@ -129,6 +129,7 @@ MvaCategoryDumper::DumpAllVariables()
   DumpMuons();
   DumpElectrons();
   DumpJets();
+  DumpDijetVariables();
 } /// DumpAllVariables
 
 
@@ -274,8 +275,8 @@ MvaCategoryDumper::DumpElectrons()
 void
 MvaCategoryDumper::DumpJets(void)
 {
-  if (jet1pt < 0) dijetmass = jet1pt = jet1eta = jet1phi = -999;
-  if (jet2pt < 0) dijetmass = jet2pt = jet2eta = jet2phi = -999;    
+  if (jet1pt < 0) jet1pt = jet1eta = jet1phi = -999;
+  if (jet2pt < 0) jet2pt = jet2eta = jet2phi = -999;    
   
   /// Lead
   DumpVar("jet1_pt" , jet1pt );
@@ -285,9 +286,27 @@ MvaCategoryDumper::DumpJets(void)
   DumpVar("jet2_pt" , jet2pt );
   DumpVar("jet2_eta", jet2eta);
   DumpVar("jet2_phi", jet2phi); 
-  /// Dijet
-  DumpVar("dijet_mass", dijetmass, ""); /// no trailing tab character
 } /// DumpJets
+
+
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::DumpDijetVariables(void)
+{
+  float vbf_dEtaJJ = abs(jet1eta - jet2eta);
+  if (jet1pt < 0 || jet2pt < 0) {
+    dijetmass = zeppenfeld = dphidijetgg = vbf_dEtaJJ = -999;
+  }  
+  /// TODO: Add vhHad_mass_dijet to the tree writer
+  float vhHad_mass_dijet = -999;  // not implemented yet
+
+  DumpVar("vbf_massJJ"      , dijetmass  );
+  DumpVar("vbf_Zeppenfeld"  , zeppenfeld );
+  DumpVar("vbf_dPhiJJGG"    , dphidijetgg);
+  DumpVar("vbf_dEtaJJ"      , vbf_dEtaJJ );
+  
+  DumpVar("vhHad_mass_dijet", vhHad_mass_dijet, ""); /// no trailing tab
+} /// DumpDijetVariables
 
 
 //------------------------------------------------------------------------------
