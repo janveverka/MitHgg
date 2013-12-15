@@ -318,7 +318,7 @@ void
 MvaCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
 {
   DumpVar(prefix, "e"      , photon.e     );
-  DumpVar(prefix, "eErr"   , photon.eerr  );
+  DumpVar(prefix, "eErr"   , photon.eerr * photon.e);
   DumpVar(prefix, "EnScale", photon.escale);
   DumpVar(prefix, "eta"    , photon.eta   );
   DumpVar(prefix, "phi"    , photon.phi   );
