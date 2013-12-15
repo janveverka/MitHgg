@@ -147,21 +147,9 @@ void
 MvaCategoryDumper::DumpPhotons()
 {
   /// Lead
-  DumpVar("pho1_e"      , ph1.e     );
-  DumpVar("pho1_eErr"   , ph1.eerr  );
-  DumpVar("pho1_EnScale", ph1.escale);
-  DumpVar("pho1_eta"    , ph1.eta   );
-  DumpVar("pho1_phi"    , ph1.phi   );
-  DumpVar("pho1_idMVA"  , ph1.idmva );
-  DumpVar("pho1_r9"     , ph1.r9    );
+  DumpPhoton("pho1_", ph1);
   /// Sublead
-  DumpVar("pho2_e"      , ph2.e     );
-  DumpVar("pho2_eErr"   , ph2.eerr  );
-  DumpVar("pho2_EnScale", ph2.escale);
-  DumpVar("pho2_eta"    , ph2.eta   );
-  DumpVar("pho2_phi"    , ph2.phi   );
-  DumpVar("pho2_idMVA"  , ph2.idmva );
-  DumpVar("pho2_r9"     , ph2.r9    );
+  DumpPhoton("pho2_", ph2);
 } /// DumpPhotons
 
 
@@ -302,6 +290,20 @@ MvaCategoryDumper::DumpJets(void)
 
 
 //------------------------------------------------------------------------------
+void
+MvaCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
+{
+  DumpVar(prefix, "e"      , photon.e     );
+  DumpVar(prefix, "eErr"   , photon.eerr  );
+  DumpVar(prefix, "EnScale", photon.escale);
+  DumpVar(prefix, "eta"    , photon.eta   );
+  DumpVar(prefix, "phi"    , photon.phi   );
+  DumpVar(prefix, "idMVA"  , photon.idmva );
+  DumpVar(prefix, "r9"     , photon.r9    );
+} /// Dump photon
+
+
+//------------------------------------------------------------------------------
 bool
 MvaCategoryDumper::PassDijetPreselection(void)
 {
@@ -315,4 +317,13 @@ void
 MvaCategoryDumper::DumpVar(const char *name, T value, const char *suffix)
 {
   std::cout << name << ":" << value << suffix;
+} /// DumpVar
+
+//------------------------------------------------------------------------------
+template <class T>
+void
+MvaCategoryDumper::DumpVar(const char *prefix, const char *name, T value,
+                           const char *suffix)
+{
+  std::cout << prefix << name << ":" << value << suffix;
 } /// DumpVar

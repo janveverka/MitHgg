@@ -30,11 +30,14 @@ namespace mithep
         void DumpElectrons(void);
         void DumpMuons(void);
         void DumpJets(void);
-//         void DumpPhoton(PhotonReader &photon, const char *prefix);
+        void DumpPhoton(const char *prefix, PhotonReader &photon);
 //         void DumpPhotonIdMvaInputs(PhotonReader &photon, const char *prefix);
         bool IsUnset(float variable) {return std::abs(variable + 99) < 1e-4;}
         template <class T>
         void DumpVar(const char *name, T value, const char *suffix="\t");
+        template <class T>
+        void DumpVar(const char *prefix, const char *name, T value, 
+                     const char *suffix="\t");
     }; // MvaCategoryDumper
   } /// hgg
 } /// mithep
