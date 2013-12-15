@@ -13,8 +13,8 @@ from os.path import join
 
 _cmssw_base = os.environ['CMSSW_BASE']
 _input_bases = '''
-    /home/mingyang/cms/hist/hgg-2013Final7TeV/filefi/031/r11a-pho-j21-v1
-    /home/mingyang/cms/hist/hgg-2013Final7TeV/filefi/031/r11b-pho-j21-v1
+    /home/mingyang/cms/hist/hgg-2013Final7TeV/t2mit/filefi/031/r11a-pho-j21-v1
+    /home/mingyang/cms/hist/hgg-2013Final7TeV/t2mit/filefi/031/r11b-pho-j21-v1
     '''.split()
 
 _unmerged_files = []
@@ -70,11 +70,10 @@ process.dump = cms.PSet(
         ),
     diphotonMvaUseSmearedMassError = cms.bool(True),
     dijetMvaMaxDPhi = cms.double(2.9416),
-    ## 7TeV categories by Josh from 21 November 2013
+    ## 7TeV diphoton categories by Josh from 21 November 2013
     diphotonBdtBoundaries = cms.vdouble(0.93, 0.85, 0.70, 0.19),
     dijetBdtBoundaries    = cms.vdouble(),
-    #combinedBdtBoundaries = cms.vdouble(0.992, 0.911),
-    ## Updated 7TeV categories by Josh from 3 December 2013
+    ## Updated 7TeV combined BDT categories by Josh from 3 December 2013
     combinedBdtBoundaries = cms.vdouble(0.995, 0.917),
     ) ## process.dump
 

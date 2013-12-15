@@ -12,7 +12,8 @@ process = cms.Process('DUMP')
 process.inputs = cms.PSet(
     fileNames = cms.vstring(join(
         _cmssw_base, 'src/MitHgg/macros',
-        'hgg_s12-h120gg-vh-v7n_noskim_0000.root'
+        #'hgg_s12-h120gg-vh-v7n_noskim_0000.root'
+        'hgg_r12b-dph-j22-v1_noskim_0058.root'
         )),
     treeName  = cms.string(
         '/RunLumiSelectionMod/MCProcessSelectionMod/' +

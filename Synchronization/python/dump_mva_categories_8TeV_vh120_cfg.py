@@ -10,21 +10,22 @@ process = cms.Process('DUMP')
 
 #_______________________________________________________________________________
 process.inputs = cms.PSet(
-    fileNames = cms.vstring(    
-        #join('/home/veverka/cms/hist/hgg-2013Final8TeV_2/merged',
-             #'hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root')
+    fileNames = cms.vstring(
+        join('/home/veverka/cms/hist/hgg-2013Final8TeV/merged',
+             'hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root')
         #join('/home/mingyang/cms/hist/hgg-2013Final8TeV/merged',
              #'hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim.root')
-        ) + [join(
-        '/home/mingyang/cms/hist/hgg-2013Final8TeV/filefi/030/s12-h120gg-vh-v7n',
-        fname
-        ) for fname in '''
-            hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0000.root
-            hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0001.root
-            hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0002.root
-            hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0003.root
-            hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0004.root
-            '''.split()],
+        ),
+        #+ [join(
+        #'/home/mingyang/cms/hist/hgg-2013Final8TeV/filefi/030/s12-h120gg-vh-v7n',
+        #fname
+        #) for fname in '''
+            #hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0000.root
+            #hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0001.root
+            #hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0002.root
+            #hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0003.root
+            #hgg-2013Final8TeV_s12-h120gg-vh-v7n_noskim_0004.root
+            #'''.split()],
     treeName  = cms.string(
         '/RunLumiSelectionMod/MCProcessSelectionMod/' +
         'HLTModP/GoodPVFilterMod/PhotonMvaMod/JetPub/JetCorrectionMod/' +

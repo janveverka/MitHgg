@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 Configuration for the mva category dump for the 8TeV data trees
-produced by Mingming on 29. November.
+produced by Mingming on December 4.
 The list of unmerged input files is globbed by the script given
 the list of source directories.
 '''
@@ -25,6 +25,14 @@ for _directory in _input_bases:
     _files_in_dir.sort()
     _unmerged_files += _files_in_dir
     _actual = len(_files_in_dir)
+    ## Extract the expected number of files from the last filename, example:
+    ## 'hgg-2013Final8TeV_r12d-dph-j22-v1_noskim_0183.root'.split('_')
+    ## ['hgg-2013Final8TeV', 'r12d-dph-j22-v1', 'noskim', '0183.root'][-1]
+    ## '0183.root'[:4]
+    ## '0183'.lstrip('0')
+    ## int('183')
+    ## 183 + 1
+    ## 184
     _expected = int(_files_in_dir[-1].split('_')[-1][:4].lstrip('0')) + 1
     print >> sys.stderr, '%s: added %3d files' % (_directory, _actual),
     print >> sys.stderr, 'of %3d expected ...' % _expected
