@@ -124,6 +124,8 @@ MvaCategoryDumper::DumpAllVariables()
   DumpPhotons();
   DumpCategoryVariables();
   DumpDiphotonVariables();
+  DumpVertexVariables();
+  DumpDiphotonMvaInputs();
   DumpMuons();
   DumpElectrons();
   DumpJets();
@@ -145,17 +147,21 @@ void
 MvaCategoryDumper::DumpPhotons()
 {
   /// Lead
-  DumpVar("pho1_e"    , ph1.e    );
-  DumpVar("pho1_eErr" , ph1.eerr );
-  DumpVar("pho1_eta"  , ph1.eta  );
-  DumpVar("pho1_phi"  , ph1.phi  );
-  DumpVar("pho1_idMVA", ph1.idmva);
+  DumpVar("pho1_e"      , ph1.e     );
+  DumpVar("pho1_eErr"   , ph1.eerr  );
+  DumpVar("pho1_EnScale", ph1.escale);
+  DumpVar("pho1_eta"    , ph1.eta   );
+  DumpVar("pho1_phi"    , ph1.phi   );
+  DumpVar("pho1_idMVA"  , ph1.idmva );
+  DumpVar("pho1_r9"     , ph1.r9    );
   /// Sublead
-  DumpVar("pho2_e"    , ph2.e    );
-  DumpVar("pho2_eErr" , ph2.eerr );
-  DumpVar("pho2_eta"  , ph2.eta  );
-  DumpVar("pho2_phi"  , ph2.phi  );
-  DumpVar("pho2_idMVA", ph2.idmva);
+  DumpVar("pho2_e"      , ph2.e     );
+  DumpVar("pho2_eErr"   , ph2.eerr  );
+  DumpVar("pho2_EnScale", ph2.escale);
+  DumpVar("pho2_eta"    , ph2.eta   );
+  DumpVar("pho2_phi"    , ph2.phi   );
+  DumpVar("pho2_idMVA"  , ph2.idmva );
+  DumpVar("pho2_r9"     , ph2.r9    );
 } /// DumpPhotons
 
 
@@ -200,6 +206,26 @@ MvaCategoryDumper::DumpDiphotonVariables()
 
 //------------------------------------------------------------------------------
 void
+MvaCategoryDumper::DumpVertexVariables()
+{
+  DumpVar("probmva"   , vtxprob );
+  DumpVar("vertexId0" , vtxInd1 );
+  DumpVar("vertexMva0", vtxMva1 );
+  DumpVar("vertex_z"  , vtxMva1Z);  
+} /// DumpVertexVariables
+  
+  
+//------------------------------------------------------------------------------
+void
+MvaCategoryDumper::DumpDiphotonMvaInputs()
+{
+  DumpVar("rVtxSigmaMoM", rVtxSigmaMoM);
+  DumpVar("wVtxSigmaMoM", wVtxSigmaMoM);
+} /// DumpDiphotonMvaInputs
+  
+  
+//------------------------------------------------------------------------------
+void
 MvaCategoryDumper::DumpMuons()
 {
   if (mu2Pt < 0) {
@@ -240,13 +266,14 @@ MvaCategoryDumper::DumpElectrons()
 
   if (ele1Pt < 0) {
     /// No electron present
-    ele1Pt = ele1Eta = ele1Phi = -999;
+    eleIdMva = ele1Pt = ele1Eta = ele1Phi = -999;
   }
   
   /// Lead
   DumpVar("ele1_pt"  , ele1Pt );
   DumpVar("ele1_eta" , ele1Eta);
   DumpVar("ele1_phi" , ele1Phi);
+  DumpVar("ele1_idmva", eleIdMva);
   /// Sublead
   DumpVar("ele2_pt"  , ele2Pt );
   DumpVar("ele2_eta" , ele2Eta);
@@ -258,8 +285,8 @@ MvaCategoryDumper::DumpElectrons()
 void
 MvaCategoryDumper::DumpJets(void)
 {
-  if (jet1pt < 0) jet1pt = jet1eta = jet1phi = -999;
-  if (jet2pt < 0) jet2pt = jet2eta = jet2phi = -999;    
+  if (jet1pt < 0) dijetmass = jet1pt = jet1eta = jet1phi = -999;
+  if (jet2pt < 0) dijetmass = jet2pt = jet2eta = jet2phi = -999;    
   
   /// Lead
   DumpVar("jet1_pt" , jet1pt );
@@ -268,7 +295,9 @@ MvaCategoryDumper::DumpJets(void)
   /// Sublead
   DumpVar("jet2_pt" , jet2pt );
   DumpVar("jet2_eta", jet2eta);
-  DumpVar("jet2_phi", jet2phi, ""); /// no trailing tab character
+  DumpVar("jet2_phi", jet2phi); 
+  /// Dijet
+  DumpVar("dijet_mass", dijetmass, ""); /// no trailing tab character
 } /// DumpJets
 
 

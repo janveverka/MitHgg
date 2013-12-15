@@ -25,9 +25,13 @@ namespace mithep
         void DumpPhotons(void);
         void DumpCategoryVariables(void);
         void DumpDiphotonVariables(void);
+        void DumpVertexVariables(void);
+        void DumpDiphotonMvaInputs(void);
         void DumpElectrons(void);
         void DumpMuons(void);
         void DumpJets(void);
+//         void DumpPhoton(PhotonReader &photon, const char *prefix);
+//         void DumpPhotonIdMvaInputs(PhotonReader &photon, const char *prefix);
         bool IsUnset(float variable) {return std::abs(variable + 99) < 1e-4;}
         template <class T>
         void DumpVar(const char *name, T value, const char *suffix="\t");
