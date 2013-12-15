@@ -39,6 +39,7 @@ namespace mithep
         template <class T>
         void DumpVar(const char *prefix, const char *name, T value, 
                      const char *suffix="\t");
+        int fMaxEntries;
     }; // MvaCategoryDumper
   } /// hgg
 } /// mithep

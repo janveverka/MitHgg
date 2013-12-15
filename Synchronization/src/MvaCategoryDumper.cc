@@ -22,7 +22,8 @@ MvaCategoryDumper::MvaCategoryDumper(TTree *tree, const PSet &iConfig) :
     iConfig.getUntrackedParameter<string>("diphoTmvaOption", "Silent").c_str(),
     iConfig.getUntrackedParameter<string>("dijetTmvaOption", "Silent").c_str(),
     iConfig.getUntrackedParameter<string>("combiTmvaOption", "Silent").c_str()
-  )
+  ),
+  fMaxEntries(iConfig.getUntrackedParameter<int>("maxEntriesToProcess", -1))
 {
   Init(iConfig);
 } /// Ctor
@@ -107,7 +108,11 @@ MvaCategoryDumper::Init(const PSet &iConfig)
 void
 MvaCategoryDumper::ProduceDump()
 {
-  for (unsigned iEntry=0; iEntry < fTree->GetEntries(); iEntry++) {
+  unsigned numEntriesToProcess = fTree->GetEntries();
+  if (fMaxEntries > 0 && fMaxEntries < (int) numEntriesToProcess) {
+    numEntriesToProcess = fMaxEntries;
+  }
+  for (unsigned iEntry=0; iEntry < numEntriesToProcess; iEntry++) {
     GetEntry(iEntry);
     if (mvaCat < 0) continue;
     DumpAllVariables();
