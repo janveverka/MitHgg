@@ -57,12 +57,12 @@ MvaCategoryReaderTest::setUp(void)
   tagsForRunEvent[RunEvent(200519, 68683)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68687)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68689)] = Tags(0 , 0, 0, 0, 0);
-  tagsForRunEvent[RunEvent(200519, 68690)] = Tags(0 , 1, 0, 0, 9);
+  tagsForRunEvent[RunEvent(200519, 68690)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68693)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68694)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68695)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68697)] = Tags(0 , 0, 0, 0, 0);
-  tagsForRunEvent[RunEvent(200519, 68698)] = Tags(0 , 1, 0, 0, 9);
+  tagsForRunEvent[RunEvent(200519, 68698)] = Tags(0 , 0, 0, 0, 0);
   tagsForRunEvent[RunEvent(200519, 68700)] = Tags(1 , 0, 0, 0, 8);
 } /// setUp
 

@@ -96,11 +96,11 @@ DiphotonMvaReaderTest::testWeightReading(void)
     actualMVA->GetEntry(i);
     
     if (useSmearedMassError) {
-      rVtxSigmaMoM = tree->masserrsmeared / tree->mass;
-      wVtxSigmaMoM = tree->masserrsmearedwrongvtx / tree->mass;
+      rVtxSigmaMoM = tree->masserrsmeared;
+      wVtxSigmaMoM = tree->masserrsmearedwrongvtx;
     } else {
-      rVtxSigmaMoM = tree->masserr / tree->mass;
-      wVtxSigmaMoM = tree->masserrwrongvtx / tree->mass;
+      rVtxSigmaMoM = tree->masserr;
+      wVtxSigmaMoM = tree->masserrwrongvtx;
     }
     cosDPhi      = TMath::Cos(tree->ph1.phi - tree->ph2.phi);
     pho1_ptOverM = tree->ph1.pt / tree->mass;

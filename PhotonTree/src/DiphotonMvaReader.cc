@@ -81,11 +81,11 @@ DiphotonMvaReader::Update(void)
   TreeReader::Update();
   /// Calculate derived diphoMVA inputs.
   if (fDiphoUseSmearedMassError) {
-    rVtxSigmaMoM = masserrsmeared / mass;
-    wVtxSigmaMoM = masserrsmearedwrongvtx / mass;
+    rVtxSigmaMoM = masserrsmeared;
+    wVtxSigmaMoM = masserrsmearedwrongvtx;
   } else {
-    rVtxSigmaMoM = masserr / mass;
-    wVtxSigmaMoM = masserrwrongvtx / mass;
+    rVtxSigmaMoM = masserr;
+    wVtxSigmaMoM = masserrwrongvtx;
   }
   cosDPhi      = TMath::Cos(ph1.phi - ph2.phi);
   pho1_ptOverM = ph1.pt / mass;
