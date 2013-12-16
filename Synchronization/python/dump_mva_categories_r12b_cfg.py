@@ -4,7 +4,7 @@ import FWCore.ParameterSet.Config as cms
 from os.path import join
 
 _cmssw_base = os.environ['CMSSW_BASE']
-_input_base = '/home/mingyang/cms/hist/hgg-2013Final8TeV/merged'
+_input_base = '/home/mingyang/cms/hist/hgg-2013Final8TeV_0/merged'
 
 #_______________________________________________________________________________
 process = cms.Process('DUMP')
