@@ -4,8 +4,6 @@ import FWCore.ParameterSet.Config as cms
 from os.path import join
 
 _cmssw_base = os.environ['CMSSW_BASE']
-# _input_base = '/home/veverka/cms/hist/hgg-2013Final8TeV_2/merged'
-# Trees of Dec 12, contain E-dep scale corr., lepton tag fixes and logic fixes
 _input_base = '/home/mingyang/cms/hist/hgg-2013Final8TeV/merged'
 
 #_______________________________________________________________________________
@@ -13,10 +11,9 @@ process = cms.Process('DUMP')
 
 #_______________________________________________________________________________
 process.inputs = cms.PSet(
-    fileNames = cms.vstring() + [
-        join(_input_base, 'hgg-2013Final8TeV_r12%s-j22-v1_noskim.root' % r) 
-        for r in 'a-pho b-dph c-dph d-dph'.split()[:]
-        ],
+    fileNames = cms.vstring(
+        join(_input_base, 'hgg-2013Final8TeV_r12c-dph-j22-v1_noskim.root')
+        ),
     treeName  = cms.string(
         '/RunLumiSelectionMod/MCProcessSelectionMod/' +
         'HLTModP/GoodPVFilterMod/PhotonMvaMod/JetPub/JetCorrectionMod/' +
