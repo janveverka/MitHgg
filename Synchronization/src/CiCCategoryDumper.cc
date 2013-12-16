@@ -282,8 +282,11 @@ CiCCategoryDumper::DumpDijetVariables(void)
 void
 CiCCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
 {
+  /// Align sigmaE definition with Globe
+  photon.eerr *= photon.e / photon.escale;
+
   DumpVar(prefix, "e"      , photon.e     );
-  DumpVar(prefix, "eErr"   , photon.eerr * photon.e);
+  DumpVar(prefix, "eErr"   , photon.eerr  );
   DumpVar(prefix, "EnScale", photon.escale);
   DumpVar(prefix, "eta"    , photon.eta   );
   DumpVar(prefix, "phi"    , photon.phi   );
