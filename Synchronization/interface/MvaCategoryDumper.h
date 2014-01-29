@@ -18,6 +18,7 @@ namespace mithep
         void ProduceDump();
       protected:
         static EBeamEnergy GetBeamEnergy(const PSet &iConfig);
+        static std::string GetEventsToSkip(const PSet &iConfig);
         void Init(const PSet &iConfig);
         bool PassDijetPreselection(void);
         void DumpAllVariables(void);

@@ -26,13 +26,16 @@ do
   DATASET=`     echo $line | tr -s ' ' | cut -d ' ' -f 2`
   SKIM=`        echo $line | tr -s ' ' | cut -d ' ' -f 3`
 
+  # adjust book / catalog dir
+  BOOK=`echo $BOOK_VERSION | cut -d/ -f2-3`
+
   if [ "$PATTERN" == "" ] || [ "`echo $DATASET | grep $PATTERN`" != "" ]
   then
 
     # now merge the sucker
     #echo \
     mergeHist.py --Dataset=$DATASET --Skim=$SKIM \
-                  --InputPath=$MIT_PROD_HIST/$MIT_PROD_CFG/$BOOK_VERSION \
+                  --InputPath=$MIT_PROD_HIST/$MIT_PROD_CFG/$BOOK \
                  --OutputPath=$MIT_PROD_HIST/$MIT_PROD_CFG/merged \
                  --FilenameHeader=$MIT_PROD_CFG
   fi

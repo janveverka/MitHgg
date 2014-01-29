@@ -15,8 +15,9 @@ const unsigned int CiCCategoryReader::kNumInclCats  = 8;
 const unsigned int CiCCategoryReader::kNumDijetCats = 2;
 
 //------------------------------------------------------------------------------
-CiCCategoryReader::CiCCategoryReader(TTree       *iTree      ,
-                                     EBeamEnergy  iBeamEnergy) :
+CiCCategoryReader::CiCCategoryReader(TTree       *iTree       ,
+                                     EBeamEnergy  iBeamEnergy ,
+                                     const char  *eventsToSkip) :
   TreeReader (iTree                      ),
   massOver120(-99                        ),
   VHMetTag   (-1                         ),
@@ -31,7 +32,9 @@ CiCCategoryReader::CiCCategoryReader(TTree       *iTree      ,
   kVHMet     (kVHLepLoose + 1            ),
   kTTHLep    (kVHMet      + 1            ),
   kTTHHad    (kTTHLep     + 1            ),
-  kVHHad     (kTTHHad     + 1            )
+  kVHHad     (kTTHHad     + 1            ),
+  fEventsToSkip(eventsToSkip),
+  fEventFilter(0)
 {
   Init();
 } /// Ctor
@@ -39,7 +42,9 @@ CiCCategoryReader::CiCCategoryReader(TTree       *iTree      ,
 
 //------------------------------------------------------------------------------
 CiCCategoryReader::~CiCCategoryReader()
-{} /// Dtor
+{
+  delete fEventFilter;
+} /// Dtor
 
 
 //------------------------------------------------------------------------------
@@ -47,6 +52,9 @@ void
 CiCCategoryReader::Init()
 {
   Update();
+  if (fEventsToSkip != "") {
+    fEventFilter = new EventFilterFromListStandAlone(fEventsToSkip);
+  }
 } /// Init
 
 
@@ -54,6 +62,10 @@ CiCCategoryReader::Init()
 void
 CiCCategoryReader::Update(void)
 {
+  massOver120 = mass / 120.;
+  ph1_ecalRegion = GetEcalFiducialRegion(ph1.sceta);
+  ph2_ecalRegion = GetEcalFiducialRegion(ph2.sceta);
+
   UpdateCategoryDefinitions();
   
   UpdateInclusiveCat       ();
@@ -65,6 +77,17 @@ CiCCategoryReader::Update(void)
   
   UpdateCiCCat             ();
 } /// Update
+
+
+//------------------------------------------------------------------------------
+CiCCategoryReader::EEcalFiducialRegion
+CiCCategoryReader::GetEcalFiducialRegion(float scEta)
+{
+  float absEta = TMath::Abs(scEta);
+  if      (absEta < 1.4442) return EEcalFiducialRegion::eBarrel;
+  else if (absEta > 1.566 ) return EEcalFiducialRegion::eEndcaps;
+  else                      return EEcalFiducialRegion::eGap;
+} /// GetEcalFiducialRegion
 
 
 //------------------------------------------------------------------------------
@@ -118,12 +141,17 @@ void
 CiCCategoryReader::UpdateInclusiveCat(void)
 {
   if (ph1.pt < 40. * massOver120 || ph2.pt < 30. * massOver120) {
+/*  if (ph1.pt < 40. * massOver120 || ph2.pt < 30. * massOver120 ||
+      ph1_ecalRegion == EEcalFiducialRegion::eGap ||
+      ph2_ecalRegion == EEcalFiducialRegion::eGap) {*/
     inclCat = -1;
     return;
   }
   inclCat = 0;
   bool isHighPtGG = (ptgg / mass > 40. / 125.      );
-  bool isBothEB   = (ph1.isbarrel  && ph2.isbarrel );
+/*  bool isBothEB   = (ph1_ecalRegion == EEcalFiducialRegion::eBarrel &&
+                     ph2_ecalRegion == EEcalFiducialRegion::eBarrel);*/
+  bool isBothEB   = (ph1.isbarrel && ph2.isbarrel);
   bool isBothR9   = (ph1.r9 > 0.94 && ph2.r9 > 0.94);
   if (!isHighPtGG) inclCat += 4;
   if (!isBothEB  ) inclCat += 2;
@@ -174,7 +202,7 @@ CiCCategoryReader::UpdateVHLepTag(void)
   bool isVHLepLoose = (VHLepTag % 2 == 1); /// true for VHLepTag = 1 or 3
   
   if (ph1.pt < 45. * massOver120 || 
-      ph2.pt < 20.                ) {
+      ph2.pt < 25.                ) {
     isVHLepLoose = false;
     isVHLepTight = false;
   }
@@ -211,7 +239,7 @@ CiCCategoryReader::PassesCommonVHMetTagCuts(void)
   return (
            corrpfmet           > 70.               &&
            ph1.pt              > 45. * massOver120 &&
-           ph1.pt              > 25.               &&
+           ph2.pt              > 25.               &&
            std::abs(dPhiMetGG) > 2.1               &&
            (
              jetleadNoIDpt        < 50. || 
@@ -257,9 +285,48 @@ CiCCategoryReader::UpdateVHHadTag(void)
 
 
 //------------------------------------------------------------------------------
-// The meat!
 void
 CiCCategoryReader::UpdateCiCCat(void)
+{
+  switch (fBeamEnergy) {
+    case EBeamEnergy::k7TeV:
+      UpdateCiCCat7TeV();
+      break;
+    case EBeamEnergy::k8TeV:
+      UpdateCiCCat8TeV();
+      break;
+    default:
+      /// This should never happen!
+      cms::Exception exception("BadEnum");
+      exception << __FILE__ << ":" << __LINE__ << " in " << __FUNCTION__
+                << ": Illegal EBeamEnergy enum value: " << fBeamEnergy;
+      throw exception;
+  } /// fBeamEnergy
+} /// UpdateCiCCat
+
+
+//------------------------------------------------------------------------------
+// The meat!
+void
+CiCCategoryReader::UpdateCiCCat7TeV(void)
+{
+  cicCat = -999;
+  if (!PassesPreselection()) return;
+  if      (tthTag   == 2) cicCat = kTTHLep;
+  else if (tthTag   == 1) cicCat = kTTHHad;
+  else if (VHLepTag == 2) cicCat = kVHLepTight;
+  else if (VHLepTag == 1) cicCat = kVHLepLoose;
+  else if (dijetCat >= 0) cicCat = kDijet0 + dijetCat;
+  else if (VHMetTag == 1) cicCat = kVHMet;
+  else if (VHHadTag == 1) cicCat = kVHHad;
+  else if (inclCat  >= 0) cicCat = kIncl0 + inclCat;
+} /// UpdateCiCCat7TeV
+
+
+//------------------------------------------------------------------------------
+// The meat!
+void
+CiCCategoryReader::UpdateCiCCat8TeV(void)
 {
   cicCat = -999;
   if (!PassesPreselection()) return;
@@ -271,12 +338,16 @@ CiCCategoryReader::UpdateCiCCat(void)
   else if (tthTag   == 1) cicCat = kTTHHad;
   else if (VHHadTag == 1) cicCat = kVHHad;
   else if (inclCat  >= 0) cicCat = kIncl0 + inclCat;
-} /// UpdateCiCCat
+} /// UpdateCiCCat8TeV
 
 
 //------------------------------------------------------------------------------
 bool
 CiCCategoryReader::PassesPreselection(void)
 {
-  return (100. < mass && mass < 180.);
+  bool passesEventFilter = true;
+  if (fEventFilter) {
+    passesEventFilter = fEventFilter->filter(run, lumi, evt);
+  }
+  return (passesEventFilter && 100. < mass && mass < 180.);
 } /// PassesPreselection

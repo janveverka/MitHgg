@@ -1,4 +1,4 @@
-// $Id: runHgg.C,v 1.5 2012/03/31 23:27:25 paus Exp $
+// $Id: runHgg.C,v 1.6 2013/06/06 19:59:17 paus Exp $
 #if !defined(__CINT__) || defined(__MAKECINT__)
 #include <TSystem.h>
 #include <TProfile.h>

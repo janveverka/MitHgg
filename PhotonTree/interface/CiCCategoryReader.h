@@ -5,7 +5,9 @@
 #ifndef MitHgg_PhotonTree_CiCCategoryReader_h
 #define MitHgg_PhotonTree_CiCCategoryReader_h
 
+#include <string>
 #include "MitHgg/PhotonTree/interface/TreeReader.h"
+#include "MitHgg/Tools/interface/EventFilterFromListStandAlone.h"
 
 namespace mithep
 {
@@ -15,11 +17,13 @@ namespace mithep
     class CiCCategoryReader : public TreeReader
     {
     public:
-      enum EBeamEnergy {k7TeV, k8TeV};
+      enum EBeamEnergy         {k7TeV  , k8TeV};
+      enum EEcalFiducialRegion {eBarrel, eEndcaps, eGap};
       
       CiCCategoryReader(
         TTree      *iTree                                ,
-        EBeamEnergy iBeamEnergy      = EBeamEnergy::k8TeV
+        EBeamEnergy iBeamEnergy      = EBeamEnergy::k8TeV,
+        const char *eventsToSkip     = ""
         );
       virtual ~CiCCategoryReader();
 
@@ -29,9 +33,12 @@ namespace mithep
       Int_t dijetCat;
       Int_t inclCat ;
       Int_t cicCat  ;
+      EEcalFiducialRegion ph1_ecalRegion;
+      EEcalFiducialRegion ph2_ecalRegion;
 
     protected:
       void         Init                         (void);
+      EEcalFiducialRegion GetEcalFiducialRegion (float scEta);
       virtual void Update                       (void);
       void         UpdateCategoryDefinitions    (void);
       void         UpdateCategoryDefinitions7TeV(void);
@@ -43,6 +50,8 @@ namespace mithep
       void         UpdateTTHTag                 (void);
       void         UpdateVHHadTag               (void);
       void         UpdateCiCCat                 (void);
+      void         UpdateCiCCat7TeV             (void);
+      void         UpdateCiCCat8TeV             (void);
       bool         PassesCommonVHMetTagCuts     (void);
       bool         PassesPreselection           (void);
 
@@ -54,6 +63,9 @@ namespace mithep
       Int_t kIncl0, kDijet0;
       Int_t kVHLepTight, kVHLepLoose, kVHMet;
       Int_t kTTHLep, kTTHHad, kVHHad;
+
+      std::string fEventsToSkip;
+      EventFilterFromListStandAlone *fEventFilter;
 
       ClassDef(CiCCategoryReader, 0)
     }; /// CiCCategoryReader

@@ -8,6 +8,7 @@
 #include <vector>
 #include "TMVA/Reader.h"
 #include "MitHgg/PhotonTree/interface/CombinedMvaReader.h"
+#include "MitHgg/Tools/interface/EventFilterFromListStandAlone.h"
 
 namespace mithep
 {
@@ -28,7 +29,8 @@ namespace mithep
         Float_t     iDijetMaxDPhi    = 2.916                            ,
         const char *iDiphoTmvaOption = "Silent"                         ,
         const char *iDijetTmvaOption = "Silent"                         ,
-        const char *iCombiTmvaOption = "Silent"
+        const char *iCombiTmvaOption = "Silent"                         ,
+        const char *eventsToSkip     = ""
         );
       virtual ~MvaCategoryReader();
 
@@ -61,7 +63,8 @@ namespace mithep
       void         UpdateTTHTag                 (double minDiphoMVALep  ,
                                                  double minDiphoMVAHad  );
       void         UpdateVHHadTag               (double minDiphoMVA     );
-      void         UpdateMvaCat                 (void                   );
+      void         UpdateMvaCat7TeV             (void                   );
+      void         UpdateMvaCat8TeV             (void                   );
       bool         PassesCommonVHMetTagCuts     (void                   );
       bool         PassesPreselection           (void                   );
 
@@ -76,6 +79,9 @@ namespace mithep
       Int_t kIncl0, kDijet0;
       Int_t kVHLepTight, kVHLepLoose, kVHMet;
       Int_t kTTHLep, kTTHHad, kVHHad;
+
+      std::string fEventsToSkip;
+      EventFilterFromListStandAlone *fEventFilter;
 
       ClassDef(MvaCategoryReader, 0)
     }; /// MvaCategoryReader

@@ -34,9 +34,70 @@ event_data = '''/DoublePhoton/Run2012B-22Jan2013-v1/AOD 196250  64
                 /DoublePhoton/Run2012D-22Jan2013-v1/AOD 206401 127
                 /DoublePhoton/Run2012D-22Jan2013-v1/AOD 206542 371
                 /DoublePhoton/Run2012D-22Jan2013-v1/AOD 207920 500'''
+
+## TTH tag deficit in 7 TeV
+#event_data = '''172952 1118
+                #177730 1125'''
+
+### TTH tag deficit in 8 TeV
+#event_data = '''200190  163
+                #205921  484'''
+
+## 8 TeV CiC TTH lep killed in Globe by sublead photon iso
+event_data = '199021 1393'
+
+## 8 TeV CiC last push:
+## VH lep 1 killed in Globe by moun and sublead photon isolations
+## 2 Globe unique VH MET events
+event_data = '''202087 532
+                207477 543
+                195774 576
+                204113 350'''
+## 8 TeV CiC last push #2:
+## VH had event missing in MIT
+event_data = '193336 33'
+
+
+#_______________________________________________________________________________
+def run_period_for_run_number(run_number):
+    period_range_map = {
+        'Run2011A': (160404, 173692),
+        'Run2011B': (175833, 180252),
+        'Run2012A': (190456, 193621),
+        'Run2012B': (193834, 196531),
+        'Run2012C': (198022, 203742),
+        'Run2012D': (203777, 208686),
+        }
+    
+    for run_period, run_range in period_range_map.items():
+        first_run, last_run = run_range
+        if first_run <= run_number and run_number <= last_run:
+            break
+    return run_period
+## run_period_for_run_number
+
+#_______________________________________________________________________________
+def dataset_for_run_period(run_period):
+    return {
+        'Run2011A': '/Photon/Run2011A-21Jun2013-v1/AOD'      ,
+        'Run2011B': '/Photon/Run2011B-21Jun2013-v1/AOD'      ,
+        'Run2012A': '/Photon/Run2012A-22Jan2013-v1/AOD'      ,
+        'Run2012B': '/DoublePhoton/Run2012B-22Jan2013-v1/AOD',
+        'Run2012C': '/DoublePhoton/Run2012C-22Jan2013-v2/AOD',
+        'Run2012D': '/DoublePhoton/Run2012D-22Jan2013-v1/AOD',
+        }[run_period]
+## dataset_for_run_period
+
+#_______________________________________________________________________________
+def dataset_for_run_number(run_number):
+    run_period = run_period_for_run_number(run_number)
+    return dataset_for_run_period(run_period)
+## dataset_for_run_number
+
 summary = []
 for line in map(str.strip, event_data.split('\n')):
-    dataset, run, lumi = line.split()
+    run, lumi = line.split()
+    dataset = dataset_for_run_number(int(run))
     command = 'dbsql "find file where dataset=%s and run=%s and lumi=%s"' % (
         dataset, run, lumi
         )

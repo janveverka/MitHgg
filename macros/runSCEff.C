@@ -1,4 +1,4 @@
-// $Id: runPhIso.C,v 1.4 2011/02/01 16:51:37 bendavid Exp $
+// $Id: runSCEff.C,v 1.1 2011/04/28 16:09:52 fabstoec Exp $
 #if !defined(__CINT__) || defined(__MAKECINT__)
 #include <TSystem.h>
 #include "MitAna/DataUtil/interface/Debug.h"

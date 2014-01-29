@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// $Id: PhotonMCDataSFMod.h,v 1.1 2011/07/15 17:26:34 fabstoec Exp $
+// $Id: PhotonMCDataSFMod.h,v 1.2 2012/01/23 11:56:27 fabstoec Exp $
 //
 // PhotonMCDataSFMod
 //

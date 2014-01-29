@@ -1,4 +1,4 @@
-// $Id: HggAnalysisMod.cc,v 1.2 2011/07/08 09:30:06 fabstoec Exp $
+// $Id: HggAnalysisMod.cc,v 1.3 2011/07/08 17:55:21 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>

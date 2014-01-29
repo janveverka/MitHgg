@@ -1,4 +1,4 @@
-// $Id: HGGMod.cc,v 1.3 2012/03/31 23:27:25 paus Exp $
+// $Id: HGGMod.cc,v 1.4 2012/04/17 16:35:29 fabstoec Exp $
 
 #include "MitHgg/Mods/interface/HGGMod.h"
 #include <TH1D.h>

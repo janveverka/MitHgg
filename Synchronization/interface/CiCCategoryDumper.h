@@ -2,6 +2,7 @@
 #define MitHgg_PhotonTree_CiCCategoryDumper_h
 
 #include <algorithm> // std::abs
+#include <string>
 #include "MitHgg/Tools/interface/PSet.h"
 #include "MitHgg/PhotonTree/interface/CiCCategoryReader.h"
 
@@ -18,6 +19,7 @@ namespace mithep
         void ProduceDump();
       protected:
         static EBeamEnergy GetBeamEnergy(const PSet &iConfig);
+        static std::string GetEventsToSkip(const PSet &iConfig);
         void Init(const PSet &iConfig);
         bool PassDijetPreselection(void);
         void DumpAllVariables(void);
@@ -31,6 +33,7 @@ namespace mithep
         void DumpJets(void);
         void DumpDijetVariables(void);
         void DumpPhoton(const char *prefix, PhotonReader &photon);
+        void DumpPhotonCiCIDInputs(const char *prefix, PhotonReader &photon);
         bool IsUnset(float variable) {return std::abs(variable + 99) < 1e-4;}
         template <class T>
         void DumpVar(const char *name, T value, const char *suffix="\t");

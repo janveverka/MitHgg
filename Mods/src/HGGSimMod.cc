@@ -1,4 +1,4 @@
-// $Id: HGGSimMod.cc,v 1.1 2011/02/22 02:48:26 bendavid Exp $
+// $Id: HGGSimMod.cc,v 1.2 2012/04/17 16:35:29 fabstoec Exp $
 
 #include "MitHgg/Mods/interface/HGGSimMod.h"
 #include <TH1D.h>

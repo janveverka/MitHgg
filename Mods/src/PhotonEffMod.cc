@@ -1,4 +1,4 @@
-// $Id: PhotonEffMod.cc,v 1.1 2011/03/22 12:58:26 fabstoec Exp $
+// $Id: PhotonEffMod.cc,v 1.2 2012/04/17 16:35:29 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>

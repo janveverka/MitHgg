@@ -4,7 +4,7 @@ import FWCore.ParameterSet.Config as cms
 from os.path import join
 
 _cmssw_base = os.environ['CMSSW_BASE']
-_input_base = '/home/mingyang/cms/hist/hgg-2013Final8TeV_0/merged'
+_input_base = '/home/mingyang/cms/hist/hgg-2013Final8TeV/merged'
 
 #_______________________________________________________________________________
 process = cms.Process('DUMP')
@@ -46,6 +46,10 @@ process.dump = cms.PSet(
     diphotonBdtBoundaries = cms.vdouble(0.76, 0.36, 0.00, -0.42, -0.78),
     dijetBdtBoundaries    = cms.vdouble(),
     combinedBdtBoundaries = cms.vdouble(0.94, 0.82, 0.14),
+    eventsToSkip = cms.string(
+        join(_cmssw_base, 'src/MitHgg/Tools/data',
+             'HCALLaser2012AllDatasets_and_ECALLaserFiltered.txt.gz')
+        ),
     ) ## process.dump
 
 

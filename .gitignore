@@ -1,0 +1,6 @@
+CVS
+*_C.so
+*.log
+*.pyc
+.#*.C.*.*
+.*.swp

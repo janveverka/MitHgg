@@ -1,4 +1,4 @@
-// $Id: PhSCEffMod.C,v 1.3 2011/06/10 16:58:27 fabstoec Exp $
+// $Id: PhSCEffMod.C,v 1.4 2012/03/31 23:27:25 paus Exp $
 
 #include <TMath.h>
 #include <TH1D.h>

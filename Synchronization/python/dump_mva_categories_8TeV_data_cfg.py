@@ -28,6 +28,7 @@ process.inputs = cms.PSet(
 
 #_______________________________________________________________________________
 process.dump = cms.PSet(
+    maxEntriesToProcess = cms.untracked.int32(-1),
     diphotonMvaWeights = cms.string(
         join(_cmssw_base, 'src/MitPhysics/data/',
              'HggBambu_SMDipho_Oct01_redqcdweightallsigevenbkg_BDTG.' +
@@ -49,6 +50,11 @@ process.dump = cms.PSet(
     diphotonBdtBoundaries = cms.vdouble(0.76, 0.36, 0.00, -0.42, -0.78),
     dijetBdtBoundaries    = cms.vdouble(),
     combinedBdtBoundaries = cms.vdouble(0.94, 0.82, 0.14),
+    ## ECAL and HCAL filters
+    eventsToSkip = cms.string(
+        join(_cmssw_base, 'src/MitHgg/Tools/data',
+             'HCALLaser2012AllDatasets_and_ECALLaserFiltered.txt.gz')
+        ),
     ) ## process.dump
 
 

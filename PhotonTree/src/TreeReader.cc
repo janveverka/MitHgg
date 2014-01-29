@@ -38,6 +38,6 @@ TreeReader::Update()
 {
   /// There are no derived variables to be updated in this class.  The purpose 
   /// of this method is for the derived classes, like for example the 
-  /// DiphotonMvaReader, to reimplement it.  We define Update here
-  /// here, so that the derived classes don't need to reimplemnt GetEntry.
+  /// DiphotonMvaReader, to reimplement it.  We define Update here,
+  /// so that the derived classes don't need to reimplement GetEntry.
 }

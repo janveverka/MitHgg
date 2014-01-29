@@ -1,4 +1,4 @@
-// $Id: MitHggModsLinkDef.h,v 1.8 2011/07/15 17:26:34 fabstoec Exp $
+// $Id: MitHggModsLinkDef.h,v 1.9 2012/03/31 23:27:25 paus Exp $
 
 #ifndef MITHGG_MODS_LINKDEF_H
 #define MITHGG_MODS_LINKDEF_H

@@ -25,6 +25,6 @@ process.inputs = cms.PSet(
 
 #_______________________________________________________________________________
 process.dump = cms.PSet(
-    maxEventsToProces = cms.untracked.int32(10),
+    maxEntriesToProcess = cms.untracked.int32(10),
     beamEnergy = cms.string('8TeV')    
     ) ## process.dump

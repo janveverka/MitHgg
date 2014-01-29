@@ -9,6 +9,7 @@ using ::std::string;
 using ::mithep::hgg::MvaCategoryDumper;
 using ::mithep::hgg::PSet;
 
+
 //------------------------------------------------------------------------------
 MvaCategoryDumper::MvaCategoryDumper(TTree *tree, const PSet &iConfig) :
   MvaCategoryReader(
@@ -21,7 +22,8 @@ MvaCategoryDumper::MvaCategoryDumper(TTree *tree, const PSet &iConfig) :
     iConfig.getParameter         <double>("dijetMvaMaxDPhi"          )        ,
     iConfig.getUntrackedParameter<string>("diphoTmvaOption", "Silent").c_str(),
     iConfig.getUntrackedParameter<string>("dijetTmvaOption", "Silent").c_str(),
-    iConfig.getUntrackedParameter<string>("combiTmvaOption", "Silent").c_str()
+    iConfig.getUntrackedParameter<string>("combiTmvaOption", "Silent").c_str(),
+    GetEventsToSkip(iConfig).c_str()
   ),
   fMaxEntries(iConfig.getUntrackedParameter<int>("maxEntriesToProcess", -1))
 {
@@ -55,6 +57,18 @@ MvaCategoryDumper::GetBeamEnergy(const PSet &iConfig)
   
   return beamEnergy;
 } /// GetBeamEnergy
+
+
+//------------------------------------------------------------------------------
+string
+MvaCategoryDumper::GetEventsToSkip(const PSet &iConfig)
+{
+  string eventsToSkip("");
+  if (iConfig.existsAs<string>("eventsToSkip")) {
+    eventsToSkip = iConfig.getParameter<string>("eventsToSkip");
+  }
+  return eventsToSkip;
+} /// GetEventsToSkip
 
 
 //------------------------------------------------------------------------------
@@ -112,6 +126,7 @@ MvaCategoryDumper::ProduceDump()
   if (fMaxEntries > 0 && fMaxEntries < (int) numEntriesToProcess) {
     numEntriesToProcess = fMaxEntries;
   }
+  
   for (unsigned iEntry=0; iEntry < numEntriesToProcess; iEntry++) {
     GetEntry(iEntry);
     if (mvaCat < 0) continue;

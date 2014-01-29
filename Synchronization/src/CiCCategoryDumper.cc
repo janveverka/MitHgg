@@ -1,6 +1,5 @@
 #include <algorithm> // std::abs
 #include <iostream>  // std::cout
-#include <string>
 #include "FWCore/Utilities/interface/Exception.h"
 #include "MitHgg/Synchronization/interface/CiCCategoryDumper.h"
 #include "MitHgg/PhotonTree/interface/TestTreeFactory.h"
@@ -12,8 +11,9 @@ using ::mithep::hgg::PSet;
 //------------------------------------------------------------------------------
 CiCCategoryDumper::CiCCategoryDumper(TTree *tree, const PSet &iConfig) :
   CiCCategoryReader(
-    tree                 ,
-    GetBeamEnergy(iConfig)
+    tree                    ,
+    GetBeamEnergy(iConfig)  ,
+    GetEventsToSkip(iConfig).c_str()
   ),
   fMaxEntries(iConfig.getUntrackedParameter<int>("maxEntriesToProcess", -1))
 {
@@ -44,9 +44,21 @@ CiCCategoryDumper::GetBeamEnergy(const PSet &iConfig)
       throw exception;
     }
   } /// beamEnergy exists
-  
+
   return beamEnergy;
 } /// GetBeamEnergy
+
+
+//------------------------------------------------------------------------------
+string
+CiCCategoryDumper::GetEventsToSkip(const PSet &iConfig)
+{
+  string eventsToSkip("");
+  if (iConfig.existsAs<string>("eventsToSkip")) {
+    eventsToSkip = iConfig.getParameter<string>("eventsToSkip");
+  }
+  return eventsToSkip;
+} /// GetEventsToSkip
 
 
 //------------------------------------------------------------------------------
@@ -60,7 +72,7 @@ CiCCategoryDumper::Init(const PSet &iConfig)
   fTree->SetBranchStatus("ph1.*bclast2", 0);
   fTree->SetBranchStatus("ph1.conv*"   , 0);
   fTree->SetBranchStatus("ph1.pfsc*"   , 0);
-  fTree->SetBranchStatus("ph1.pfcic4_*", 0);
+  //fTree->SetBranchStatus("ph1.pfcic4_*", 0);
   fTree->SetBranchStatus("ph1.idmva_*" , 0);
   fTree->SetBranchStatus("ph1.*bcs*"   , 0);
   fTree->SetBranchStatus("ph1.*psc*"   , 0);
@@ -71,7 +83,7 @@ CiCCategoryDumper::Init(const PSet &iConfig)
   fTree->SetBranchStatus("ph2.*bclast2", 0);
   fTree->SetBranchStatus("ph2.conv*"   , 0);
   fTree->SetBranchStatus("ph2.pfsc*"   , 0);
-  fTree->SetBranchStatus("ph2.pfcic4_*", 0);
+  // fTree->SetBranchStatus("ph2.pfcic4_*", 0);
   fTree->SetBranchStatus("ph2.idmva_*" , 0);
   fTree->SetBranchStatus("ph2.*bcs*"   , 0);
   fTree->SetBranchStatus("ph2.*psc*"   , 0);
@@ -134,8 +146,10 @@ CiCCategoryDumper::DumpPhotons()
 {
   /// Lead
   DumpPhoton("pho1_", ph1);
+  DumpPhotonCiCIDInputs("pho1_", ph1);
   /// Sublead
   DumpPhoton("pho2_", ph2);
+  DumpPhotonCiCIDInputs("pho2_", ph2);
 } /// DumpPhotons
 
 
@@ -292,8 +306,30 @@ CiCCategoryDumper::DumpPhoton(const char *prefix, PhotonReader &photon)
   DumpVar(prefix, "phi"    , photon.phi   );
   DumpVar(prefix, "idMVA"  , photon.idmva );
   DumpVar(prefix, "r9"     , photon.r9    );
+  DumpVar(prefix, "scEta"  , photon.sceta );
   
 } /// DumpPhoton
+
+
+//------------------------------------------------------------------------------
+void
+CiCCategoryDumper::DumpPhotonCiCIDInputs(const char *prefix, 
+                                         PhotonReader &photon)
+{
+  DumpVar(prefix, "cic_tIso1"          , photon.pfcic4_tIso1          );
+  DumpVar(prefix, "cic_tIso2"          , photon.pfcic4_tIso2          );
+  DumpVar(prefix, "cic_tIso3"          , photon.pfcic4_tIso3          );
+  DumpVar(prefix, "cic_covIEtaIEta"    , photon.pfcic4_covIEtaIEta    );
+  DumpVar(prefix, "cic_HoE"            , photon.pfcic4_HoE            );
+  DumpVar(prefix, "cic_R9"             , photon.pfcic4_R9             );
+  DumpVar(prefix, "cic_wVtxInd"        , photon.pfcic4_wVtxInd        );
+  DumpVar(prefix, "cic_ecalIso3"       , photon.pfcic4_ecalIso3       );
+  DumpVar(prefix, "cic_ecalIso4"       , photon.pfcic4_ecalIso4       );
+  DumpVar(prefix, "cic_trackIsoSel03"  , photon.pfcic4_trackIsoSel03  );
+  DumpVar(prefix, "cic_trackIsoWorst04", photon.pfcic4_trackIsoWorst04);
+  DumpVar(prefix, "cic_combIso1"       , photon.pfcic4_combIso1       );
+  DumpVar(prefix, "cic_combIso2"       , photon.pfcic4_combIso2       );
+} /// DumpPhotonCiCIDInputs
 
 
 //------------------------------------------------------------------------------

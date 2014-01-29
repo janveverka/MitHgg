@@ -1,6 +1,35 @@
 MitHgg/PhotonTree Package
 =========================
 
+ttH Deficit in 7 TeV
+run:lumi:event  row   filename
+------------------------------
+172952:1118:1279068855   14530   22EFCDC4-78E0-E211-9198-001E67397CCE.root
+177730:1125:1828549350   26080   2C97CF56-0FE1-E211-8AE1-FA163E5F981D.root
+
+ttH Deficit in 8 TeV
+--------------------
+200190:163:210601324   83021   0019BE04-0B71-E211-96CF-00304867902E.root
+205921:484:703719064  148875   5C76A641-3C84-E211-8437-00A0D1EE26D0.root
+
+
+
+
+Updates for summaries
+
+ID   Category   MIT Yield   Globe Yield   MIT Fraction   Globe Fraction
+--------------------------------------------------------------------------------
+
+ID   Category   Same Cat   Different Cat   Selected by Only One Fwk.
+--------------------------------------------------------------------------------
+
+                Same Cat                 Different cat           Unique for
+                ----------------------   ---------------------   ---------------
+ID   Category   Same Mass   Diff. Mass   Only Globe   Only MIT   Globe   MIT
+--------------------------------------------------------------------------------
+
+
+
 Excess events of 12 Dec 2013
 ********************************
    run *      lumi *     event *
@@ -26,10 +55,13 @@ run:200229 lumi:506  evt:537326223   run:C file:
 run:199021 lumi:1393 evt:15522682932 run:C file:
 
 CMS Dataset                              Bambu            Runs
+/Photon/Run2011A-21Jun2013-v1/AOD        r11a-pho-j21-v1  160404-173692
+/Photon/Run2011B-21Jun2013-v1/AOD        r11b-pho-j21-v1  175833-180252
 /Photon/Run2012A-22Jan2013-v1/AOD        r12a-pho-j22-v1  190456-193621
 /DoublePhoton/Run2012B-22Jan2013-v1/AOD  r12b-dph-j22-v1  193834-196531
 /DoublePhoton/Run2012C-22Jan2013-v2/AOD  r12c-dph-j22-v1  198022-203742
-/DoublePhoton/Run2012D-22Jan2013-v1/AOD  r12d-dph-j22-v1  203777-208509
+/DoublePhoton/Run2012D-22Jan2013-v1/AOD  r12d-dph-j22-v1  203777-208686
+
 
 /mnt/hadoop/cms/store/user/paus/filefi/029/
 

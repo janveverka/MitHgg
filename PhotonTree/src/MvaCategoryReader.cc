@@ -24,7 +24,8 @@ MvaCategoryReader::MvaCategoryReader(TTree       *iTree                    ,
                                      Float_t      iDijetMaxDPhi            ,
                                      const char  *iDiphoTmvaOption         ,
                                      const char  *iDijetTmvaOption         ,
-                                     const char  *iCombiTmvaOption         ) :
+                                     const char  *iCombiTmvaOption         ,
+                                     const char  *eventsToSkip             ) :
   CombinedMvaReader(iTree                    ,
                     iBeamEnergy              ,
                     iDiphoWeights            ,
@@ -49,7 +50,9 @@ MvaCategoryReader::MvaCategoryReader(TTree       *iTree                    ,
   kVHMet      (kVHLepLoose + 1           ),
   kTTHLep     (kVHMet      + 1           ),
   kTTHHad     (kTTHLep     + 1           ),
-  kVHHad      (kTTHHad     + 1           )
+  kVHHad      (kTTHHad     + 1           ),
+  fEventsToSkip(eventsToSkip),
+  fEventFilter(0)
 {
   Init();
 } /// Ctor
@@ -57,7 +60,9 @@ MvaCategoryReader::MvaCategoryReader(TTree       *iTree                    ,
 
 //------------------------------------------------------------------------------
 MvaCategoryReader::~MvaCategoryReader()
-{} /// Dtor
+{
+  delete fEventFilter;
+} /// Dtor
 
 
 //------------------------------------------------------------------------------
@@ -68,6 +73,12 @@ MvaCategoryReader::Init()
   SetDijetMvaCuts(default_8tev::dijetMvaCuts);
   SetCombiMvaCuts(default_8tev::combiMvaCuts);
   Update();
+  /// FIXME: Modify the if-statement below so that we don't try to open
+  /// the event-list file if the file name is an empty string
+  /// This should fix the error message: "Unable to open event list file "
+  if (fEventsToSkip.c_str()) {
+    fEventFilter = new EventFilterFromListStandAlone(fEventsToSkip);
+  }
 } /// Init
 
 
@@ -134,7 +145,7 @@ MvaCategoryReader::Update7TeV()
   UpdateTTHTag                 ( 0.6, 0.6);
   UpdateVHHadTag               ( 0.6     );
   
-  UpdateMvaCat                 ();
+  UpdateMvaCat7TeV             ();
 } /// Update7TeV
 
 
@@ -151,7 +162,7 @@ MvaCategoryReader::Update8TeV()
   UpdateTTHTag                 (-0.6, -0.2);
   UpdateVHHadTag               ( 0.2      );
   
-  UpdateMvaCat                 ();  
+  UpdateMvaCat8TeV             ();
 } /// Update8TeV
 
 
@@ -352,7 +363,25 @@ MvaCategoryReader::UpdateVHHadTag(double minDiphoMVA)
 //------------------------------------------------------------------------------
 // The meat!
 void
-MvaCategoryReader::UpdateMvaCat(void)
+MvaCategoryReader::UpdateMvaCat7TeV(void)
+{
+  mvaCat = -999;
+  if (!PassesPreselection()) return;
+  if      (tthTag   == 2) mvaCat = kTTHLep;
+  else if (tthTag   == 1) mvaCat = kTTHHad;
+  else if (VHLepTag == 2) mvaCat = kVHLepTight;
+  else if (VHLepTag == 1) mvaCat = kVHLepLoose;
+  else if (dijetCat >= 0) mvaCat = kDijet0 + dijetCat;
+  else if (VHMetTag == 1) mvaCat = kVHMet;
+  else if (VHHadTag == 1) mvaCat = kVHHad;
+  else if (inclCat  >= 0) mvaCat = kIncl0 + inclCat;
+} /// UpdateMvaCat7TeV
+
+
+//------------------------------------------------------------------------------
+// More meat!
+void
+MvaCategoryReader::UpdateMvaCat8TeV(void)
 {
   mvaCat = -999;
   if (!PassesPreselection()) return;
@@ -364,14 +393,19 @@ MvaCategoryReader::UpdateMvaCat(void)
   else if (tthTag   == 1) mvaCat = kTTHHad;
   else if (VHHadTag == 1) mvaCat = kVHHad;
   else if (inclCat  >= 0) mvaCat = kIncl0 + inclCat;
-} /// UpdateMvaCat
+} /// UpdateMvaCat8TeV
 
 
 //------------------------------------------------------------------------------
 bool
 MvaCategoryReader::PassesPreselection(void)
 {
-  return (100              < mass      && mass             < 180      &&
+  bool passesEventFilter = true;
+  if (fEventFilter) {
+    passesEventFilter = fEventFilter->filter(run, lumi, evt);
+  }
+  return (passesEventFilter            &&
+          100              < mass      && mass             < 180      &&
           40 * massOver120 < ph1.pt    && 30 * massOver120 < ph2.pt   &&
           -0.2             < ph1.idmva && -0.2             < ph2.idmva);
 } /// PassesPreselection

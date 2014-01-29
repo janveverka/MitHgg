@@ -2,6 +2,7 @@
 <use name="FWCore/ParameterSet"/>
 <use name="MitCommon/MathTools"/>
 <use name="MitPhysics/Mods"/>
+<use name="MitHgg/Tools"/>
 <use name="root"/>
 <use name="rootrflx"/>
 <export>

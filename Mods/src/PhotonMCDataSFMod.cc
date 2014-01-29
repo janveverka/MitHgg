@@ -1,4 +1,4 @@
-// $Id: PhotonMCDataSFMod.cc,v 1.2 2012/01/23 11:56:26 fabstoec Exp $
+// $Id: PhotonMCDataSFMod.cc,v 1.3 2012/04/24 11:43:39 fabstoec Exp $
 
 #include <TMath.h>
 #include <TH1D.h>
