@@ -1,0 +1,1298 @@
+# photonCat                   mean_change    sigma_change    rate_change
+diphotonCat 0
+proc ggh
+EBlowR9_8TeVscale             0.0000     0.0003     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0032     0.0002    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0014     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0285     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0012     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0013     0.0003    
+MaterialEBOuterEE_scale       0.0004     0.0035     0.0002    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 0
+proc vbf
+EBlowR9_8TeVscale             0.0000     0.0014     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0035     0.0002    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0015     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0248     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0013     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0033     0.0000    
+MaterialEBOuterEE_scale       0.0004     0.0105     0.0002    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 0
+proc wh
+EBlowR9_8TeVscale             0.0000     0.0006     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0070     0.0002    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0013     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0364     0.0003    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0026     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0045     0.0003    
+MaterialEBOuterEE_scale       0.0004     0.0060     0.0005    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 0
+proc zh
+EBlowR9_8TeVscale             0.0000     0.0003     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0060     0.0002    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0009     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0285     0.0003    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0032     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0089     0.0005    
+MaterialEBOuterEE_scale       0.0004     0.0085     0.0005    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 0
+proc tth
+EBlowR9_8TeVscale             0.0000     0.0008     0.0001    
+EBhighR9_8TeVscale            0.0005     0.0038     0.0003    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0014     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0363     0.0005    
+EBlowR9Phi_8TeVsmear          0.0000     0.0003     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0022     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0061     0.0003    
+MaterialEBOuterEE_scale       0.0004     0.0071     0.0003    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 1
+proc ggh
+EBlowR9_8TeVscale             0.0004     0.0043     0.0006    
+EBhighR9_8TeVscale            0.0002     0.0027     0.0001    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0120     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0055     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0001     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0002     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0035     0.0004    
+MaterialEBOuterEE_scale       0.0004     0.0049     0.0006    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 1
+proc vbf
+EBlowR9_8TeVscale             0.0004     0.0047     0.0005    
+EBhighR9_8TeVscale            0.0002     0.0020     0.0007    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0128     0.0006    
+EBhighR9_8TeVsmear            0.0000     0.0046     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0003     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0001     0.0001    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0028     0.0005    
+MaterialEBOuterEE_scale       0.0004     0.0040     0.0005    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 1
+proc wh
+EBlowR9_8TeVscale             0.0005     0.0071     0.0003    
+EBhighR9_8TeVscale            0.0002     0.0041     0.0003    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0102     0.0003    
+EBhighR9_8TeVsmear            0.0000     0.0033     0.0004    
+EBlowR9Phi_8TeVsmear          0.0000     0.0002     0.0001    
+EBhighR9Phi_8TeVsmear         0.0000     0.0006     0.0001    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0049     0.0005    
+MaterialEBOuterEE_scale       0.0004     0.0058     0.0001    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 1
+proc zh
+EBlowR9_8TeVscale             0.0004     0.0058     0.0004    
+EBhighR9_8TeVscale            0.0002     0.0018     0.0001    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0069     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0069     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0007     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0002     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0025     0.0003    
+MaterialEBOuterEE_scale       0.0004     0.0079     0.0006    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 1
+proc tth
+EBlowR9_8TeVscale             0.0004     0.0056     0.0006    
+EBhighR9_8TeVscale            0.0002     0.0036     0.0003    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0100     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0088     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0002     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0010     0.0001    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0057     0.0005    
+MaterialEBOuterEE_scale       0.0004     0.0047     0.0002    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 2
+proc ggh
+EBlowR9_8TeVscale             0.0000     0.0003     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0004     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0016     0.0028     0.0008    
+EBlowR9_8TeVsmear             0.0000     0.0002     0.0001    
+EBhighR9_8TeVsmear            0.0000     0.0047     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0001     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0209     0.0004    
+MaterialEBCentral_scale       0.0001     0.0012     0.0001    
+MaterialEBOuterEE_scale       0.0024     0.0064     0.0016    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 2
+proc vbf
+EBlowR9_8TeVscale             0.0000     0.0007     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0018     0.0006    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0016     0.0031     0.0007    
+EBlowR9_8TeVsmear             0.0000     0.0010     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0071     0.0004    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0002     0.0002    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0195     0.0003    
+MaterialEBCentral_scale       0.0002     0.0012     0.0007    
+MaterialEBOuterEE_scale       0.0023     0.0087     0.0009    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 2
+proc wh
+EBlowR9_8TeVscale             0.0000     0.0002     0.0002    
+EBhighR9_8TeVscale            0.0002     0.0030     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0016     0.0098     0.0021    
+EBlowR9_8TeVsmear             0.0000     0.0004     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0016     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0239     0.0002    
+MaterialEBCentral_scale       0.0001     0.0018     0.0002    
+MaterialEBOuterEE_scale       0.0024     0.0112     0.0028    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 2
+proc zh
+EBlowR9_8TeVscale             0.0000     0.0017     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0020     0.0006    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0015     0.0049     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0017     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0087     0.0006    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0004     0.0006    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0231     0.0007    
+MaterialEBCentral_scale       0.0001     0.0039     0.0000    
+MaterialEBOuterEE_scale       0.0024     0.0052     0.0017    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 2
+proc tth
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0042     0.0004    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0014     0.0157     0.0020    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0032     0.0008    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0008     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0187     0.0008    
+MaterialEBCentral_scale       0.0001     0.0010     0.0008    
+MaterialEBOuterEE_scale       0.0022     0.0162     0.0020    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 3
+proc ggh
+EBlowR9_8TeVscale             0.0002     0.0021     0.0002    
+EBhighR9_8TeVscale            0.0001     0.0002     0.0000    
+EElowR9_8TeVscale             0.0007     0.0050     0.0012    
+EEhighR9_8TeVscale            0.0007     0.0042     0.0006    
+EBlowR9_8TeVsmear             0.0000     0.0026     0.0001    
+EBhighR9_8TeVsmear            0.0000     0.0012     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0001     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0001     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0222     0.0006    
+EEhighR9_8TeVsmear            0.0000     0.0095     0.0001    
+MaterialEBCentral_scale       0.0001     0.0017     0.0001    
+MaterialEBOuterEE_scale       0.0018     0.0012     0.0022    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 3
+proc vbf
+EBlowR9_8TeVscale             0.0002     0.0009     0.0003    
+EBhighR9_8TeVscale            0.0001     0.0019     0.0001    
+EElowR9_8TeVscale             0.0006     0.0022     0.0015    
+EEhighR9_8TeVscale            0.0007     0.0039     0.0007    
+EBlowR9_8TeVsmear             0.0000     0.0058     0.0003    
+EBhighR9_8TeVsmear            0.0000     0.0022     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0002     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0203     0.0005    
+EEhighR9_8TeVsmear            0.0000     0.0065     0.0003    
+MaterialEBCentral_scale       0.0001     0.0005     0.0002    
+MaterialEBOuterEE_scale       0.0017     0.0082     0.0019    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 3
+proc wh
+EBlowR9_8TeVscale             0.0002     0.0022     0.0007    
+EBhighR9_8TeVscale            0.0001     0.0024     0.0003    
+EElowR9_8TeVscale             0.0007     0.0057     0.0007    
+EEhighR9_8TeVscale            0.0007     0.0031     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0036     0.0003    
+EBhighR9_8TeVsmear            0.0000     0.0006     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0180     0.0005    
+EEhighR9_8TeVsmear            0.0000     0.0086     0.0003    
+MaterialEBCentral_scale       0.0001     0.0024     0.0005    
+MaterialEBOuterEE_scale       0.0019     0.0076     0.0022    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 3
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0003     0.0009    
+EBhighR9_8TeVscale            0.0000     0.0009     0.0006    
+EElowR9_8TeVscale             0.0007     0.0066     0.0009    
+EEhighR9_8TeVscale            0.0006     0.0054     0.0014    
+EBlowR9_8TeVsmear             0.0000     0.0021     0.0009    
+EBhighR9_8TeVsmear            0.0000     0.0003     0.0009    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0001     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0160     0.0017    
+EEhighR9_8TeVsmear            0.0000     0.0044     0.0007    
+MaterialEBCentral_scale       0.0001     0.0018     0.0003    
+MaterialEBOuterEE_scale       0.0018     0.0131     0.0031    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 3
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0015     0.0003    
+EBhighR9_8TeVscale            0.0001     0.0009     0.0000    
+EElowR9_8TeVscale             0.0007     0.0029     0.0008    
+EEhighR9_8TeVscale            0.0006     0.0059     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0020     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0025     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0289     0.0015    
+EEhighR9_8TeVsmear            0.0000     0.0042     0.0001    
+MaterialEBCentral_scale       0.0001     0.0018     0.0003    
+MaterialEBOuterEE_scale       0.0017     0.0038     0.0015    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 4
+proc ggh
+EBlowR9_8TeVscale             0.0000     0.0007     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0063     0.0002    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0007     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0230     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0006     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0047     0.0001    
+MaterialEBOuterEE_scale       0.0004     0.0041     0.0002    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 4
+proc vbf
+EBlowR9_8TeVscale             0.0000     0.0012     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0108     0.0002    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0017     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0176     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0017     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0075     0.0002    
+MaterialEBOuterEE_scale       0.0004     0.0008     0.0002    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 4
+proc wh
+EBlowR9_8TeVscale             0.0000     0.0032     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0070     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0016     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0263     0.0012    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0021     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0077     0.0009    
+MaterialEBOuterEE_scale       0.0004     0.0057     0.0025    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 4
+proc zh
+EBlowR9_8TeVscale             0.0000     0.0018     0.0000    
+EBhighR9_8TeVscale            0.0005     0.0101     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0038     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0333     0.0003    
+EBlowR9Phi_8TeVsmear          0.0000     0.0005     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0060     0.0007    
+MaterialEBOuterEE_scale       0.0004     0.0098     0.0007    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 4
+proc tth
+EBlowR9_8TeVscale             0.0000     0.0025     0.0006    
+EBhighR9_8TeVscale            0.0004     0.0121     0.0017    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0020     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0253     0.0024    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0010     0.0017    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0041     0.0017    
+MaterialEBOuterEE_scale       0.0004     0.0139     0.0035    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 5
+proc ggh
+EBlowR9_8TeVscale             0.0004     0.0048     0.0007    
+EBhighR9_8TeVscale            0.0002     0.0011     0.0001    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0123     0.0001    
+EBhighR9_8TeVsmear            0.0000     0.0063     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0002     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0023     0.0003    
+MaterialEBOuterEE_scale       0.0004     0.0048     0.0004    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 5
+proc vbf
+EBlowR9_8TeVscale             0.0004     0.0044     0.0016    
+EBhighR9_8TeVscale            0.0002     0.0056     0.0006    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0186     0.0007    
+EBhighR9_8TeVsmear            0.0000     0.0057     0.0006    
+EBlowR9Phi_8TeVsmear          0.0000     0.0004     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0001     0.0002    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0029     0.0007    
+MaterialEBOuterEE_scale       0.0004     0.0042     0.0002    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 5
+proc wh
+EBlowR9_8TeVscale             0.0004     0.0085     0.0006    
+EBhighR9_8TeVscale            0.0002     0.0043     0.0003    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0169     0.0008    
+EBhighR9_8TeVsmear            0.0000     0.0103     0.0008    
+EBlowR9Phi_8TeVsmear          0.0000     0.0006     0.0003    
+EBhighR9Phi_8TeVsmear         0.0000     0.0013     0.0003    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0029     0.0008    
+MaterialEBOuterEE_scale       0.0004     0.0046     0.0003    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 5
+proc zh
+EBlowR9_8TeVscale             0.0004     0.0076     0.0013    
+EBhighR9_8TeVscale            0.0002     0.0018     0.0003    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0202     0.0012    
+EBhighR9_8TeVsmear            0.0000     0.0112     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0027     0.0003    
+MaterialEBOuterEE_scale       0.0004     0.0065     0.0019    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 5
+proc tth
+EBlowR9_8TeVscale             0.0005     0.0046     0.0014    
+EBhighR9_8TeVscale            0.0002     0.0027     0.0008    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0034     0.0017    
+EBhighR9_8TeVsmear            0.0000     0.0016     0.0010    
+EBlowR9Phi_8TeVsmear          0.0000     0.0006     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0020     0.0013    
+MaterialEBOuterEE_scale       0.0004     0.0027     0.0018    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 6
+proc ggh
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0003     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0015     0.0015     0.0010    
+EBlowR9_8TeVsmear             0.0000     0.0002     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0030     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0165     0.0004    
+MaterialEBCentral_scale       0.0001     0.0004     0.0001    
+MaterialEBOuterEE_scale       0.0023     0.0033     0.0014    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 6
+proc vbf
+EBlowR9_8TeVscale             0.0000     0.0006     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0032     0.0005    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0016     0.0102     0.0040    
+EBlowR9_8TeVsmear             0.0000     0.0006     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0065     0.0004    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0180     0.0018    
+MaterialEBCentral_scale       0.0001     0.0026     0.0005    
+MaterialEBOuterEE_scale       0.0023     0.0104     0.0028    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 6
+proc wh
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0010     0.0001    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0016     0.0109     0.0010    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0035     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0163     0.0006    
+MaterialEBCentral_scale       0.0001     0.0019     0.0000    
+MaterialEBOuterEE_scale       0.0024     0.0024     0.0013    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 6
+proc zh
+EBlowR9_8TeVscale             0.0000     0.0005     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0112     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0017     0.0070     0.0021    
+EBlowR9_8TeVsmear             0.0000     0.0005     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0071     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0266     0.0010    
+MaterialEBCentral_scale       0.0001     0.0088     0.0000    
+MaterialEBOuterEE_scale       0.0024     0.0150     0.0027    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 6
+proc tth
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0014     0.0047    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0013     0.0125     0.0065    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0076     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0002     0.0030     0.0023    
+MaterialEBCentral_scale       0.0002     0.0035     0.0023    
+MaterialEBOuterEE_scale       0.0021     0.0338     0.0046    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 7
+proc ggh
+EBlowR9_8TeVscale             0.0002     0.0008     0.0002    
+EBhighR9_8TeVscale            0.0001     0.0003     0.0000    
+EElowR9_8TeVscale             0.0007     0.0014     0.0017    
+EEhighR9_8TeVscale            0.0006     0.0015     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0026     0.0001    
+EBhighR9_8TeVsmear            0.0000     0.0011     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0211     0.0004    
+EEhighR9_8TeVsmear            0.0000     0.0061     0.0001    
+MaterialEBCentral_scale       0.0001     0.0004     0.0001    
+MaterialEBOuterEE_scale       0.0018     0.0019     0.0025    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 7
+proc vbf
+EBlowR9_8TeVscale             0.0002     0.0009     0.0006    
+EBhighR9_8TeVscale            0.0001     0.0012     0.0003    
+EElowR9_8TeVscale             0.0007     0.0053     0.0019    
+EEhighR9_8TeVscale            0.0007     0.0011     0.0002    
+EBlowR9_8TeVsmear             0.0000     0.0022     0.0005    
+EBhighR9_8TeVsmear            0.0000     0.0006     0.0003    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0219     0.0014    
+EEhighR9_8TeVsmear            0.0000     0.0051     0.0000    
+MaterialEBCentral_scale       0.0001     0.0011     0.0000    
+MaterialEBOuterEE_scale       0.0018     0.0098     0.0027    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 7
+proc wh
+EBlowR9_8TeVscale             0.0002     0.0035     0.0000    
+EBhighR9_8TeVscale            0.0001     0.0013     0.0004    
+EElowR9_8TeVscale             0.0008     0.0027     0.0004    
+EEhighR9_8TeVscale            0.0007     0.0037     0.0029    
+EBlowR9_8TeVsmear             0.0001     0.0036     0.0008    
+EBhighR9_8TeVsmear            0.0000     0.0018     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0183     0.0007    
+EEhighR9_8TeVsmear            0.0000     0.0051     0.0006    
+MaterialEBCentral_scale       0.0001     0.0011     0.0000    
+MaterialEBOuterEE_scale       0.0019     0.0008     0.0039    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 7
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0019     0.0002    
+EBhighR9_8TeVscale            0.0001     0.0020     0.0000    
+EElowR9_8TeVscale             0.0008     0.0032     0.0025    
+EEhighR9_8TeVscale            0.0007     0.0048     0.0024    
+EBlowR9_8TeVsmear             0.0000     0.0057     0.0005    
+EBhighR9_8TeVsmear            0.0000     0.0027     0.0008    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0199     0.0017    
+EEhighR9_8TeVsmear            0.0000     0.0068     0.0027    
+MaterialEBCentral_scale       0.0001     0.0021     0.0003    
+MaterialEBOuterEE_scale       0.0019     0.0131     0.0020    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 7
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0019     0.0015    
+EBhighR9_8TeVscale            0.0001     0.0088     0.0014    
+EElowR9_8TeVscale             0.0007     0.0119     0.0026    
+EEhighR9_8TeVscale            0.0004     0.0044     0.0031    
+EBlowR9_8TeVsmear             0.0000     0.0031     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0081     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0044     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0355     0.0028    
+EEhighR9_8TeVsmear            0.0000     0.0087     0.0015    
+MaterialEBCentral_scale       0.0002     0.0035     0.0015    
+MaterialEBOuterEE_scale       0.0015     0.0087     0.0070    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 8
+proc ggh
+EBlowR9_8TeVscale             0.0002     0.0013     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0075     0.0000    
+EElowR9_8TeVscale             0.0001     0.0015     0.0005    
+EEhighR9_8TeVscale            0.0002     0.0042     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0049     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0153     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0006     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0008     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0031     0.0005    
+EEhighR9_8TeVsmear            0.0000     0.0049     0.0000    
+MaterialEBCentral_scale       0.0003     0.0084     0.0002    
+MaterialEBOuterEE_scale       0.0007     0.0043     0.0007    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 8
+proc vbf
+EBlowR9_8TeVscale             0.0002     0.0042     0.0001    
+EBhighR9_8TeVscale            0.0003     0.0042     0.0001    
+EElowR9_8TeVscale             0.0001     0.0005     0.0003    
+EEhighR9_8TeVscale            0.0002     0.0022     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0056     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0113     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0003     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0006     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0015     0.0001    
+EEhighR9_8TeVsmear            0.0000     0.0040     0.0000    
+MaterialEBCentral_scale       0.0003     0.0035     0.0003    
+MaterialEBOuterEE_scale       0.0007     0.0072     0.0006    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 8
+proc wh
+EBlowR9_8TeVscale             0.0003     0.0021     0.0000    
+EBhighR9_8TeVscale            0.0004     0.0004     0.0000    
+EElowR9_8TeVscale             0.0001     0.0131     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0157     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0132     0.0000    
+EBhighR9_8TeVsmear            0.0003     0.0381     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0030     0.0000    
+MaterialEBCentral_scale       0.0004     0.0004     0.0000    
+MaterialEBOuterEE_scale       0.0011     0.0445     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 8
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0610     0.0000    
+EBhighR9_8TeVscale            0.0004     0.0024     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0002     0.0174     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0347     0.0000    
+EBhighR9_8TeVsmear            0.0002     0.0370     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0174     0.0000    
+MaterialEBCentral_scale       0.0006     0.0354     0.0000    
+MaterialEBOuterEE_scale       0.0005     0.0520     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 8
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0134     0.0000    
+EBhighR9_8TeVscale            0.0004     0.0027     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0002     0.0151     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0166     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0279     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0014     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0012     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0092     0.0000    
+MaterialEBCentral_scale       0.0003     0.0156     0.0000    
+MaterialEBOuterEE_scale       0.0005     0.0172     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 9
+proc ggh
+EBlowR9_8TeVscale             0.0002     0.0036     0.0003    
+EBhighR9_8TeVscale            0.0003     0.0047     0.0002    
+EElowR9_8TeVscale             0.0001     0.0011     0.0005    
+EEhighR9_8TeVscale            0.0003     0.0045     0.0002    
+EBlowR9_8TeVsmear             0.0000     0.0081     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0125     0.0005    
+EBlowR9Phi_8TeVsmear          0.0000     0.0003     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0002     0.0002    
+EElowR9_8TeVsmear             0.0000     0.0034     0.0001    
+EEhighR9_8TeVsmear            0.0000     0.0049     0.0001    
+MaterialEBCentral_scale       0.0003     0.0046     0.0005    
+MaterialEBOuterEE_scale       0.0007     0.0053     0.0011    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 9
+proc vbf
+EBlowR9_8TeVscale             0.0002     0.0004     0.0005    
+EBhighR9_8TeVscale            0.0003     0.0006     0.0000    
+EElowR9_8TeVscale             0.0001     0.0014     0.0001    
+EEhighR9_8TeVscale            0.0003     0.0008     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0071     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0138     0.0001    
+EBlowR9Phi_8TeVsmear          0.0000     0.0003     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0003     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0026     0.0003    
+EEhighR9_8TeVsmear            0.0000     0.0024     0.0000    
+MaterialEBCentral_scale       0.0003     0.0018     0.0002    
+MaterialEBOuterEE_scale       0.0008     0.0038     0.0009    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 9
+proc wh
+EBlowR9_8TeVscale             0.0003     0.0073     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0092     0.0000    
+EElowR9_8TeVscale             0.0002     0.0047     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0151     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0120     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0144     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0010     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0030     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0126     0.0000    
+MaterialEBCentral_scale       0.0004     0.0194     0.0000    
+MaterialEBOuterEE_scale       0.0009     0.0102     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 9
+proc zh
+EBlowR9_8TeVscale             0.0003     0.0456     0.0000    
+EBhighR9_8TeVscale            0.0004     0.0309     0.0000    
+EElowR9_8TeVscale             0.0001     0.0108     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0477     0.0044    
+EBlowR9_8TeVsmear             0.0001     0.0225     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0124     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0108     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0356     0.0000    
+MaterialEBCentral_scale       0.0003     0.0127     0.0000    
+MaterialEBOuterEE_scale       0.0010     0.0318     0.0044    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 9
+proc tth
+EBlowR9_8TeVscale             0.0003     0.0440     0.0000    
+EBhighR9_8TeVscale            0.0004     0.0362     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0001     0.0132     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0087     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0153     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0339     0.0000    
+MaterialEBOuterEE_scale       0.0005     0.0320     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 10
+proc ggh
+EBlowR9_8TeVscale             0.0005     0.0000     0.0001    
+EBhighR9_8TeVscale            0.0005     0.0000     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0005     0.0000     0.0001    
+EBhighR9_8TeVsmear            0.0005     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0005     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0007     0.0590     0.0001    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 10
+proc vbf
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0005     0.1332     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0005     0.1332     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0000     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0005     0.1332     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 10
+proc wh
+EBlowR9_8TeVscale             0.0002     0.0006     0.0007    
+EBhighR9_8TeVscale            0.0003     0.0030     0.0002    
+EElowR9_8TeVscale             0.0001     0.0010     0.0009    
+EEhighR9_8TeVscale            0.0004     0.0023     0.0003    
+EBlowR9_8TeVsmear             0.0000     0.0034     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0114     0.0005    
+EBlowR9Phi_8TeVsmear          0.0000     0.0007     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0003     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0039     0.0007    
+EEhighR9_8TeVsmear            0.0000     0.0074     0.0003    
+MaterialEBCentral_scale       0.0002     0.0022     0.0005    
+MaterialEBOuterEE_scale       0.0009     0.0068     0.0019    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 10
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0035     0.0008    
+EBhighR9_8TeVscale            0.0002     0.0076     0.0000    
+EElowR9_8TeVscale             0.0001     0.0008     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0081     0.0009    
+EBlowR9_8TeVsmear             0.0000     0.0020     0.0008    
+EBhighR9_8TeVsmear            0.0000     0.0068     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0020     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0052     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0048     0.0009    
+MaterialEBCentral_scale       0.0003     0.0095     0.0008    
+MaterialEBOuterEE_scale       0.0010     0.0055     0.0009    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 10
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0155     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0131     0.0000    
+EElowR9_8TeVscale             0.0001     0.0032     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0069     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0117     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0033     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0018     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0053     0.0000    
+MaterialEBCentral_scale       0.0003     0.0192     0.0000    
+MaterialEBOuterEE_scale       0.0008     0.0026     0.0007    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 11
+proc ggh
+EBlowR9_8TeVscale             0.0003     0.1356     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0906     0.0000    
+EElowR9_8TeVscale             0.0001     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0002     0.1145     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0919     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0906     0.0000    
+MaterialEBOuterEE_scale       0.0009     0.0861     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 11
+proc vbf
+EBlowR9_8TeVscale             0.0005     0.0464     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0241     0.0000    
+EElowR9_8TeVscale             0.0001     0.1463     0.0000    
+EEhighR9_8TeVscale            0.0007     0.0241     0.0000    
+EBlowR9_8TeVsmear             0.0002     0.1812     0.0000    
+EBhighR9_8TeVsmear            0.0002     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0001     0.1463     0.0000    
+EEhighR9_8TeVsmear            0.0002     0.0241     0.0000    
+MaterialEBCentral_scale       0.0003     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0013     0.1836     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 11
+proc wh
+EBlowR9_8TeVscale             0.0002     0.0071     0.0004    
+EBhighR9_8TeVscale            0.0002     0.0018     0.0012    
+EElowR9_8TeVscale             0.0001     0.0012     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0085     0.0007    
+EBlowR9_8TeVsmear             0.0000     0.0082     0.0004    
+EBhighR9_8TeVsmear            0.0000     0.0088     0.0009    
+EBlowR9Phi_8TeVsmear          0.0000     0.0008     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0007     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0066     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0044     0.0000    
+MaterialEBCentral_scale       0.0003     0.0046     0.0020    
+MaterialEBOuterEE_scale       0.0010     0.0071     0.0015    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 11
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0019     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0007     0.0000    
+EElowR9_8TeVscale             0.0001     0.0119     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0136     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0059     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0147     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0016     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0013     0.0000    
+MaterialEBCentral_scale       0.0003     0.0017     0.0000    
+MaterialEBOuterEE_scale       0.0010     0.0173     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 11
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0138     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0100     0.0000    
+EElowR9_8TeVscale             0.0001     0.0026     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0051     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0119     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0065     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0079     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0028     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0026     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0002     0.0100     0.0000    
+MaterialEBOuterEE_scale       0.0007     0.0150     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 12
+proc ggh
+EBlowR9_8TeVscale             0.0002     0.0048     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0016     0.0010    
+EElowR9_8TeVscale             0.0001     0.0116     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0192     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0109     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0021     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0066     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0007     0.0000    
+MaterialEBCentral_scale       0.0003     0.0083     0.0010    
+MaterialEBOuterEE_scale       0.0008     0.0298     0.0010    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 12
+proc vbf
+EBlowR9_8TeVscale             0.0002     0.0223     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0184     0.0000    
+EElowR9_8TeVscale             0.0001     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0144     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0223     0.0000    
+EBhighR9_8TeVsmear            0.0001     0.0063     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0194     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0002     0.0274     0.0000    
+MaterialEBOuterEE_scale       0.0008     0.0009     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 12
+proc wh
+EBlowR9_8TeVscale             0.0002     0.0019     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0022     0.0000    
+EElowR9_8TeVscale             0.0001     0.0017     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0024     0.0012    
+EBlowR9_8TeVsmear             0.0000     0.0056     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0118     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0010     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0006     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0048     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0035     0.0003    
+MaterialEBCentral_scale       0.0003     0.0020     0.0000    
+MaterialEBOuterEE_scale       0.0011     0.0064     0.0015    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 12
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0062     0.0010    
+EBhighR9_8TeVscale            0.0003     0.0042     0.0003    
+EElowR9_8TeVscale             0.0001     0.0036     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0040     0.0011    
+EBlowR9_8TeVsmear             0.0000     0.0040     0.0003    
+EBhighR9_8TeVsmear            0.0000     0.0019     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0008     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0021     0.0006    
+EEhighR9_8TeVsmear            0.0000     0.0051     0.0003    
+MaterialEBCentral_scale       0.0003     0.0026     0.0003    
+MaterialEBOuterEE_scale       0.0009     0.0075     0.0013    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 12
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0025     0.0002    
+EBhighR9_8TeVscale            0.0003     0.0019     0.0006    
+EElowR9_8TeVscale             0.0001     0.0023     0.0004    
+EEhighR9_8TeVscale            0.0002     0.0019     0.0004    
+EBlowR9_8TeVsmear             0.0000     0.0034     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0163     0.0009    
+EBlowR9Phi_8TeVsmear          0.0000     0.0002     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0005     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0015     0.0003    
+EEhighR9_8TeVsmear            0.0000     0.0046     0.0000    
+MaterialEBCentral_scale       0.0003     0.0038     0.0004    
+MaterialEBOuterEE_scale       0.0007     0.0102     0.0007    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 13
+proc ggh
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0000     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0000     0.0000     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 13
+proc vbf
+EBlowR9_8TeVscale             0.0000     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0000     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0000     0.0000     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 13
+proc wh
+EBlowR9_8TeVscale             0.0003     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0065     0.0000    
+EElowR9_8TeVscale             0.0001     0.0125     0.0000    
+EEhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0003     0.0093     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0125     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0001     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0010     0.0577     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 13
+proc zh
+EBlowR9_8TeVscale             0.0001     0.0467     0.0000    
+EBhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EElowR9_8TeVscale             0.0001     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0004     0.0734     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0467     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0001     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0001     0.0467     0.0000    
+MaterialEBOuterEE_scale       0.0009     0.0413     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 13
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0020     0.0005    
+EBhighR9_8TeVscale            0.0003     0.0019     0.0005    
+EElowR9_8TeVscale             0.0001     0.0016     0.0001    
+EEhighR9_8TeVscale            0.0002     0.0023     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0052     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0167     0.0003    
+EBlowR9Phi_8TeVsmear          0.0000     0.0004     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0009     0.0002    
+EElowR9_8TeVsmear             0.0000     0.0028     0.0001    
+EEhighR9_8TeVsmear            0.0000     0.0050     0.0001    
+MaterialEBCentral_scale       0.0003     0.0037     0.0003    
+MaterialEBOuterEE_scale       0.0007     0.0070     0.0012    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 14
+proc ggh
+EBlowR9_8TeVscale             0.0003     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0218     0.0000    
+EElowR9_8TeVscale             0.0001     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0001     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0000     0.0000    
+MaterialEBCentral_scale       0.0004     0.0218     0.0000    
+MaterialEBOuterEE_scale       0.0007     0.0000     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 14
+proc vbf
+EBlowR9_8TeVscale             0.0002     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0000     0.0000    
+EElowR9_8TeVscale             0.0002     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0006     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0002     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0002     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0002     0.0000     0.0000    
+MaterialEBCentral_scale       0.0002     0.0000     0.0000    
+MaterialEBOuterEE_scale       0.0009     0.0474     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 14
+proc wh
+EBlowR9_8TeVscale             0.0005     0.0454     0.0000    
+EBhighR9_8TeVscale            0.0008     0.0600     0.0000    
+EElowR9_8TeVscale             0.0003     0.0524     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0454     0.0000    
+EBlowR9_8TeVsmear             0.0003     0.0454     0.0000    
+EBhighR9_8TeVsmear            0.0004     0.0086     0.0000    
+EBlowR9Phi_8TeVsmear          0.0002     0.0454     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0380     0.0000    
+EEhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+MaterialEBCentral_scale       0.0007     0.0600     0.0000    
+MaterialEBOuterEE_scale       0.0010     0.0618     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 14
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0000     0.0000     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0008     0.0000     0.0000    
+EBlowR9_8TeVsmear             0.0002     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0002     0.0630     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0000     0.0000    
+EEhighR9_8TeVsmear            0.0003     0.0000     0.0000    
+MaterialEBCentral_scale       0.0002     0.0630     0.0000    
+MaterialEBOuterEE_scale       0.0018     0.0160     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 14
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0020     0.0004    
+EBhighR9_8TeVscale            0.0003     0.0024     0.0001    
+EElowR9_8TeVscale             0.0001     0.0005     0.0003    
+EEhighR9_8TeVscale            0.0002     0.0027     0.0005    
+EBlowR9_8TeVsmear             0.0000     0.0061     0.0002    
+EBhighR9_8TeVsmear            0.0000     0.0149     0.0002    
+EBlowR9Phi_8TeVsmear          0.0000     0.0001     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0007     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0023     0.0002    
+EEhighR9_8TeVsmear            0.0000     0.0040     0.0002    
+MaterialEBCentral_scale       0.0003     0.0026     0.0004    
+MaterialEBOuterEE_scale       0.0006     0.0073     0.0007    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+diphotonCat 15
+proc ggh
+EBlowR9_8TeVscale             0.0002     0.0101     0.0015    
+EBhighR9_8TeVscale            0.0003     0.0151     0.0000    
+EElowR9_8TeVscale             0.0001     0.0038     0.0000    
+EEhighR9_8TeVscale            0.0002     0.0116     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0048     0.0015    
+EBhighR9_8TeVsmear            0.0000     0.0303     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0050     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0110     0.0008    
+EEhighR9_8TeVsmear            0.0000     0.0046     0.0000    
+MaterialEBCentral_scale       0.0003     0.0102     0.0000    
+MaterialEBOuterEE_scale       0.0007     0.0238     0.0015    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 15
+proc vbf
+EBlowR9_8TeVscale             0.0001     0.0000     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0000     0.0000    
+EElowR9_8TeVscale             0.0000     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0268     0.0000    
+EBlowR9_8TeVsmear             0.0001     0.0000     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0000     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0000     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0062     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0000     0.0000    
+MaterialEBCentral_scale       0.0003     0.0071     0.0000    
+MaterialEBOuterEE_scale       0.0006     0.0294     0.0000    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 15
+proc wh
+EBlowR9_8TeVscale             0.0002     0.0045     0.0003    
+EBhighR9_8TeVscale            0.0003     0.0084     0.0000    
+EElowR9_8TeVscale             0.0001     0.0030     0.0006    
+EEhighR9_8TeVscale            0.0003     0.0019     0.0000    
+EBlowR9_8TeVsmear             0.0000     0.0014     0.0003    
+EBhighR9_8TeVsmear            0.0000     0.0030     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0007     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0003     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0026     0.0006    
+EEhighR9_8TeVsmear            0.0000     0.0028     0.0000    
+MaterialEBCentral_scale       0.0003     0.0097     0.0000    
+MaterialEBOuterEE_scale       0.0009     0.0023     0.0006    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 15
+proc zh
+EBlowR9_8TeVscale             0.0002     0.0108     0.0000    
+EBhighR9_8TeVscale            0.0002     0.0009     0.0012    
+EElowR9_8TeVscale             0.0001     0.0020     0.0006    
+EEhighR9_8TeVscale            0.0002     0.0076     0.0006    
+EBlowR9_8TeVsmear             0.0000     0.0161     0.0012    
+EBhighR9_8TeVsmear            0.0000     0.0151     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0003     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0056     0.0006    
+EEhighR9_8TeVsmear            0.0001     0.0030     0.0006    
+MaterialEBCentral_scale       0.0003     0.0035     0.0012    
+MaterialEBOuterEE_scale       0.0008     0.0114     0.0017    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+diphotonCat 15
+proc tth
+EBlowR9_8TeVscale             0.0002     0.0027     0.0000    
+EBhighR9_8TeVscale            0.0003     0.0041     0.0000    
+EElowR9_8TeVscale             0.0001     0.0000     0.0000    
+EEhighR9_8TeVscale            0.0003     0.0075     0.0009    
+EBlowR9_8TeVsmear             0.0000     0.0014     0.0000    
+EBhighR9_8TeVsmear            0.0000     0.0158     0.0000    
+EBlowR9Phi_8TeVsmear          0.0000     0.0000     0.0000    
+EBhighR9Phi_8TeVsmear         0.0000     0.0001     0.0000    
+EElowR9_8TeVsmear             0.0000     0.0021     0.0000    
+EEhighR9_8TeVsmear            0.0001     0.0026     0.0017    
+MaterialEBCentral_scale       0.0003     0.0034     0.0009    
+MaterialEBOuterEE_scale       0.0008     0.0074     0.0009    
+NonLinearity_8TeVscale        0.0010     0.0000     0.0000
+
+
+
