@@ -38,6 +38,8 @@ class MatroyshkaTest:
         self._init_cdf()
         self._init_inverse_cdf()
         self._init_uvar()
+        self.updf = w.factory('Uniform::updf({uvar})')
+        self._apply_cdf_transform_to_data()
         self._init_titles()
 
     #___________________________________________________________________________
@@ -70,10 +72,25 @@ class MatroyshkaTest:
     def _init_titles(self):
         self.xvar.SetTitle('x')
         self.uvar.SetTitle('u')
+
+    #___________________________________________________________________________
+    def _apply_cdf_transform_to_data(self):
+        ubinning = self.uvar.getBinning()
+        nbins = ubinning.numBins()
+        uhist = ROOT.TH1F('uhist', 'uhist', nbins, ubinning.array())
+        xhist = self.data.createHistogram('xhist', self.xvar)
+        for ibin in range(nbins):
+            uhist.SetBinContent(ibin, xhist.GetBinContent(ibin))
+            uhist.SetBinError(ibin, xhist.GetBinError(ibin))
+        self.udata = ROOT.RooDataHist('udata', 'udata',
+                                      ROOT.RooArgList(self.uvar), uhist)
+
     #___________________________________________________________________________
     def run(self):
-        self.plot_cdf_and_its_inverse()
-        self.fit_toy()
+        pass
+        #self.plot_cdf_and_its_inverse()
+        #self.fit_toy()
+        self.plot_udata()
 
     #___________________________________________________________________________
     def fit_toy(self):
@@ -126,7 +143,18 @@ class MatroyshkaTest:
         legend.AddEntry(plot.findObject('cdf_inverse'), 'CDF Inverse', 'L')
         legend.Draw()
         plot.legend = legend
+
+    #___________________________________________________________________________
+    def plot_udata(self):
+        plot = self.uvar.frame(roo.Title('Transformed Data'))
+        self.plots.append(plot)
+        self.udata.plotOn(plot)
+        self.updf.plotOn(plot)
+        canvases.next('udata').SetLogy()
+        plot.Draw()
+
 # End of MatroyshkaTest
+
 
 #===============================================================================
 def main():
