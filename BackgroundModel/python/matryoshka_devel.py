@@ -30,8 +30,8 @@ class MatroyshkaTest:
     def __init__(self, nevents=1000):
         self.plots = []
         self.w = w = ROOT.RooWorkspace('w')
-        self.gauss = w.factory('''Gaussian::gauss(xvar[-5,5],mean[0,-5,5],
-                                                  sigma[1,0.1,10])''')
+        self.gauss = w.factory('''Gaussian::gauss(xvar[-2,2],mean[0,-5,5],
+                                                  sigma[0.5,0.01,10])''')
         self.xvar = w.var('xvar')
         self.xset = ROOT.RooArgSet(self.xvar)
         self.data = self.gauss.generateBinned(self.xset, nevents)
@@ -46,7 +46,7 @@ class MatroyshkaTest:
         self.gauss_cdf = self.gauss.createCdf(self.xset, scan_pars)
 
     #___________________________________________________________________________
-    def _init_inverse_cdf(self, inverse_precision = 1e-4):
+    def _init_inverse_cdf(self, inverse_precision = 1e-5):
         self.gauss_cdf_inverse = ROOT.RooNumInverse(
             'gauss_cdf_inverse',
             'Inverse of ' + self.gauss_cdf.GetTitle(),
@@ -72,6 +72,7 @@ class MatroyshkaTest:
         self.uvar.SetTitle('u')
     #___________________________________________________________________________
     def run(self):
+        self.plot_cdf_and_its_inverse()
         self.fit_toy()
 
     #___________________________________________________________________________
@@ -93,7 +94,38 @@ class MatroyshkaTest:
         legend.AddEntry(plot.findObject('fit'  ), 'Fitted Model', 'L' )
         legend.Draw()
         plot.legend = legend
-        ## FIXME: Add legend a la http://root.cern.ch/phpBB3/viewtopic.php?p=31694
+
+    #___________________________________________________________________________
+    def plot_cdf_and_its_inverse(self):
+        plot = self.xvar.frame(roo.Title('Gaussian Model'))
+        self.plots.append(plot)
+        ## The way normalization works is beyond me. Just played around with the
+        ## values of the roo.Normalization arguments until the result
+        ## looked a little decent.
+        self.gauss.plotOn(plot,
+                          ## '40' is a magic number
+                          roo.Normalization(40., ROOT.RooAbsReal.Relative),
+                          roo.Name('pdf'))
+        self.gauss_cdf.plotOn(plot, roo.LineColor(ROOT.kRed), roo.Name('cdf'))
+        self.xvar.setRange('icdf', 0.5, 1.)
+        norm = self.gauss_cdf_inverse.createIntegral(self.xset, 'icdf').getVal()
+        print "norm:", norm
+        self.gauss_cdf_inverse.plotOn(plot, roo.Range(0.001, 0.999),
+                                      roo.NormRange('icdf'),
+                                      roo.Normalization(norm, ROOT.RooAbsReal.Relative),
+                                      roo.LineColor(ROOT.kBlack),
+                                      roo.Name('cdf_inverse'))
+        canvases.next('GaussianModel').SetGrid()
+        plot.Draw()
+        legend = ROOT.TLegend(0.65, 0.2, 0.90, 0.35)
+        legend.SetFillColor(0)
+        legend.SetShadowColor(0)
+        legend.SetBorderSize(0)
+        legend.AddEntry(plot.findObject('pdf'        ), 'PDF'        , 'L')
+        legend.AddEntry(plot.findObject('cdf'        ), 'CDF'        , 'L')
+        legend.AddEntry(plot.findObject('cdf_inverse'), 'CDF Inverse', 'L')
+        legend.Draw()
+        plot.legend = legend
 # End of MatroyshkaTest
 
 #===============================================================================
@@ -103,17 +135,6 @@ def main():
     mtest.run()
     canvases.update()
 ## End of main
-
-
-#plot = xvar.frame()
-#plots.append(plot)
-#gauss.plotOn(plot)
-#gauss_cdf.plotOn(plot, roo.LineColor(ROOT.kRed))
-##gauss_cdf_inverse.plotOn(plot, roo.Range(0,1), roo.LineStyle(ROOT.kDashed))
-#canvases.next('cdf')
-#plot.Draw()
-
-#canvases.update()
 
 
 #===============================================================================
