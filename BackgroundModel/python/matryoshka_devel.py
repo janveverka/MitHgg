@@ -78,12 +78,21 @@ class MatroyshkaTest:
     def fit_toy(self):
         plot = self.xvar.frame(roo.Title('Gaussian Toy'))
         self.plots.append(plot)
-        self.data.plotOn(plot)
-        self.gauss.plotOn(plot)
+        self.data.plotOn(plot, roo.Name('data'))
+        self.gauss.plotOn(plot, roo.Name('model'))
         self.gauss.fitTo(self.data)
-        self.gauss.plotOn(plot, roo.LineColor(ROOT.kRed))
+        self.gauss.plotOn(plot, roo.LineColor(ROOT.kRed), roo.Name('fit'))
         canvases.next('GaussianToy')
         plot.Draw()
+        legend = ROOT.TLegend(0.7, 0.95, 0.95, 0.8)
+        legend.SetFillColor(0)
+        legend.SetShadowColor(0)
+        legend.SetBorderSize(0)
+        legend.AddEntry(plot.findObject('model'), 'Parent Model', 'L' )
+        legend.AddEntry(plot.findObject('data' ), 'Data'        , 'PE')
+        legend.AddEntry(plot.findObject('fit'  ), 'Fitted Model', 'L' )
+        legend.Draw()
+        plot.legend = legend
         ## FIXME: Add legend a la http://root.cern.ch/phpBB3/viewtopic.php?p=31694
 # End of MatroyshkaTest
 
