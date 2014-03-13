@@ -1,18 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-Developing the Matryoshka PDF nesting.  Assume X ~ f and Y ~ g where U is from
-[0,1].  The Matryoshka density h, defined as f nested in g is:
-
-    h(x) = g(F(x)) * f(x)
-
-This is easy to remember in terms of the CDF's:
-
-    H(x) = G(F(x))
-
-The resulting CDF is the original CDF folded with the correction CDF, hence
-the matryoshka name.
-
-Plan: use pow for f and chebyshev for g.
+Tests probability integral transform of binned normal-distributed data.
 '''
 import array
 import ROOT
@@ -21,11 +9,17 @@ import FWLite.Tools.canvases as canvases
 
 plots = []
 
-## Let's first try the probabilty transform for a binned dataset.
+## Let's first try the probability transform for a binned dataset.
 ## The original variable is xvar, the transformed une is uvar (for uniform).
+## This is now done.  Transforming a binned dataset with uniform binning leads
+## to a binned dataset with variable-sized bins. This test confirmed that
+## plotting such a datset, roofit conserves the density in each bin. It divides
+## the content by the bin width such that the y-value has the meaning of a
+## density rather than a number of events. The density is then constant for all
+## bins.  This is good.
 
 #===============================================================================
-class MatroyshkaTest:
+class GaussianToy:
     #___________________________________________________________________________
     def __init__(self, nevents=1000):
         self.plots = []
@@ -153,13 +147,13 @@ class MatroyshkaTest:
         canvases.next('udata').SetLogy()
         plot.Draw()
 
-# End of MatroyshkaTest
+# End of GaussianToy
 
 
 #===============================================================================
 def main():
     global mtest
-    mtest = MatroyshkaTest()
+    mtest = GaussianToy(nevents=10000)
     mtest.run()
     canvases.update()
 ## End of main
